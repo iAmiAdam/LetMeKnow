@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="${packageName}.${activityClass}" >
 
     <TextView
@@ -20,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/whereText"
-        android:text="@string/mapButton" />
+        android:text="@string/mapButton"
+        android:onClick="mapClick" />
 
     <TextView
         android:id="@+id/whoText"
@@ -39,7 +41,8 @@
         android:layout_alignLeft="@+id/mapButton"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/whoText"
-        android:text="@string/contactsButton" />
+        android:text="@string/contactsButton"
+        android:onClick="contactClick" />
 
     <TextView
         android:id="@+id/whatText"
@@ -65,7 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="@string/reset" />
+        android:text="@string/reset" 
+        android:onClick="reset"/>
 
     <Button
         android:id="@+id/confirmButton"
@@ -74,7 +78,8 @@
         android:layout_alignBaseline="@+id/resetButton"
         android:layout_alignBottom="@+id/resetButton"
         android:layout_alignParentLeft="true"
-        android:text="@string/confirm" />
+        android:text="@string/confirm" 
+        android:onClick="confirm" />
 
     <TextView
         android:id="@+id/chosenContact"
