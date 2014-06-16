@@ -5,8 +5,91 @@
     tools:context="${packageName}.${activityClass}" >
 
     <TextView
+        android:id="@+id/whereText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/where" />
+
+    <Button
+        android:id="@+id/mapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/whereText"
+        android:text="@string/mapButton" />
+
+    <TextView
+        android:id="@+id/whoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/whereText"
+        android:layout_below="@+id/mapButton"
+        android:layout_marginTop="17dp"
+        android:layout_toLeftOf="@+id/contactsButton"
+        android:text="@string/who" />
+
+    <Button
+        android:id="@+id/contactsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mapButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/whoText"
+        android:text="@string/contactsButton" />
+
+    <TextView
+        android:id="@+id/whatText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contactsButton"
+        android:layout_centerHorizontal="true"
+        android:text="@string/what" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/whatText"
+        android:ems="10"
+        android:inputType="textMultiLine" >
+    </EditText>
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="@string/reset" />
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/resetButton"
+        android:layout_alignBottom="@+id/resetButton"
+        android:layout_alignParentLeft="true"
+        android:text="@string/confirm" />
+
+    <TextView
+        android:id="@+id/chosenContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/whoText"
+        android:layout_below="@+id/whoText"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/whereText"
+        android:layout_below="@+id/whereText"
+        android:text="" />
 
 </RelativeLayout>

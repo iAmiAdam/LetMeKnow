@@ -3,5 +3,12 @@
 
     <string name="app_name">Let Me Know</string>
     <string name="hello_world">Hello world!</string>
+    <string name="where">Where are you going?</string>
+    <string name="mapButton">Select on map</string>
+    <string name="who">Who do you want to know?</string>
+    <string name="contactsButton">Select from contacts</string>
+    <string name="what">What do you want to tell them?</string>
+    <string name="confirm">Confirm</string>
+    <string name="reset">Reset</string>
 
 </resources>
