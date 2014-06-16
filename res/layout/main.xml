@@ -53,7 +53,7 @@
         android:text="@string/what" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/msgText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -68,6 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_below="@+id/msgText"
         android:text="@string/reset" 
         android:onClick="reset"/>
 
@@ -78,6 +79,7 @@
         android:layout_alignBaseline="@+id/resetButton"
         android:layout_alignBottom="@+id/resetButton"
         android:layout_alignParentLeft="true"
+        android:layout_below="@+id/msgText"
         android:text="@string/confirm" 
         android:onClick="confirm" />
 
