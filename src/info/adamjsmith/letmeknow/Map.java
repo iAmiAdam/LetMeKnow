@@ -33,7 +33,7 @@ public class Map extends Fragment {
 		MapsInitializer.initialize(this.getActivity());
 		
 		// Updates the location and zoom of the MapView
-		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(43.1, -87.9), 10);
+		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(54.8, -3.2), 5);
 		map.animateCamera(cameraUpdate);
  
 		return v;
