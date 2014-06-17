@@ -5,13 +5,16 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class Map extends Fragment {
 	MapView mapView;
@@ -35,7 +38,18 @@ public class Map extends Fragment {
 		// Updates the location and zoom of the MapView
 		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(54.8, -3.2), 5);
 		map.animateCamera(cameraUpdate);
- 
+		
+		map.setOnMapClickListener(new OnMapClickListener(){
+			@Override
+			public void onMapClick(LatLng latLng) {
+				map.clear();
+				map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+				map.addMarker(new MarkerOptions()
+				.position(latLng)
+				.title("Where you're going"));
+			}
+		});
+		
 		return v;
 	}
  

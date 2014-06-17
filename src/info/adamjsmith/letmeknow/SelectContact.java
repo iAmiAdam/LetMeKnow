@@ -3,6 +3,7 @@ package info.adamjsmith.letmeknow;
 import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -61,6 +62,9 @@ public class SelectContact extends ListActivity {
 		super.onListItemClick(list, view, position, id);
 		
 		TextView tv = (TextView)view.findViewById(R.id.contactName);
-		String name = tv.getText().toString();
+		Intent data = new Intent();
+		data.setData(Uri.parse(tv.getText().toString()));
+		setResult(RESULT_OK, data);
+		finish();
 	}
 }

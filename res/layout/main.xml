@@ -85,6 +85,7 @@
 
     <TextView
         android:id="@+id/chosenContact"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/whoText"
@@ -93,9 +94,12 @@
 
     <TextView
         android:id="@+id/location"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/mapButton"
         android:layout_alignLeft="@+id/whereText"
+        android:layout_alignRight="@+id/whereText"
         android:layout_below="@+id/whereText"
         android:text="" />
 
