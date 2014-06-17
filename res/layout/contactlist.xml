@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -11,10 +11,17 @@
         android:stackFromBottom="false"
         android:transcriptMode="normal" />
     
+    <ImageView
+        android:id="@+id/contactPicture"
+        android:src="@drawable/app_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    
     <TextView
         android:id="@+id/contactName"
         android:textStyle="bold"
+        android:layout_marginLeft="55dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     
-</LinearLayout>
+</RelativeLayout>
