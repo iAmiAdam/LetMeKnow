@@ -81,7 +81,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/msgText"
         android:text="@string/confirm" 
-        android:onClick="confirm" />
+        android:onClick="confirmClick" />
 
     <TextView
         android:id="@+id/chosenContact"
