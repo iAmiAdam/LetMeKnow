@@ -1,7 +1,6 @@
 package info.adamjsmith.letmeknow;
 
 import android.app.ListActivity;
-import android.content.ContentUris;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,34 +21,24 @@ public class SelectContact extends ListActivity {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.contactlist);
 	        
-	        Uri allContacts = Uri.parse("content://contacts/people");
+	        Uri allContacts = ContactsContract.Contacts.CONTENT_URI;
 	        
 	        Cursor c;
 	        
 	        if (android.os.Build.VERSION.SDK_INT < 11) {
-	        	c = managedQuery(allContacts, null, null, null, ContactsContract.Contacts.DISPLAY_NAME + " ASC");
+	        	c = managedQuery(allContacts, null, ContactsContract.Contacts.HAS_PHONE_NUMBER + " = 1", null, ContactsContract.Contacts.DISPLAY_NAME + " ASC");
 	        } else {
-	        	CursorLoader cursorLoader = new CursorLoader(this, allContacts, null, null, null, ContactsContract.Contacts.DISPLAY_NAME + " ASC");
+	        	CursorLoader cursorLoader = new CursorLoader(this, allContacts, null, ContactsContract.Contacts.HAS_PHONE_NUMBER + " = 1", null, ContactsContract.Contacts.DISPLAY_NAME + " ASC");
 	        	c = cursorLoader.loadInBackground();
 	        }
-	                
-	        String[] columns = new String[] {ContactsContract.Contacts.DISPLAY_NAME };
 	        
-	        int[] views = new int[] {R.id.contactName};        
-	        
-	        ImageView imageView = (ImageView) findViewById(R.id.contactPicture);
-	        
-	        if (ContactsContract.Contacts.Photo.PHOTO_ID != null) {
-	        	Uri photoUri = Uri.withAppendedPath(Contacts.CONTENT_URI, ContactsContract.Contacts.Photo.PHOTO_ID);
-	        	imageView.setImageURI(photoUri);
-	        } else {
-	        	imageView.setImageResource(R.drawable.app_icon);
-	        }
+	        String[] columns = new String[] {ContactsContract.CommonDataKinds.Photo.PHOTO_URI, ContactsContract.Contacts.DISPLAY_NAME };
+	        int[] views = new int[] {R.id.contactPicture, R.id.contactName};   
 	        
 	        
 	        SimpleCursorAdapter adapter;
 	        
-	        if (android.os.Build.VERSION.SDK_INT <11) {
+	        if (android.os.Build.VERSION.SDK_INT < 11) {
 	        	adapter = new SimpleCursorAdapter(this, R.layout.contactlist, c, columns, views);
 	        } else {
 	        	adapter = new SimpleCursorAdapter(this, R.layout.contactlist, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
