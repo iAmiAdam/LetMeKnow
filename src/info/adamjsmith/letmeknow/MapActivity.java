@@ -50,7 +50,7 @@ public class MapActivity extends Activity {
 				Intent data = new Intent();
 				data.setData(Uri.parse(latLng.toString()));
 				data.putExtra("lat", latLng.latitude);
-				data.putExtra("lat", latLng.longitude);
+				data.putExtra("long", latLng.longitude);
 				setResult(RESULT_OK, data);
 				finish();
 			}

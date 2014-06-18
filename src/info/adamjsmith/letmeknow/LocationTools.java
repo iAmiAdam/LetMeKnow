@@ -26,7 +26,7 @@ public class LocationTools extends Activity{
 		phoneNumber = getIntent().getStringExtra("number");
 		message = getIntent().getStringExtra("message");
 		lat = getIntent().getDoubleExtra("lat", 0);
-		longitude = getIntent().getDoubleExtra("longitude", 0);
+		longitude = getIntent().getDoubleExtra("long", 0);
 		
 		
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -69,7 +69,7 @@ public class LocationTools extends Activity{
 				text = Double.toString(rem2);
 				rem2View.setText(text);
 				
-				if(rem1 < 0.01 && rem1 > -0.01 && rem2 < 0.01 && rem2 > -0.01){
+				if(rem1 < 0.001 && rem1 > -0.001 && rem2 < 0.001 && rem2 > -0.001){
 					SmsManager sms = SmsManager.getDefault();
 					sms.sendTextMessage(phoneNumber, null, message, null, null);
 					Intent data = new Intent();
