@@ -38,6 +38,15 @@ public class LetMeKnowActivity extends Activity {
     	startActivityForResult(i, request_Code);
     }
     
+    public void resetClick(View view) {
+    	TextView contact = (TextView) findViewById(R.id.chosenContact);
+    	contact.setText("");
+    	TextView location = (TextView) findViewById(R.id.location);
+    	location.setText("");
+    	TextView message = (TextView) findViewById(R.id.msgText);
+    	message.setText("");
+    }
+    
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
     	
     	switch (requestCode) {

@@ -70,7 +70,7 @@
         android:layout_centerVertical="true"
         android:layout_below="@+id/msgText"
         android:text="@string/reset" 
-        android:onClick="reset"/>
+        android:onClick="resetClick"/>
 
     <Button
         android:id="@+id/confirmButton"
