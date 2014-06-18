@@ -10,5 +10,6 @@
     <string name="what">What do you want to tell them?</string>
     <string name="confirm">Confirm</string>
     <string name="reset">Reset</string>
+    <string name="contactPicture">Contact</string>
 
 </resources>

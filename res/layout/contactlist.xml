@@ -16,7 +16,8 @@
         android:id="@+id/contactPicture"
         android:background="@drawable/app_icon"
         android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:contentDescription="@string/contactPicture" />
     
     <TextView
         android:id="@+id/contactName"

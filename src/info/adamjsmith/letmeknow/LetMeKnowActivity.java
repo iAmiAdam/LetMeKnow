@@ -52,7 +52,7 @@ public class LetMeKnowActivity extends Activity {
     	case 2:
     		if (resultCode == RESULT_OK) {
     			TextView location = (TextView)findViewById(R.id.location);
-    			location.setText(data.getData().toString());
+    			location.setText("Location Selected");
     			lat = data.getDoubleExtra("lat", 0);
     			longitude = data.getDoubleExtra("long", 0);
     		}

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 public class SelectContact extends ListActivity {
 	
+	@SuppressWarnings("deprecation")
 	public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.contactlist);
