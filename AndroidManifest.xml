@@ -53,6 +53,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LocationTools"
+            android:label="Monitoring" >
+            <intent-filter>
+                <action android:name="info.adamjsmith.letmeknow.LocationTools" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 		<meta-data
 			android:name="com.google.android.maps.v2.API_KEY"
 			android:value="AIzaSyAHRqt70C0-rm5QDwhp_DiiCDn_WDDUHyU"/>

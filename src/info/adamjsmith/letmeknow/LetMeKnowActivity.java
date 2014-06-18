@@ -3,12 +3,13 @@ package info.adamjsmith.letmeknow;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.TextView;
 
 public class LetMeKnowActivity extends Activity {
 	String phoneNumber;
+	double lat;
+	double longitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +27,15 @@ public class LetMeKnowActivity extends Activity {
     }
     
     public void confirmClick(View view) {
+    	int request_Code = 3;
     	TextView textView = (TextView) findViewById(R.id.msgText);
     	String message = textView.getText().toString(); 
-    	SmsManager sms = SmsManager.getDefault();
-		sms.sendTextMessage(phoneNumber, null, message, null, null);
+    	Intent i =  new Intent("info.adamjsmith.letmeknow.LocationTools");
+    	i.putExtra("message", message);
+    	i.putExtra("number", phoneNumber);
+    	i.putExtra("lat", lat);
+    	i.putExtra("long", longitude);
+    	startActivityForResult(i, request_Code);
     }
     
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -47,7 +53,11 @@ public class LetMeKnowActivity extends Activity {
     		if (resultCode == RESULT_OK) {
     			TextView location = (TextView)findViewById(R.id.location);
     			location.setText(data.getData().toString());
+    			lat = data.getDoubleExtra("lat", 0);
+    			longitude = data.getDoubleExtra("long", 0);
     		}
+    		break;
+    	case 3:
     		break;
     	default:
     		break;

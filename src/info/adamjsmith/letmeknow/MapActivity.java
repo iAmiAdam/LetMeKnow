@@ -49,6 +49,8 @@ public class MapActivity extends Activity {
 				.position(latLng));
 				Intent data = new Intent();
 				data.setData(Uri.parse(latLng.toString()));
+				data.putExtra("lat", latLng.latitude);
+				data.putExtra("lat", latLng.longitude);
 				setResult(RESULT_OK, data);
 				finish();
 			}

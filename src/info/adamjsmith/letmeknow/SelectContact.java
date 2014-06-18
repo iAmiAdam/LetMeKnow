@@ -42,6 +42,7 @@ public class SelectContact extends ListActivity {
 	        	adapter = new SimpleCursorAdapter(this, R.layout.contactlist, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	        }
 	        this.setListAdapter(adapter);
+	        
 	    }
 	
 	@Override
