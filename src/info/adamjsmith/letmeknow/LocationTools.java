@@ -37,15 +37,14 @@ public class LocationTools extends Activity{
 	public void onResume() {
 		super.onResume();
 		
-		lm.requestLocationUpdates(
-				LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 4, 0, locationListener);
 	}
 	
 	@Override
 	public void onPause() {
 		super.onPause();
 		
-		lm.removeUpdates(locationListener);
+		//lm.removeUpdates(locationListener);
 	}
 	
 	private class MyLocationListener implements LocationListener {
@@ -69,12 +68,13 @@ public class LocationTools extends Activity{
 				text = Double.toString(rem2);
 				rem2View.setText(text);
 				
-				if(rem1 < 0.001 && rem1 > -0.001 && rem2 < 0.001 && rem2 > -0.001){
+				if(rem1 < 0.01 && rem1 > -0.01 && rem2 < 0.01 && rem2 > -0.01){
 					SmsManager sms = SmsManager.getDefault();
 					sms.sendTextMessage(phoneNumber, null, message, null, null);
 					Intent data = new Intent();
 					data.setData(Uri.parse("Success"));
 					setResult(RESULT_OK, data);
+					lm.removeUpdates(locationListener);
 					finish();
 				}
 			}
