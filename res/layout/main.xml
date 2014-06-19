@@ -15,20 +15,14 @@
     
     <View
         android:id="@+id/logoDivider"
-    	android:layout_width="fill_parent"
-    	android:layout_height="1dp"
-    	android:layout_marginTop="5dp"
-    	android:layout_marginBottom="5dp"
-    	android:background="#818181"
-    	android:layout_below="@+id/logo"/>
+    	android:layout_below="@+id/logo"
+    	style="@style/divider" />
     
     <TextView
         android:id="@+id/whereText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/logoDivider"
-        android:layout_centerHorizontal="true"
-        android:text="@string/where" />
+        android:text="@string/where"
+        style="@style/TextView" />
     
     <Button
         android:id="@+id/mapButton"
@@ -37,34 +31,27 @@
         android:layout_below="@+id/whereText"
         android:layout_centerHorizontal="true"
         android:onClick="mapClick"
-        android:text="@string/mapButton" />
+        android:text="@string/mapButton"
+        style="@style/Button" />
     
     <TextView
         android:id="@+id/location"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/mapButton"
-        android:layout_centerHorizontal="true"
-        android:text="" />
+        android:text=""
+        style="@style/TextView"
+        android:textStyle="bold" />
     
     <View
         android:id="@+id/mapDivider"
-    	android:layout_width="fill_parent"
-    	android:layout_height="1dp"
-    	android:layout_marginTop="5dp"
-    	android:layout_marginBottom="5dp"
-    	android:background="#818181"
-    	android:layout_below="@+id/location"/>
+    	android:layout_below="@+id/location"
+    	style="@style/divider"/>
     
 
     <TextView
         android:id="@+id/whoText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/mapDivider"
-        android:layout_centerHorizontal="true"
-        android:text="@string/who" />
+        android:text="@string/who"
+        style="@style/TextView" />
 
     <Button
         android:id="@+id/contactsButton"
@@ -73,51 +60,37 @@
         android:layout_below="@+id/whoText"
         android:layout_centerHorizontal="true"
         android:text="@string/contactsButton"
-        android:onClick="contactClick" />
+        android:onClick="contactClick"
+        style="@style/Button" />
     
     <TextView
         android:id="@+id/chosenContact"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/contactsButton"
-        android:layout_centerHorizontal="true"
-        android:text="" />
+        android:text=""
+        style="@style/TextView"
+        android:textStyle="bold" />
     
     <View
         android:id="@+id/contactsDivider"
-    	android:layout_width="fill_parent"
-    	android:layout_height="1dp"
-    	android:layout_marginTop="5dp"
-    	android:layout_marginBottom="5dp"
     	android:layout_below="@+id/chosenContact"
-    	android:background="#818181" />
+    	style="@style/divider" />
 
     <TextView
         android:id="@+id/whatText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/contactsDivider"
-        android:layout_centerHorizontal="true"
-        android:text="@string/what" />
+        android:text="@string/what"
+        style="@style/TextView" />
 
     <EditText
         android:id="@+id/msgText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/whatText"
-        android:ems="10"
-        android:inputType="textMultiLine|textAutoCorrect|textCapSentences" >
+        style="@style/EditText"
+        android:layout_below="@+id/whatText" >
     </EditText>
 
     <View
         android:id="@+id/msgDivider"
-    	android:layout_width="fill_parent"
-    	android:layout_height="1dp"
-    	android:layout_marginTop="5dp"
-    	android:layout_marginBottom="5dp"
-    	android:background="#818181"
-    	android:layout_below="@+id/msgText"/>
+    	android:layout_below="@+id/msgText"
+    	style="@style/divider" />
     
     <Button
         android:id="@+id/resetButton"
@@ -127,7 +100,8 @@
         android:layout_centerVertical="true"
         android:layout_below="@+id/msgDivider"
         android:text="@string/reset" 
-        android:onClick="resetClick"/>
+        android:onClick="resetClick"
+        style="@style/Button"/>
 
     <Button
         android:id="@+id/confirmButton"
@@ -138,7 +112,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/msgDivider"
         android:text="@string/confirm" 
-        android:onClick="confirmClick" />
+        android:onClick="confirmClick"
+        style="@style/Button" />
 
     <ImageView
         android:id="@+id/contact"
