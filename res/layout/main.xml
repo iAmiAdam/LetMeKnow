@@ -3,7 +3,6 @@
     android:background="#73c5ff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="${packageName}.${activityClass}" >
     
     <ImageView
@@ -26,8 +25,6 @@
     
     <Button
         android:id="@+id/mapButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/whereText"
         android:layout_centerHorizontal="true"
         android:onClick="mapClick"
@@ -55,8 +52,6 @@
 
     <Button
         android:id="@+id/contactsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/whoText"
         android:layout_centerHorizontal="true"
         android:text="@string/contactsButton"
@@ -83,9 +78,8 @@
 
     <EditText
         android:id="@+id/msgText"
-        style="@style/EditText"
-        android:layout_below="@+id/whatText" >
-    </EditText>
+        android:layout_below="@+id/whatText" 
+        style="@style/EditText" />
 
     <View
         android:id="@+id/msgDivider"
@@ -94,8 +88,6 @@
     
     <Button
         android:id="@+id/resetButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_below="@+id/msgDivider"
@@ -105,8 +97,6 @@
 
     <Button
         android:id="@+id/confirmButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/resetButton"
         android:layout_alignBottom="@+id/resetButton"
         android:layout_alignParentLeft="true"
