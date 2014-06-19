@@ -1,6 +1,7 @@
 package info.adamjsmith.letmeknow;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,12 +11,12 @@ import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Window;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class SelectContact extends ListActivity {
-	
 	@SuppressWarnings("deprecation")
 	public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -39,11 +40,8 @@ public class SelectContact extends ListActivity {
 	        
 	        SimpleCursorAdapter adapter;
 	        
-	        if (android.os.Build.VERSION.SDK_INT < 11) {
-	        	adapter = new SimpleCursorAdapter(this, R.layout.contactlist, c, columns, views);
-	        } else {
-	        	adapter = new SimpleCursorAdapter(this, R.layout.contactlist, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
-	        }
+	        adapter = new MySimpleCursorAdapter(this, R.layout.contactlist, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+	        	
 	        this.setListAdapter(adapter);
 	        
 	    }
@@ -69,5 +67,25 @@ public class SelectContact extends ListActivity {
 		data.putExtra("number", number);
 		setResult(RESULT_OK, data);
 		finish();
+	}
+	
+	public class MySimpleCursorAdapter extends SimpleCursorAdapter {
+
+		@SuppressWarnings("deprecation")
+		public MySimpleCursorAdapter(Context context, int layout, Cursor c,
+				String[] from, int[] to, int flagRegisterContentObserver) {
+			super(context, layout, c, from, to);
+		}
+		
+		@Override
+		public void setViewImage(ImageView iv, String text) {
+			if (text == "") {
+				iv.setImageResource(R.drawable.app_icon);
+			} else {
+				iv.setImageURI(Uri.parse(text));
+			}
+			
+		}
+		
 	}
 }

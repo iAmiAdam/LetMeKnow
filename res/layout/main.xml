@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/whatText"
         android:ems="10"
-        android:inputType="textMultiLine" >
+        android:inputType="textMultiLine|textAutoCorrect|textCapSentences" >
     </EditText>
 
     <View

@@ -25,13 +25,12 @@ public class LetMeKnowActivity extends Activity {
         setContentView(R.layout.main);
         contactTick = (ImageView) findViewById(R.id.contactTick);
     	markerTick = (ImageView) findViewById(R.id.markerTick);
+    	nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     }
     
-    public void onResume(Bundle savedInstanceState) {
-    	nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-    	if (getIntent() != null) {
-    		nm.cancel(getIntent().getExtras().getInt("notificationID"));
-    	}
+    public void onResume() {
+    	super.onResume();
+    	//nm.cancel(getIntent().getExtras().getInt("notificationID"));
     }
     
     public void contactClick(View view) {
@@ -67,7 +66,7 @@ public class LetMeKnowActivity extends Activity {
     	markerTick.setImageResource(R.drawable.tickgrey);
     }
     
-    @SuppressWarnings("deprecation")
+    
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
     	
     	switch (requestCode) {
@@ -91,7 +90,6 @@ public class LetMeKnowActivity extends Activity {
     		break;
     	case 3:
     		if (resultCode == RESULT_OK) {
-    			nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     			Intent i = new Intent(this, LetMeKnowActivity.class);
     			i.putExtra("notificationID", 1);
     			PendingIntent pendingIntent = PendingIntent.getActivity(this,  0, i, 0);
