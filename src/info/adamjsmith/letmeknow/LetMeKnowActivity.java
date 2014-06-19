@@ -5,17 +5,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LetMeKnowActivity extends Activity {
 	String phoneNumber;
 	double lat;
 	double longitude;
+	ImageView contactTick;
+	ImageView markerTick;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
+        contactTick = (ImageView) findViewById(R.id.contactTick);
+    	markerTick = (ImageView) findViewById(R.id.markerTick);
     }
     
     public void contactClick(View view) {
@@ -47,6 +52,8 @@ public class LetMeKnowActivity extends Activity {
     	location.setText("");
     	TextView message = (TextView) findViewById(R.id.msgText);
     	message.setText("");
+    	contactTick.setImageResource(R.drawable.tickgrey);
+    	markerTick.setImageResource(R.drawable.tickgrey);
     }
     
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -58,6 +65,7 @@ public class LetMeKnowActivity extends Activity {
     			contact.setText(data.getData().toString());
     			//contact.setText(data.getData().toString());
     			phoneNumber = (data.getStringExtra("number"));
+    			contactTick.setImageResource(R.drawable.tickgreen);
     		}
     		break;
     	case 2:
@@ -66,6 +74,7 @@ public class LetMeKnowActivity extends Activity {
     			location.setText("Location Selected");
     			lat = data.getDoubleExtra("lat", 0);
     			longitude = data.getDoubleExtra("long", 0);
+    			markerTick.setImageResource(R.drawable.tickgreen);
     		}
     		break;
     	case 3:

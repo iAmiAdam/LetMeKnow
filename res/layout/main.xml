@@ -39,6 +39,15 @@
         android:onClick="mapClick"
         android:text="@string/mapButton" />
     
+    <TextView
+        android:id="@+id/location"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mapButton"
+        android:layout_centerHorizontal="true"
+        android:text="" />
+    
     <View
         android:id="@+id/mapDivider"
     	android:layout_width="fill_parent"
@@ -46,7 +55,7 @@
     	android:layout_marginTop="5dp"
     	android:layout_marginBottom="5dp"
     	android:background="#818181"
-    	android:layout_below="@+id/mapButton"/>
+    	android:layout_below="@+id/location"/>
     
 
     <TextView
@@ -66,14 +75,23 @@
         android:text="@string/contactsButton"
         android:onClick="contactClick" />
     
+    <TextView
+        android:id="@+id/chosenContact"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contactsButton"
+        android:layout_centerHorizontal="true"
+        android:text="" />
+    
     <View
         android:id="@+id/contactsDivider"
     	android:layout_width="fill_parent"
     	android:layout_height="1dp"
     	android:layout_marginTop="5dp"
     	android:layout_marginBottom="5dp"
-    	android:background="#818181"
-    	android:layout_below="@+id/contactsButton"/>
+    	android:layout_below="@+id/chosenContact"
+    	android:background="#818181" />
 
     <TextView
         android:id="@+id/whatText"
@@ -122,42 +140,6 @@
         android:text="@string/confirm" 
         android:onClick="confirmClick" />
 
-    <TextView
-        android:id="@+id/chosenContact"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/whoText"
-        android:layout_below="@+id/whoText"
-        android:text="" />
-
-    <TextView
-        android:id="@+id/location"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/mapButton"
-        android:layout_alignLeft="@+id/whereText"
-        android:layout_alignRight="@+id/whereText"
-        android:layout_below="@+id/whereText"
-        android:text="" />
-
-    <ImageView
-        android:id="@+id/marker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/location"
-        android:layout_toLeftOf="@+id/contactsButton"
-        android:src="@drawable/marker" />
-
-    <ImageView
-        android:id="@+id/markerTick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/marker"
-        android:layout_toRightOf="@+id/contactsButton"
-        android:src="@drawable/tickgrey" />
-
     <ImageView
         android:id="@+id/contact"
         android:layout_width="wrap_content"
@@ -173,5 +155,21 @@
         android:layout_alignLeft="@+id/markerTick"
         android:layout_alignTop="@+id/contactsButton"
         android:src="@drawable/tickgrey" />
+
+    <ImageView
+        android:id="@+id/markerTick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/mapButton"
+        android:layout_toRightOf="@+id/contactsButton"
+        android:src="@drawable/tickgrey" />
+
+    <ImageView
+        android:id="@+id/marker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/mapButton"
+        android:layout_toLeftOf="@+id/contactsButton"
+        android:src="@drawable/marker" />
 
 </RelativeLayout>
