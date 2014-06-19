@@ -9,7 +9,8 @@
 	    <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">2sp</item>
-        <item name="android:lines">3</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:lines">2</item>
 	</style>
 	<style name="Button">
 	    <item name="android:layout_margin">5sp</item>
