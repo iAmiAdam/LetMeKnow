@@ -13,30 +13,26 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Window;
 
 public class MapActivity extends Activity {
 	MapView mapView;
 	GoogleMap map;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//FragmentManager fragmentManager = getFragmentManager();
-		//FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.map);
-		//Map mapFragment = new Map();
-		//fragmentTransaction.replace(R.id.mapView, mapFragment);
-		//fragmentTransaction.commit();
+		
 		
 		mapView = (MapView) findViewById(R.id.mapView);
 		mapView.onCreate(savedInstanceState);
- 
-		// Gets to GoogleMap from the MapView and does initialization stuff
+		
 		map = mapView.getMap();
 		map.getUiSettings().setMyLocationButtonEnabled(false);
 		map.setMyLocationEnabled(true);
  
 		MapsInitializer.initialize(this);
 		
-		// Updates the location and zoom of the MapView
 		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(54.8, -3.2), 5);
 		map.animateCamera(cameraUpdate);
 		

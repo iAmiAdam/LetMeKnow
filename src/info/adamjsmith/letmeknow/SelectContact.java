@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.view.Window;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -18,6 +19,7 @@ public class SelectContact extends ListActivity {
 	@SuppressWarnings("deprecation")
 	public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
+	        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	        setContentView(R.layout.contactlist);
 	        
 	        Uri allContacts = ContactsContract.Contacts.CONTENT_URI;

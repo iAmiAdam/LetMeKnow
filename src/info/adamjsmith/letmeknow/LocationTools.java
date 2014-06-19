@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.view.Window;
 import android.widget.TextView;
 
 public class LocationTools extends Activity{
@@ -21,6 +22,7 @@ public class LocationTools extends Activity{
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.location);
 		
 		phoneNumber = getIntent().getStringExtra("number");

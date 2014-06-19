@@ -1,54 +1,85 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#73c5ff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="${packageName}.${activityClass}" >
-
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/logo"
+        android:id="@+id/logo"
+        android:src="@drawable/logo"/>
+    
+    <View
+        android:id="@+id/logoDivider"
+    	android:layout_width="fill_parent"
+    	android:layout_height="1dp"
+    	android:layout_marginTop="5dp"
+    	android:layout_marginBottom="5dp"
+    	android:background="#818181"
+    	android:layout_below="@+id/logo"/>
+    
     <TextView
         android:id="@+id/whereText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="16dp"
+        android:layout_below="@+id/logoDivider"
+        android:layout_centerHorizontal="true"
         android:text="@string/where" />
-
+    
     <Button
         android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/whereText"
-        android:text="@string/mapButton"
-        android:onClick="mapClick" />
+        android:layout_below="@+id/whereText"
+        android:layout_centerHorizontal="true"
+        android:onClick="mapClick"
+        android:text="@string/mapButton" />
+    
+    <View
+        android:id="@+id/mapDivider"
+    	android:layout_width="fill_parent"
+    	android:layout_height="1dp"
+    	android:layout_marginTop="5dp"
+    	android:layout_marginBottom="5dp"
+    	android:background="#818181"
+    	android:layout_below="@+id/mapButton"/>
+    
 
     <TextView
         android:id="@+id/whoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/whereText"
-        android:layout_below="@+id/mapButton"
-        android:layout_marginTop="17dp"
-        android:layout_toLeftOf="@+id/contactsButton"
+        android:layout_below="@+id/mapDivider"
+        android:layout_centerHorizontal="true"
         android:text="@string/who" />
 
     <Button
         android:id="@+id/contactsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mapButton"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/whoText"
+        android:layout_below="@+id/whoText"
+        android:layout_centerHorizontal="true"
         android:text="@string/contactsButton"
         android:onClick="contactClick" />
+    
+    <View
+        android:id="@+id/contactsDivider"
+    	android:layout_width="fill_parent"
+    	android:layout_height="1dp"
+    	android:layout_marginTop="5dp"
+    	android:layout_marginBottom="5dp"
+    	android:background="#818181"
+    	android:layout_below="@+id/contactsButton"/>
 
     <TextView
         android:id="@+id/whatText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/contactsButton"
+        android:layout_below="@+id/contactsDivider"
         android:layout_centerHorizontal="true"
         android:text="@string/what" />
 
@@ -56,19 +87,27 @@
         android:id="@+id/msgText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@+id/whatText"
         android:ems="10"
         android:inputType="textMultiLine" >
     </EditText>
 
+    <View
+        android:id="@+id/msgDivider"
+    	android:layout_width="fill_parent"
+    	android:layout_height="1dp"
+    	android:layout_marginTop="5dp"
+    	android:layout_marginBottom="5dp"
+    	android:background="#818181"
+    	android:layout_below="@+id/msgText"/>
+    
     <Button
         android:id="@+id/resetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_below="@+id/msgText"
+        android:layout_below="@+id/msgDivider"
         android:text="@string/reset" 
         android:onClick="resetClick"/>
 
@@ -79,7 +118,7 @@
         android:layout_alignBaseline="@+id/resetButton"
         android:layout_alignBottom="@+id/resetButton"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/msgText"
+        android:layout_below="@+id/msgDivider"
         android:text="@string/confirm" 
         android:onClick="confirmClick" />
 
@@ -102,5 +141,37 @@
         android:layout_alignRight="@+id/whereText"
         android:layout_below="@+id/whereText"
         android:text="" />
+
+    <ImageView
+        android:id="@+id/marker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/location"
+        android:layout_toLeftOf="@+id/contactsButton"
+        android:src="@drawable/marker" />
+
+    <ImageView
+        android:id="@+id/markerTick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/marker"
+        android:layout_toRightOf="@+id/contactsButton"
+        android:src="@drawable/tickgrey" />
+
+    <ImageView
+        android:id="@+id/contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/marker"
+        android:layout_alignTop="@+id/contactsButton"
+        android:src="@drawable/person" />
+
+    <ImageView
+        android:id="@+id/contactTick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/markerTick"
+        android:layout_alignTop="@+id/contactsButton"
+        android:src="@drawable/tickgrey" />
 
 </RelativeLayout>
