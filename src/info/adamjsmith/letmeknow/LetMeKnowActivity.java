@@ -1,6 +1,9 @@
 package info.adamjsmith.letmeknow;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +17,7 @@ public class LetMeKnowActivity extends Activity {
 	double longitude;
 	ImageView contactTick;
 	ImageView markerTick;
+	NotificationManager nm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +25,13 @@ public class LetMeKnowActivity extends Activity {
         setContentView(R.layout.main);
         contactTick = (ImageView) findViewById(R.id.contactTick);
     	markerTick = (ImageView) findViewById(R.id.markerTick);
+    }
+    
+    public void onResume(Bundle savedInstanceState) {
+    	nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    	if (getIntent() != null) {
+    		nm.cancel(getIntent().getExtras().getInt("notificationID"));
+    	}
     }
     
     public void contactClick(View view) {
@@ -56,7 +67,8 @@ public class LetMeKnowActivity extends Activity {
     	markerTick.setImageResource(R.drawable.tickgrey);
     }
     
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @SuppressWarnings("deprecation")
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
     	
     	switch (requestCode) {
     	case 1:
@@ -79,6 +91,15 @@ public class LetMeKnowActivity extends Activity {
     		break;
     	case 3:
     		if (resultCode == RESULT_OK) {
+    			nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    			Intent i = new Intent(this, LetMeKnowActivity.class);
+    			i.putExtra("notificationID", 1);
+    			PendingIntent pendingIntent = PendingIntent.getActivity(this,  0, i, 0);
+    			Notification notif = new Notification(R.drawable.app_icon, "Text Message Sent", System.currentTimeMillis());
+    			CharSequence from = "Let Me Know";
+    			CharSequence message = "Text Message Sent";
+    			notif.setLatestEventInfo(this, from, message, pendingIntent);
+    			nm.notify(1, notif);
     			resetClick(null);
     		}
     		break;
