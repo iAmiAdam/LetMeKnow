@@ -3,7 +3,7 @@
 
     <string name="app_name">Let Me Know</string>
     <string name="hello_world">Hello world!</string>
-    <string name="where">Tell us where you are going?</string>
+    <string name="where">Tell us where you are going &#8320;</string>
     <string name="mapButton">Select on map</string>
     <string name="who">Who do you want us to tell?</string>
     <string name="contactsButton">Select from contacts</string>
