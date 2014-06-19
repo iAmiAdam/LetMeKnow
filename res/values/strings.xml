@@ -2,8 +2,7 @@
 <resources>
 
     <string name="app_name">Let Me Know</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="where">Tell us where you are going...</string>
+    <string name="where">Tell us where you are going&#8230;</string>
     <string name="mapButton">Select on map</string>
     <string name="who">Who do you want us to tell?</string>
     <string name="contactsButton">Select from contacts</string>
@@ -12,6 +11,9 @@
     <string name="reset">Reset</string>
     <string name="contactPicture">Contact</string>
     <string name="logo">Let Me Know</string>
+    <string name="markerIcon">Marker Icon</string>
+    <string name="contactIcon">Contact Icon</string>
+    <string name="tick">Tick Icon</string>
     
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>

@@ -117,34 +117,34 @@
 
     <ImageView
         android:id="@+id/contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:contentDescription="@string/contactIcon"
         android:layout_alignLeft="@+id/marker"
         android:layout_alignTop="@+id/contactsButton"
-        android:src="@drawable/person" />
+        android:src="@drawable/person"
+        style="@style/ImageView" />
 
     <ImageView
         android:id="@+id/contactTick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:contentDescription="@string/tick"
         android:layout_alignLeft="@+id/markerTick"
         android:layout_alignTop="@+id/contactsButton"
-        android:src="@drawable/tickgrey" />
+        android:src="@drawable/tickgrey"
+        style="@style/ImageView" />
 
     <ImageView
         android:id="@+id/markerTick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:contentDescription="@string/tick"
         android:layout_alignTop="@+id/mapButton"
         android:layout_toRightOf="@+id/contactsButton"
-        android:src="@drawable/tickgrey" />
+        android:src="@drawable/tickgrey"
+        style="@style/ImageView" />
 
     <ImageView
         android:id="@+id/marker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:contentDescription="@string/markerIcon"
         android:layout_alignTop="@+id/mapButton"
         android:layout_toLeftOf="@+id/contactsButton"
-        android:src="@drawable/marker" />
+        android:src="@drawable/marker"
+        style="@style/ImageView" />
 
 </RelativeLayout>
