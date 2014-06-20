@@ -111,14 +111,6 @@
 	        style="@style/Button" />
 	
 	    <ImageView
-	        android:id="@+id/contact"
-	        android:contentDescription="@string/contactIcon"
-	        android:layout_alignLeft="@+id/marker"
-	        android:layout_alignTop="@+id/contactsButton"
-	        android:src="@drawable/person"
-	        style="@style/ImageView" />
-	
-	    <ImageView
 	        android:id="@+id/contactTick"
 	        android:contentDescription="@string/tick"
 	        android:layout_alignLeft="@+id/markerTick"
@@ -141,6 +133,14 @@
 	        android:layout_toLeftOf="@+id/contactsButton"
 	        android:src="@drawable/marker"
 	        style="@style/ImageView" />
+
+	    <ImageView
+	        android:id="@+id/contact"
+	        style="@style/ImageView"
+	        android:layout_alignLeft="@+id/marker"
+	        android:layout_alignTop="@+id/contactsButton"
+	        android:contentDescription="@string/contactIcon"
+	        android:src="@drawable/person" />
 	
 	</RelativeLayout>
 </ScrollView>
