@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.Window;
-import android.widget.TextView;
 
 public class LocationTools extends Activity{
 	LocationManager lm;
@@ -39,7 +38,13 @@ public class LocationTools extends Activity{
 	public void onResume() {
 		super.onResume();
 		
-		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 4, 0, locationListener);
+		if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
+			lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 4, 0, locationListener);
+		} else {
+			lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 4, 0, locationListener);
+		}
+		
+		
 	}
 	
 	@Override
@@ -73,15 +78,12 @@ public class LocationTools extends Activity{
 		}
 		
 		public void onProviderDisabled(String provider) {
-			
 		}
 		
 		public void onProviderEnabled(String provider) {
-			
 		}
 		
 		public void onStatusChanged(String provider, int status, Bundle extras) {
-			
 		}
 	}
 }
