@@ -92,22 +92,22 @@
 	    	style="@style/divider" />
 	    
 	    <Button
-	        android:id="@+id/resetButton"
+	        android:id="@+id/confirmButton"
 	        android:layout_alignParentRight="true"
 	        android:layout_centerVertical="true"
 	        android:layout_below="@+id/msgDivider"
-	        android:text="@string/reset" 
-	        android:onClick="resetClick"
+	        android:text="@string/confirm" 
+	        android:onClick="confirmClick"
 	        style="@style/Button"/>
 	
 	    <Button
-	        android:id="@+id/confirmButton"
+	        android:id="@+id/resetButton"
 	        android:layout_alignBaseline="@+id/resetButton"
 	        android:layout_alignBottom="@+id/resetButton"
 	        android:layout_alignParentLeft="true"
 	        android:layout_below="@+id/msgDivider"
-	        android:text="@string/confirm" 
-	        android:onClick="confirmClick"
+	        android:text="@string/reset" 
+	        android:onClick="resetClick"
 	        style="@style/Button" />
 	
 	    <ImageView
