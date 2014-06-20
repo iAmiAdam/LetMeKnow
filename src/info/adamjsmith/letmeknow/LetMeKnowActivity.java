@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -30,7 +31,6 @@ public class LetMeKnowActivity extends Activity {
     
     public void onResume() {
     	super.onResume();
-    	//nm.cancel(getIntent().getExtras().getInt("notificationID"));
     }
     
     public void contactClick(View view) {
@@ -90,14 +90,15 @@ public class LetMeKnowActivity extends Activity {
     		break;
     	case 3:
     		if (resultCode == RESULT_OK) {
-    			Intent i = new Intent(this, LetMeKnowActivity.class);
-    			i.putExtra("notificationID", 1);
-    			PendingIntent pendingIntent = PendingIntent.getActivity(this,  0, i, 0);
-    			Notification notif = new Notification(R.drawable.app_icon, "Text Message Sent", System.currentTimeMillis());
-    			CharSequence from = "Let Me Know";
-    			CharSequence message = "Text Message Sent";
-    			notif.setLatestEventInfo(this, from, message, pendingIntent);
-    			nm.notify(1, notif);
+    			final Intent i = new Intent();
+    			PendingIntent pendingIntent = PendingIntent.getActivity(this,  0, i, PendingIntent.FLAG_UPDATE_CURRENT);
+    			NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(this)
+    			.setSmallIcon(R.drawable.app_icon)
+    			.setContentTitle("Text Message Sent")
+    			.setContentText("We've let them know you're safe")
+    			.setAutoCancel(true)
+    			.setContentIntent(pendingIntent);
+    			nm.notify(1, notifBuilder.build());
     			resetClick(null);
     		}
     		break;
