@@ -1,33 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-    
+    android:layout_height="fill_parent"
+    android:background="@color/blue" >
+
     <TextView
-        android:id="@+id/Lat"
-        android:layout_width="wrap_content"
+        android:id="@+id/confirm"
+        style="@style/TextView"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="" />
-        
-    <TextView
-    	android:id="@+id/Long"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_below="@+id/Lat"
-    	android:text="" />
-    
-    <TextView
-    	android:id="@+id/rem1"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_below="@+id/Long"
-    	android:text="" />
-    
-    <TextView
-    	android:id="@+id/rem2"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_below="@+id/rem1"
-    	android:text="" />
+        android:layout_margin="20dp"
+        android:text="@string/confirmation" />
    
 </RelativeLayout>

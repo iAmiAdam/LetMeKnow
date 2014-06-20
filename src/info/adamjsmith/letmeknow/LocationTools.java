@@ -50,27 +50,17 @@ public class LocationTools extends Activity{
 	}
 	
 	private class MyLocationListener implements LocationListener {
-		double rem1 = 100;
-		double rem2 = 100;
-		String text;
-		TextView latView = (TextView) findViewById(R.id.Lat);
-		TextView longView = (TextView) findViewById(R.id.Long);
-		TextView rem1View =  (TextView) findViewById(R.id.rem1);
-		TextView rem2View = (TextView) findViewById(R.id.rem2);
+		double latRemainder = 100;
+		double longRemainder = 100;
+
+
 		public void onLocationChanged(Location loc) {
 			if (loc != null) {
-				rem1 = lat - loc.getLatitude();
-				rem2 = longitude - loc.getLongitude();
-				text = Double.toString(loc.getLatitude());
-				latView.setText(text);
-				text = Double.toString(loc.getLongitude());
-				longView.setText(text); 
-				text = Double.toString(rem1);
-				rem1View.setText(text);
-				text = Double.toString(rem2);
-				rem2View.setText(text);
+				latRemainder = lat - loc.getLatitude();
+				longRemainder = longitude - loc.getLongitude();
+							
 				
-				if(rem1 < 0.01 && rem1 > -0.01 && rem2 < 0.01 && rem2 > -0.01){
+				if(latRemainder < 0.01 && latRemainder > -0.01 && longRemainder < 0.01 && longRemainder > -0.01){
 					SmsManager sms = SmsManager.getDefault();
 					sms.sendTextMessage(phoneNumber, null, message, null, null);
 					Intent data = new Intent();
