@@ -65,6 +65,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Preferences"
+            android:label="Preferences" 
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="info.adamjsmith.letmeknow.Preferences" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 		<meta-data
 			android:name="com.google.android.maps.v2.API_KEY"
 			android:value="AIzaSyARhbqlBkkaP7K2JFHblnHo5hUGpCAyVSU"/>

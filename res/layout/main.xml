@@ -109,6 +109,13 @@
 	        android:text="@string/reset" 
 	        android:onClick="resetClick"
 	        style="@style/Button" />
+	    
+	    <Button
+	        android:id="@+id/settingsButton"
+	        android:layout_below="@+id/resetButton"
+	        android:text="@string/settings" 
+	        android:onClick="settingsClick"
+	        style="@style/Button" />
 	
 	    <ImageView
 	        android:id="@+id/contactTick"

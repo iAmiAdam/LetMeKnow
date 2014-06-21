@@ -17,6 +17,8 @@
     <string name="confirmation">We\'ve got it from here, We\'ll let your contact know when you arrive at your destination.</string>
     <string name="locationSettingsTitle">Location Settings</string>
     <string name="locationIntervalTitle">Location Update Interval</string>
+    <string name="settings">Settings</string>
+    <string name="intervalInMin">Interval in minutes</string>
     
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>

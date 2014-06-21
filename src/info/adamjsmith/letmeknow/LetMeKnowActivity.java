@@ -65,6 +65,10 @@ public class LetMeKnowActivity extends Activity {
     	markerTick.setImageResource(R.drawable.tickgrey);
     }
     
+    public void settingsClick(View view) {
+    	startActivity(new Intent("info.adamjsmith.letmeknow.Preferences"));
+    }
+    
     
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
     	
