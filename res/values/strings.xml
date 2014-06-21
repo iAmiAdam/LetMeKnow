@@ -15,6 +15,8 @@
     <string name="contactIcon">Contact Icon</string>
     <string name="tick">Tick Icon</string>
     <string name="confirmation">We\'ve got it from here, We\'ll let your contact know when you arrive at your destination.</string>
+    <string name="locationSettingsTitle">Location Settings</string>
+    <string name="locationIntervalTitle">Location Update Interval</string>
     
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
@@ -23,5 +25,21 @@
     <color name="aqua">#5e7974</color>
     <color name="blue">#73c5ff</color>
     <color name="black">#000000</color>
+    
+    <string-array name="intervalOptions">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    
+    <string-array name="intervalValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 
 </resources>
