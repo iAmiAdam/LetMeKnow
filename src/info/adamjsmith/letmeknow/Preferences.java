@@ -7,10 +7,9 @@ public class Preferences extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.settings);
 		
 		getFragmentManager().beginTransaction()
-		.replace(R.id.settingsView, new SettingsFragment())
+		.replace(android.R.id.content, new SettingsFragment())
 		.commit();
 	}
 }
