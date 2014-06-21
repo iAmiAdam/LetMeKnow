@@ -5,10 +5,12 @@
         <ListPreference android:title="@string/locationIntervalTitle"
             android:entries="@array/intervalOptions"
             android:entryValues="@array/intervalValues"
-            android:dialogTitle="@string/intervalInMin" />
+            android:dialogTitle="@string/intervalInMin"
+            android:defaultValue="4" />
         <ListPreference android:title="@string/locationDistanceTitle"
             android:entries="@array/distanceOptions"
             android:entryValues="@array/distanceValues"
-            android:dialogTitle="@string/distance" />
+            android:dialogTitle="@string/distance" 
+            android:defaultValue="0.01"/>
     </PreferenceCategory>
 </PreferenceScreen>
