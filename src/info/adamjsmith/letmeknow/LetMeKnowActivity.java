@@ -75,6 +75,7 @@ public class LetMeKnowActivity extends Activity {
     	i.putExtra("lat", lat);
     	i.putExtra("long", longitude);
     	startService(i);
+    	resetClick(null);
     }
     
     public void resetClick(View view) {
@@ -107,22 +108,6 @@ public class LetMeKnowActivity extends Activity {
     			lat = data.getDoubleExtra("lat", 0);
     			longitude = data.getDoubleExtra("long", 0);
     			markerTick.setImageResource(R.drawable.tickgreen);
-    		}
-    		break;
-    	case 3:
-    		if (resultCode == RESULT_OK) {
-    			final Intent i = new Intent();
-    			PendingIntent pendingIntent = PendingIntent.getActivity(this,  0, i, PendingIntent.FLAG_UPDATE_CURRENT);
-    			NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(this)
-    			.setSmallIcon(R.drawable.app_icon)
-    			.setContentTitle("Text Message Sent")
-    			.setContentText("We've let them know you're safe")
-    			.setAutoCancel(true)
-    			.setContentIntent(pendingIntent);
-    			nm.notify(1, notifBuilder.build());
-    			resetClick(null);
-    		} else {
-    			resetClick(null);
     		}
     		break;
     	default:

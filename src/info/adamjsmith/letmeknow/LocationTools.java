@@ -1,5 +1,6 @@
 package info.adamjsmith.letmeknow;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
 
 public class LocationTools extends Service {
@@ -73,6 +75,7 @@ public class LocationTools extends Service {
 					Intent data = new Intent();
 					data.setData(Uri.parse("Success"));
 					lm.removeUpdates(locationListener);
+					pushNotification();
 					stopSelf();
 				}
 			}
@@ -86,6 +89,18 @@ public class LocationTools extends Service {
 		
 		public void onStatusChanged(String provider, int status, Bundle extras) {
 		}
+	}
+	
+	public void pushNotification() {
+		final Intent i = new Intent();
+		PendingIntent pendingIntent = PendingIntent.getActivity(this,  0, i, PendingIntent.FLAG_UPDATE_CURRENT);
+		NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(this)
+		.setSmallIcon(R.drawable.app_icon)
+		.setContentTitle("Text Message Sent")
+		.setContentText("We've let them know you're safe")
+		.setAutoCancel(true)
+		.setContentIntent(pendingIntent);
+		nm.notify(1, notifBuilder.build());
 	}
 	
 	@Override
