@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -28,6 +30,18 @@ public class LetMeKnowActivity extends Activity {
     	markerTick = (ImageView) findViewById(R.id.markerTick);
     	nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     	PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	super.onCreateOptionsMenu(menu);
+    	CreateMenu(menu);
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	return MenuChoice(item);
     }
     
     public void onResume() {
@@ -67,8 +81,18 @@ public class LetMeKnowActivity extends Activity {
     	markerTick.setImageResource(R.drawable.tickgrey);
     }
     
-    public void settingsClick(View view) {
-    	startActivity(new Intent("info.adamjsmith.letmeknow.Preferences"));
+    private void CreateMenu(Menu menu) {
+    	MenuItem settings = menu.add(0, 0, 0, "Settings"); {
+    	}
+    }
+    
+    private boolean MenuChoice(MenuItem item) {
+    	switch(item.getItemId()) {
+    	case 0:
+    		startActivity(new Intent("info.adamjsmith.letmeknow.Preferences"));
+    		return true;
+    	}
+    	return false;
     }
     
     
