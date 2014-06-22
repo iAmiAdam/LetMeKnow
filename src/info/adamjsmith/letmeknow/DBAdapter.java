@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBAdapter {
-	static final String KEY_ROWID = "_ID";
+	static final String KEY_ROWID = "_id";
 	static final String KEY_NAME = "name";
 	static final String KEY_NUMBER = "number";
 	static final String KEY_MESSAGE = "message";
@@ -19,7 +19,7 @@ public class DBAdapter {
 	
 	static final String DATABASE_NAME = "LetMeKnow";
 	static final String DATABASE_TABLE = "instances";
-	static final int DATABASE_VERSION = 3;
+	static final int DATABASE_VERSION = 4;
 	
 	static final String DATABASE_CREATE = 
 			"create table instances (_id integer primary key autoincrement,"

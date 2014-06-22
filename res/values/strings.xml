@@ -23,6 +23,7 @@
     <string name="distance">Distance from Destination</string>
     <string name="cancel">Cancel</string>
     <string name="allMessages">Messages</string>
+    <string name="delete">Delete</string>
     
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>

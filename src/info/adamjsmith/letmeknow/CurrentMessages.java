@@ -1,14 +1,14 @@
 package info.adamjsmith.letmeknow;
 
-import java.util.ArrayList;
-
 import android.app.ListActivity;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
+import android.widget.SimpleCursorAdapter;
 
 public class CurrentMessages extends ListActivity {
-	private	ArrayList<String> results = new ArrayList<String>();
+	SimpleCursorAdapter adapter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -18,24 +18,38 @@ public class CurrentMessages extends ListActivity {
 	}
 	
 	private void displayMessages() {
-		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results));
+		setListAdapter(adapter);
 		getListView().setTextFilterEnabled(true);
 	}
 	
-	private void getMessages() {
+	public void getMessages() {
 		DBAdapter db = new DBAdapter(this);
 		db.open();
 		Cursor c = db.getAllInstances();
 		if (c.moveToFirst()) {
 			do {
-				Integer id = c.getInt(c.getColumnIndex("ID"));
-				String name = c.getString(c.getColumnIndex("name"));
-				String message = c.getString(c.getColumnIndex("message"));
-				results.add(name + message);
+				
+				String[] columns = new String[] {String.valueOf(c.getInt(c.getColumnIndex("_id"))), c.getString(c.getColumnIndexOrThrow("name")), c.getString(c.getColumnIndexOrThrow(("message")))};
+		        int[] views = new int[] {R.id.id, R.id.name, R.id.message};   
+		        
+		        adapter = new  MySimpleCursorAdapter(this, R.layout.messageslist, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+		        	
+		        this.setListAdapter(adapter);
 			} while (c.moveToNext());
 		} else {
 			
 		}
 		db.close();
 	}
+
+	public class MySimpleCursorAdapter extends SimpleCursorAdapter {
+
+		@SuppressWarnings("deprecation")
+		public MySimpleCursorAdapter(Context context, int layout, Cursor c,
+				String[] from, int[] to, int flagRegisterContentObserver) {
+			super(context, layout, c, from, to);
+		}
+		
+	}
+	
 }

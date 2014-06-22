@@ -35,13 +35,8 @@ public class LocationTools extends Service {
 	
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		
-		phoneNumber = intent.getStringExtra("number");
-		message = intent.getStringExtra("message");
-		lat = intent.getDoubleExtra("lat", 0);
-		longitude = intent.getDoubleExtra("long", 0);
 		db = new DBAdapter(this);
-		
-		
+	
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		locationListener = new MyLocationListener();
 		
@@ -64,11 +59,9 @@ public class LocationTools extends Service {
 		double latRemainder = 100;
 		double longRemainder = 100;
 
-		@SuppressWarnings("resource")
+		
 		public void onLocationChanged(Location loc) {
 			if (loc != null) {
-				latRemainder = lat - loc.getLatitude();
-				longRemainder = longitude - loc.getLongitude();
 							
 				db.open();
 				Cursor c = db.getAllInstances();
@@ -77,6 +70,9 @@ public class LocationTools extends Service {
 						Integer id = c.getInt(0);
 						lat = Double.parseDouble(c.getString(c.getColumnIndex("latitude")));
 						longitude = Double.parseDouble(c.getString(c.getColumnIndex("longitude")));
+						
+						latRemainder = lat - loc.getLatitude();
+						longRemainder = longitude - loc.getLongitude();
 						
 						if(latRemainder < distance && latRemainder > -distance && longRemainder < distance && longRemainder > -distance){
 							c = db.getInstance(id);
