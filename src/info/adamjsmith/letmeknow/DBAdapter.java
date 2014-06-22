@@ -19,7 +19,7 @@ public class DBAdapter {
 	
 	static final String DATABASE_NAME = "LetMeKnow";
 	static final String DATABASE_TABLE = "instances";
-	static final int DATABASE_VERSION = 1;
+	static final int DATABASE_VERSION = 2;
 	
 	static final String DATABASE_CREATE = 
 			"create table instances (_id integer primary key autoincrement,"
@@ -81,11 +81,11 @@ public class DBAdapter {
 		return db.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
 	}
 	
-	public Cursor getAllContacts() {
+	public Cursor getAllInstances() {
 		return db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NAME, KEY_NUMBER, KEY_MESSAGE, KEY_LAT, KEY_LONG}, null, null, null, null, null);
 	}
 	
-	public Cursor getContact(long rowId) throws SQLException {
+	public Cursor getInstance(long rowId) throws SQLException {
 		Cursor mCursor = 
 				db.query(true, DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NAME, KEY_NUMBER, KEY_MESSAGE, KEY_LAT, KEY_LONG}, KEY_ROWID + "=" + rowId, null, null, null, null, null);
 		if(mCursor != null) {

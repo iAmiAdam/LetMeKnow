@@ -67,6 +67,10 @@ public class LetMeKnowActivity extends Activity {
     	startActivityForResult(new Intent("info.adamjsmith.letmeknow.MapActivity"), request_Code);
     }
     
+    public void messagesClick(View view) {
+    	startActivity(new Intent("info.adamjsmith.letmeknow.CurrentMessages"));
+    }
+    
     public void confirmClick(View view) {
     	TextView textView = (TextView) findViewById(R.id.msgText);
     	String message = textView.getText().toString(); 

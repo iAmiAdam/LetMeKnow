@@ -99,6 +99,14 @@
 	        android:text="@string/confirm" 
 	        android:onClick="confirmClick"
 	        style="@style/Button"/>
+	    
+	    <Button
+	        android:id="@+id/messagesButton"
+	        android:layout_below="@+id/msgDivider"
+	        android:layout_centerHorizontal="true"
+	        android:text="@string/allMessages" 
+	        android:onClick="messagesClick"
+	        style="@style/Button" />
 	
 	    <Button
 	        android:id="@+id/resetButton"

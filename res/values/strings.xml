@@ -22,6 +22,7 @@
     <string name="locationDistanceTitle">Distance to notify from</string>
     <string name="distance">Distance from Destination</string>
     <string name="cancel">Cancel</string>
+    <string name="allMessages">Messages</string>
     
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
@@ -40,11 +41,11 @@
     </string-array>
     
     <string-array name="intervalValues">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>60000</item>
+        <item>120000</item>
+        <item>180000</item>
+        <item>240000</item>
+        <item>300000</item>
     </string-array>
     
     <string-array name="distanceOptions">
