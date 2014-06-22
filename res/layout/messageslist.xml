@@ -19,6 +19,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
 		android:layout_below="@+id/name"
+		android:textColor="@color/transparent"
         android:layout_toLeftOf="@+id/delete"
         style="@style/TextView" />
     
@@ -32,7 +33,7 @@
         android:textSize="12sp"
         style="@style/TextView" />
     
-    <ImageView
+    <Button
         android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,6 +41,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="6dip"
-        android:contentDescription="@string/delete"
-        android:src="@drawable/delete" />
+        android:text="@string/delete"
+        android:onClick="delete"
+        style="@style/Button" />
 </RelativeLayout>

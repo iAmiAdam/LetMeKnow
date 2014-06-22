@@ -18,8 +18,8 @@ public class CurrentMessages extends ListActivity {
 	}
 	
 	private void displayMessages() {
-		setListAdapter(adapter);
-		getListView().setTextFilterEnabled(true);
+		//setListAdapter(adapter);
+		//getListView().setTextFilterEnabled(true);
 	}
 	
 	public void getMessages() {
@@ -28,8 +28,7 @@ public class CurrentMessages extends ListActivity {
 		Cursor c = db.getAllInstances();
 		if (c.moveToFirst()) {
 			do {
-				
-				String[] columns = new String[] {String.valueOf(c.getInt(c.getColumnIndex("_id"))), c.getString(c.getColumnIndexOrThrow("name")), c.getString(c.getColumnIndexOrThrow(("message")))};
+				String[] columns = new String[] {"_id", "name", "message"};
 		        int[] views = new int[] {R.id.id, R.id.name, R.id.message};   
 		        
 		        adapter = new  MySimpleCursorAdapter(this, R.layout.messageslist, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
@@ -43,13 +42,9 @@ public class CurrentMessages extends ListActivity {
 	}
 
 	public class MySimpleCursorAdapter extends SimpleCursorAdapter {
-
-		
-		public MySimpleCursorAdapter(Context context, int layout, Cursor c,
-				String[] from, int[] to, int flagRegisterContentObserver) {
+		public MySimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flagRegisterContentObserver) {
 			super(context, layout, c, from, to, flagRegisterContentObserver);
-		}
-		
+		}	
 	}
 	
 }

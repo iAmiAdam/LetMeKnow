@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LetMeKnowActivity extends Activity {
 	String phoneNumber;
@@ -72,7 +73,8 @@ public class LetMeKnowActivity extends Activity {
     	TextView textView = (TextView) findViewById(R.id.msgText);
     	String message = textView.getText().toString(); 
     	db.open();
-    	db.insertInstance(name, phoneNumber, message, String.valueOf(latitude), String.valueOf(longitude));
+    	long test = db.insertInstance(name, phoneNumber, message, String.valueOf(latitude), String.valueOf(longitude));
+    	Toast.makeText(this, String.valueOf(test), Toast.LENGTH_LONG).show();
     	db.close();
     	Intent i =  new Intent(this, LocationTools.class);
     	startService(i);

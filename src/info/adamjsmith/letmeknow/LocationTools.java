@@ -86,8 +86,9 @@ public class LocationTools extends Service {
 							db.deleteInstance(id);
 							
 							if (db.getAllInstances() == null) {
-								stopSelf();
+								c.close();
 								lm.removeUpdates(locationListener);
+								stopSelf();
 							}
 							
 							c.close();
