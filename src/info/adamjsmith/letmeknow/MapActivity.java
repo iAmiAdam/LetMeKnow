@@ -13,16 +13,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 
 public class MapActivity extends Activity {
 	MapView mapView;
 	GoogleMap map;
+	Intent data = new Intent();
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.map);
-		
 		
 		mapView = (MapView) findViewById(R.id.mapView);
 		mapView.onCreate(savedInstanceState);
@@ -43,15 +46,21 @@ public class MapActivity extends Activity {
 				map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 				map.addMarker(new MarkerOptions()
 				.position(latLng));
-				Intent data = new Intent();
 				data.setData(Uri.parse(latLng.toString()));
 				data.putExtra("lat", latLng.latitude);
 				data.putExtra("long", latLng.longitude);
+			}
+		});
+		
+		Button button = (Button) findViewById(R.id.confirm);
+		button.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
 				setResult(RESULT_OK, data);
 				finish();
 			}
 		});
-	}
+		
+	}	
 	
 	@Override
 	public void onResume() {

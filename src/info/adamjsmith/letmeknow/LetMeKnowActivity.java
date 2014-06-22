@@ -69,6 +69,8 @@ public class LetMeKnowActivity extends Activity {
     	int request_Code = 3;
     	TextView textView = (TextView) findViewById(R.id.msgText);
     	String message = textView.getText().toString(); 
+    	
+    	
     	Intent i =  new Intent("info.adamjsmith.letmeknow.LocationTools");
     	i.putExtra("message", message);
     	i.putExtra("number", phoneNumber);
@@ -96,7 +98,6 @@ public class LetMeKnowActivity extends Activity {
     		if (resultCode == RESULT_OK) {
     			TextView contact = (TextView)findViewById(R.id.chosenContact);
     			contact.setText(data.getData().toString());
-    			//contact.setText(data.getData().toString());
     			phoneNumber = (data.getStringExtra("number"));
     			contactTick.setImageResource(R.drawable.tickgreen);
     		}
