@@ -2,12 +2,17 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/locationSettingsTitle">
-        <ListPreference android:title="@string/locationIntervalTitle"
+        <ListPreference 
+            android:key="interval"
+            android:title="@string/locationIntervalTitle"
             android:entries="@array/intervalOptions"
             android:entryValues="@array/intervalValues"
             android:dialogTitle="@string/intervalInMin"
+            android:numeric="integer"
             android:defaultValue="4" />
-        <ListPreference android:title="@string/locationDistanceTitle"
+        <ListPreference 
+            android:key="distance"
+            android:title="@string/locationDistanceTitle"
             android:entries="@array/distanceOptions"
             android:entryValues="@array/distanceValues"
             android:dialogTitle="@string/distance" 

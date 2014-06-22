@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +27,7 @@ public class LetMeKnowActivity extends Activity {
         contactTick = (ImageView) findViewById(R.id.contactTick);
     	markerTick = (ImageView) findViewById(R.id.markerTick);
     	nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    	PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     }
     
     public void onResume() {

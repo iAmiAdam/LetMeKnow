@@ -3,11 +3,13 @@ package info.adamjsmith.letmeknow;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.view.Window;
 
@@ -18,6 +20,7 @@ public class LocationTools extends Activity{
 	String message;
 	double lat;
 	double longitude;
+	Integer updateInterval;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,6 +35,9 @@ public class LocationTools extends Activity{
 		
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		locationListener = new MyLocationListener();
+		
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		Integer updateInterval = Integer.parseInt(sharedPref.getString("interval", "4"));
 	}
 	
 	@Override
