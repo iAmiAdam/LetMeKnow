@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -35,13 +36,19 @@ public class LetMeKnowActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	super.onCreateOptionsMenu(menu);
-    	CreateMenu(menu);
+    	MenuInflater inflater = getMenuInflater();
+    	inflater.inflate(R.menu.options, menu);
     	return true;
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    	return MenuChoice(item);
+    	switch (item.getItemId()) {
+    	case R.id.settings:
+    		startActivity(new Intent("info.adamjsmith.letmeknow.Preferences"));
+    		return true;
+    	}
+    	return false;
     }
     
     public void onResume() {
@@ -79,20 +86,6 @@ public class LetMeKnowActivity extends Activity {
     	message.setText("");
     	contactTick.setImageResource(R.drawable.tickgrey);
     	markerTick.setImageResource(R.drawable.tickgrey);
-    }
-    
-    private void CreateMenu(Menu menu) {
-    	MenuItem settings = menu.add(0, 0, 0, "Settings"); {
-    	}
-    }
-    
-    private boolean MenuChoice(MenuItem item) {
-    	switch(item.getItemId()) {
-    	case 0:
-    		startActivity(new Intent("info.adamjsmith.letmeknow.Preferences"));
-    		return true;
-    	}
-    	return false;
     }
     
     
