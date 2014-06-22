@@ -18,9 +18,10 @@ public class LocationTools extends Activity{
 	LocationListener locationListener;
 	String phoneNumber;
 	String message;
-	double lat;
-	double longitude;
+	Double lat;
+	Double longitude;
 	Integer updateInterval;
+	Double distance;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,7 +38,8 @@ public class LocationTools extends Activity{
 		locationListener = new MyLocationListener();
 		
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-		Integer updateInterval = Integer.parseInt(sharedPref.getString("interval", "4"));
+		updateInterval = Integer.parseInt(sharedPref.getString("interval", "4"));
+		distance = Double.parseDouble(sharedPref.getString("distance", "0.01"));
 	}
 	
 	@Override
@@ -45,9 +47,9 @@ public class LocationTools extends Activity{
 		super.onResume();
 		
 		if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
-			lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 4, 0, locationListener);
+			lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, updateInterval, 0, locationListener);
 		} else {
-			lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 4, 0, locationListener);
+			lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, updateInterval, 0, locationListener);
 		}
 		
 		
@@ -71,7 +73,7 @@ public class LocationTools extends Activity{
 				longRemainder = longitude - loc.getLongitude();
 							
 				
-				if(latRemainder < 0.01 && latRemainder > -0.01 && longRemainder < 0.01 && longRemainder > -0.01){
+				if(latRemainder < distance && latRemainder > -distance && longRemainder < distance && longRemainder > -distance){
 					SmsManager sms = SmsManager.getDefault();
 					sms.sendTextMessage(phoneNumber, null, message, null, null);
 					Intent data = new Intent();
