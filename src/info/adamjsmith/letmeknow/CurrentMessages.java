@@ -28,7 +28,7 @@ public class CurrentMessages extends ListActivity {
 		Cursor c = db.getAllInstances();
 		if (c.moveToFirst()) {
 			do {
-				//Integer id = c.getInt(c.getColumnIndex("_ID"));
+				Integer id = c.getInt(c.getColumnIndex("ID"));
 				String name = c.getString(c.getColumnIndex("name"));
 				String message = c.getString(c.getColumnIndex("message"));
 				results.add(name + message);

@@ -126,9 +126,4 @@ public class LocationTools extends Service {
 		.setContentIntent(pendingIntent);
 		nm.notify(1, notifBuilder.build());
 	}
-	
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-	}
 }

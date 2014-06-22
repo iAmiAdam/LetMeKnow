@@ -1,7 +1,6 @@
 package info.adamjsmith.letmeknow;
 
 import android.app.Activity;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -20,7 +19,6 @@ public class LetMeKnowActivity extends Activity {
 	double longitude;
 	ImageView contactTick;
 	ImageView markerTick;
-	NotificationManager nm;
 	DBAdapter db;
 	
     @Override
@@ -30,7 +28,6 @@ public class LetMeKnowActivity extends Activity {
         setContentView(R.layout.main);
         contactTick = (ImageView) findViewById(R.id.contactTick);
     	markerTick = (ImageView) findViewById(R.id.markerTick);
-    	nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     	PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     	db = new DBAdapter(this);
     }
