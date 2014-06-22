@@ -2,11 +2,9 @@ package info.adamjsmith.letmeknow;
 
 import android.app.Activity;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,11 +15,14 @@ import android.widget.TextView;
 
 public class LetMeKnowActivity extends Activity {
 	String phoneNumber;
-	double lat;
+	String name;
+	double latitude;
 	double longitude;
 	ImageView contactTick;
 	ImageView markerTick;
 	NotificationManager nm;
+	DBAdapter db;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class LetMeKnowActivity extends Activity {
     	markerTick = (ImageView) findViewById(R.id.markerTick);
     	nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     	PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+    	db = new DBAdapter(this);
     }
     
     @Override
@@ -66,15 +68,18 @@ public class LetMeKnowActivity extends Activity {
     }
     
     public void confirmClick(View view) {
-    	//int request_Code = 3;
     	TextView textView = (TextView) findViewById(R.id.msgText);
     	String message = textView.getText().toString(); 
     	Intent i =  new Intent(this, LocationTools.class);
     	i.putExtra("message", message);
     	i.putExtra("number", phoneNumber);
-    	i.putExtra("lat", lat);
+    	i.putExtra("lat", latitude);
     	i.putExtra("long", longitude);
     	startService(i);
+    	
+    	db.open();
+    	db.insertInstance(name, phoneNumber, message, String.valueOf(latitude), String.valueOf(longitude));
+    	db.close();
     	resetClick(null);
     }
     
@@ -97,6 +102,7 @@ public class LetMeKnowActivity extends Activity {
     		if (resultCode == RESULT_OK) {
     			TextView contact = (TextView)findViewById(R.id.chosenContact);
     			contact.setText(data.getData().toString());
+    			name = data.getData().toString();
     			phoneNumber = (data.getStringExtra("number"));
     			contactTick.setImageResource(R.drawable.tickgreen);
     		}
@@ -105,7 +111,7 @@ public class LetMeKnowActivity extends Activity {
     		if (resultCode == RESULT_OK) {
     			TextView location = (TextView)findViewById(R.id.location);
     			location.setText("Location Selected");
-    			lat = data.getDoubleExtra("lat", 0);
+    			latitude = data.getDoubleExtra("lat", 0);
     			longitude = data.getDoubleExtra("long", 0);
     			markerTick.setImageResource(R.drawable.tickgreen);
     		}
