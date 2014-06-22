@@ -1,6 +1,7 @@
 package info.adamjsmith.letmeknow;
 
-import android.app.Activity;
+import android.app.Service;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,11 +10,11 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
-import android.view.Window;
 
-public class LocationTools extends Activity{
+public class LocationTools extends Service {
 	LocationManager lm;
 	LocationListener locationListener;
 	String phoneNumber;
@@ -22,16 +23,19 @@ public class LocationTools extends Activity{
 	Double longitude;
 	Integer updateInterval;
 	Double distance;
+	NotificationManager nm;
 	
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.location);
+	@Override
+	public IBinder onBind(Intent arg0) {
+		return null;
+	}
+	
+	public int onStartCommand(Intent intent, int flags, int startId) {
 		
-		phoneNumber = getIntent().getStringExtra("number");
-		message = getIntent().getStringExtra("message");
-		lat = getIntent().getDoubleExtra("lat", 0);
-		longitude = getIntent().getDoubleExtra("long", 0);
+		phoneNumber = intent.getStringExtra("number");
+		message = intent.getStringExtra("message");
+		lat = intent.getDoubleExtra("lat", 0);
+		longitude = intent.getDoubleExtra("long", 0);
 		
 		
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -40,11 +44,8 @@ public class LocationTools extends Activity{
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 		updateInterval = Integer.parseInt(sharedPref.getString("interval", "4"));
 		distance = Double.parseDouble(sharedPref.getString("distance", "0.01"));
-	}
-	
-	@Override
-	public void onResume() {
-		super.onResume();
+		
+		nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		
 		if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
 			lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, updateInterval, 0, locationListener);
@@ -52,21 +53,7 @@ public class LocationTools extends Activity{
 			lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, updateInterval, 0, locationListener);
 		}
 		
-		
-	}
-	
-	@Override
-	public void onPause() {
-		super.onPause();
-		
-		//lm.removeUpdates(locationListener);
-	}
-	
-	public void cancelClick() {
-		lm.removeUpdates(locationListener);
-		Intent data = new Intent();
-		setResult(RESULT_CANCELED, data);
-		finish();
+		return START_STICKY;
 	}
 	
 	private class MyLocationListener implements LocationListener {
@@ -85,9 +72,8 @@ public class LocationTools extends Activity{
 					sms.sendTextMessage(phoneNumber, null, message, null, null);
 					Intent data = new Intent();
 					data.setData(Uri.parse("Success"));
-					setResult(RESULT_OK, data);
 					lm.removeUpdates(locationListener);
-					finish();
+					stopSelf();
 				}
 			}
 		}
@@ -100,5 +86,10 @@ public class LocationTools extends Activity{
 		
 		public void onStatusChanged(String provider, int status, Bundle extras) {
 		}
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
 	}
 }

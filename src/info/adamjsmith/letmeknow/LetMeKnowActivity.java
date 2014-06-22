@@ -66,17 +66,15 @@ public class LetMeKnowActivity extends Activity {
     }
     
     public void confirmClick(View view) {
-    	int request_Code = 3;
+    	//int request_Code = 3;
     	TextView textView = (TextView) findViewById(R.id.msgText);
     	String message = textView.getText().toString(); 
-    	
-    	
-    	Intent i =  new Intent("info.adamjsmith.letmeknow.LocationTools");
+    	Intent i =  new Intent(this, LocationTools.class);
     	i.putExtra("message", message);
     	i.putExtra("number", phoneNumber);
     	i.putExtra("lat", lat);
     	i.putExtra("long", longitude);
-    	startActivityForResult(i, request_Code);
+    	startService(i);
     }
     
     public void resetClick(View view) {
