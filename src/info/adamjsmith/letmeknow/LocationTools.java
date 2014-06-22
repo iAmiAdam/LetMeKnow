@@ -62,6 +62,13 @@ public class LocationTools extends Activity{
 		//lm.removeUpdates(locationListener);
 	}
 	
+	public void cancelClick() {
+		lm.removeUpdates(locationListener);
+		Intent data = new Intent();
+		setResult(RESULT_CANCELED, data);
+		finish();
+	}
+	
 	private class MyLocationListener implements LocationListener {
 		double latRemainder = 100;
 		double longRemainder = 100;

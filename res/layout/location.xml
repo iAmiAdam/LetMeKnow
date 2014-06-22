@@ -11,5 +11,15 @@
         android:layout_margin="20dp"
         style="@style/TextView"
         android:text="@string/confirmation" />
+
+    <Button
+        android:id="@+id/cancel"
+        style="@style/Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/confirm"
+        android:layout_centerHorizontal="true"
+        android:text="@string/cancel"
+        android:onClick="cancelClick" />
    
 </RelativeLayout>

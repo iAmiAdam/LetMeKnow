@@ -122,6 +122,8 @@ public class LetMeKnowActivity extends Activity {
     			.setContentIntent(pendingIntent);
     			nm.notify(1, notifBuilder.build());
     			resetClick(null);
+    		} else {
+    			resetClick(null);
     		}
     		break;
     	default:

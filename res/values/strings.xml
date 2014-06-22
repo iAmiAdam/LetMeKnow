@@ -21,6 +21,7 @@
     <string name="intervalInMin">Interval in minutes</string>
     <string name="locationDistanceTitle">Distance to notify from</string>
     <string name="distance">Distance from Destination</string>
+    <string name="cancel">Cancel</string>
     
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
