@@ -6,10 +6,10 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -26,6 +26,7 @@ public class LocationTools extends Service {
 	Integer updateInterval;
 	Double distance;
 	NotificationManager nm;
+	DBAdapter db;
 	
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -38,13 +39,14 @@ public class LocationTools extends Service {
 		message = intent.getStringExtra("message");
 		lat = intent.getDoubleExtra("lat", 0);
 		longitude = intent.getDoubleExtra("long", 0);
+		db = new DBAdapter(this);
 		
 		
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		locationListener = new MyLocationListener();
 		
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-		updateInterval = Integer.parseInt(sharedPref.getString("interval", "4"));
+		updateInterval = Integer.parseInt(sharedPref.getString("interval", "60000"));
 		distance = Double.parseDouble(sharedPref.getString("distance", "0.01"));
 		
 		nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -62,22 +64,44 @@ public class LocationTools extends Service {
 		double latRemainder = 100;
 		double longRemainder = 100;
 
-
+		@SuppressWarnings("resource")
 		public void onLocationChanged(Location loc) {
 			if (loc != null) {
 				latRemainder = lat - loc.getLatitude();
 				longRemainder = longitude - loc.getLongitude();
 							
-				
-				if(latRemainder < distance && latRemainder > -distance && longRemainder < distance && longRemainder > -distance){
-					SmsManager sms = SmsManager.getDefault();
-					sms.sendTextMessage(phoneNumber, null, message, null, null);
-					Intent data = new Intent();
-					data.setData(Uri.parse("Success"));
-					lm.removeUpdates(locationListener);
-					pushNotification();
-					stopSelf();
+				db.open();
+				Cursor c = db.getAllInstances();
+				if (c.moveToFirst()) {
+					do {
+						Integer id = c.getInt(0);
+						lat = Double.parseDouble(c.getString(c.getColumnIndex("latitude")));
+						longitude = Double.parseDouble(c.getString(c.getColumnIndex("longitude")));
+						
+						if(latRemainder < distance && latRemainder > -distance && longRemainder < distance && longRemainder > -distance){
+							c = db.getInstance(id);
+							phoneNumber = c.getString(c.getColumnIndex("number"));
+							message = c.getString(c.getColumnIndex("message"));
+							
+							SmsManager sms = SmsManager.getDefault();
+							sms.sendTextMessage(phoneNumber, null, message, null, null);
+							
+							pushNotification();
+							db.deleteInstance(id);
+							
+							if (db.getAllInstances() == null) {
+								stopSelf();
+								lm.removeUpdates(locationListener);
+							}
+							
+							c.close();
+							db.close();
+						}
+					} while (c.moveToNext());
+				} else {
+					
 				}
+				db.close();
 			}
 		}
 		

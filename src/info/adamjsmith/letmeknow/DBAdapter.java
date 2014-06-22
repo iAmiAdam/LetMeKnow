@@ -19,7 +19,7 @@ public class DBAdapter {
 	
 	static final String DATABASE_NAME = "LetMeKnow";
 	static final String DATABASE_TABLE = "instances";
-	static final int DATABASE_VERSION = 2;
+	static final int DATABASE_VERSION = 3;
 	
 	static final String DATABASE_CREATE = 
 			"create table instances (_id integer primary key autoincrement,"

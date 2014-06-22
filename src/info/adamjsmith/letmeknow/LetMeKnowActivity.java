@@ -74,16 +74,11 @@ public class LetMeKnowActivity extends Activity {
     public void confirmClick(View view) {
     	TextView textView = (TextView) findViewById(R.id.msgText);
     	String message = textView.getText().toString(); 
-    	Intent i =  new Intent(this, LocationTools.class);
-    	i.putExtra("message", message);
-    	i.putExtra("number", phoneNumber);
-    	i.putExtra("lat", latitude);
-    	i.putExtra("long", longitude);
-    	startService(i);
-    	
     	db.open();
     	db.insertInstance(name, phoneNumber, message, String.valueOf(latitude), String.valueOf(longitude));
     	db.close();
+    	Intent i =  new Intent(this, LocationTools.class);
+    	startService(i);
     	resetClick(null);
     }
     
