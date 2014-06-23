@@ -1,7 +1,7 @@
 package info.adamjsmith.letmeknow;
 
 import java.util.ArrayList;
-
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -24,7 +24,7 @@ public class SelectContact extends ListActivity {
 	String selectedNumber;
 	String name;
 	Intent data = new Intent();
-	@SuppressWarnings("deprecation")
+	@SuppressLint("InlinedApi") @SuppressWarnings("deprecation")
 	public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -40,14 +40,23 @@ public class SelectContact extends ListActivity {
 	        	CursorLoader cursorLoader = new CursorLoader(this, allContacts, null, ContactsContract.Contacts.HAS_PHONE_NUMBER + " = 1", null, ContactsContract.Contacts.DISPLAY_NAME + " ASC");
 	        	c = cursorLoader.loadInBackground();
 	        }
-	        
-	        String[] columns = new String[] {ContactsContract.CommonDataKinds.Photo.PHOTO_URI, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts._ID};
-	        int[] views = new int[] {R.id.contactPicture, R.id.contactName, R.id.id};   
-	        
+	        String[] columns;
+	        int[] views;
+	        if(android.os.Build.VERSION.SDK_INT < 11){
+	        	columns = new String[] {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts._ID};
+	        	views = new int[] {R.id.contactName, R.id.id};   
+	        } else {
+	        	columns = new String[] {ContactsContract.CommonDataKinds.Photo.PHOTO_URI, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts._ID};
+	        	views = new int[] {R.id.contactPicture, R.id.contactName, R.id.id};   
+	        }	        
 	        
 	        SimpleCursorAdapter adapter;
 	        
-	        adapter = new MySimpleCursorAdapter(this, R.layout.contactlist, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+	        if(android.os.Build.VERSION.SDK_INT < 11) {
+	        	adapter = new SimpleCursorAdapter(this, R.layout.contactlist, c, columns, views);
+	        } else {
+	        	adapter = new  MySimpleCursorAdapter(this, R.layout.contactlist, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+	        }	
 	        	
 	        this.setListAdapter(adapter);
 	        

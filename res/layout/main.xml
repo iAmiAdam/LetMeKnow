@@ -8,14 +8,16 @@
 	<RelativeLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    tools:context="${packageName}.${activityClass}" >
+	    tools:context="${packageName}.${activityClass}" 
+	    android:focusable="true" 
+	    android:focusableInTouchMode="true" >
 	    
 	    <ImageView
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:contentDescription="@string/logo"
 	        android:id="@+id/logo"
-	        android:src="@drawable/logo"/>
+	        android:src="@drawable/logo" />
 	    
 	    <View
 	        android:id="@+id/logoDivider"
@@ -39,9 +41,7 @@
 	    <EditText
 	        android:id="@+id/postCode"
 	        android:layout_below="@+id/mapButton"
-	        android:layout_centerHorizontal="true"
 	        android:hint="@string/postCode"
-	        android:gravity="center"
 	        style="@style/EditText" />
 	    
 	    <TextView

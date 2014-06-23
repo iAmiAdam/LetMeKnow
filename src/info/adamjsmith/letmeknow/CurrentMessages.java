@@ -1,46 +1,62 @@
 package info.adamjsmith.letmeknow;
 
+import info.adamjsmith.letmeknow.R.color;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.ListActivity;
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class CurrentMessages extends ListActivity {
 	SimpleCursorAdapter adapter;
 	DBAdapter db;
+	ListView LV = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getMessages();
 		db = new DBAdapter(this);
+		db.open();
+		LV = getListView();
+		LV.setBackgroundColor(color.blue);
 	}
 	
+	public void onDestroy() {
+		db.close();
+	}
+	
+	@SuppressLint("InlinedApi") @SuppressWarnings("deprecation")
 	public void getMessages() {
 		DBAdapter db = new DBAdapter(this);
-		db.open();
 		Cursor c = db.getAllInstances();
 		if (c.moveToFirst()) {
 			do {
 				String[] columns = new String[] {"_id", "name", "message"};
 		        int[] views = new int[] {R.id.id, R.id.name, R.id.message};   
 		        
-		        adapter = new  MySimpleCursorAdapter(this, R.layout.messageslist, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
-		        	
+		        if(android.os.Build.VERSION.SDK_INT < 11) {
+		        	adapter = new SimpleCursorAdapter(this, R.layout.messageitem, c, columns, views);
+		        } else {
+		        	adapter = new  MySimpleCursorAdapter(this, R.layout.messageitem, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+		        }	
 		        this.setListAdapter(adapter);
 			} while (c.moveToNext());
 		} else {
 			
 		}
-		db.close();
 	}
 
 	public class MySimpleCursorAdapter extends SimpleCursorAdapter {
+		@TargetApi(Build.VERSION_CODES.HONEYCOMB) 
 		public MySimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flagRegisterContentObserver) {
 			super(context, layout, c, from, to, flagRegisterContentObserver);
 		}	

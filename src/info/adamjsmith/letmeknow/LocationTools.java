@@ -36,6 +36,7 @@ public class LocationTools extends Service {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		
 		db = new DBAdapter(this);
+		db.open();
 	
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		locationListener = new MyLocationListener();
@@ -55,6 +56,10 @@ public class LocationTools extends Service {
 		return START_STICKY;
 	}
 	
+	public void onDestroy() {
+		db.close();
+	}
+	
 	private class MyLocationListener implements LocationListener {
 		double latRemainder = 100;
 		double longRemainder = 100;
@@ -62,8 +67,7 @@ public class LocationTools extends Service {
 		
 		public void onLocationChanged(Location loc) {
 			if (loc != null) {
-							
-				db.open();
+						
 				Cursor c = db.getAllInstances();
 				if (c.moveToFirst()) {
 					do {
@@ -87,21 +91,17 @@ public class LocationTools extends Service {
 							db.deleteInstance(id);
 							
 							if (db.getAllInstances() == null) {
-								c.close();
 								ci.close();
 								lm.removeUpdates(locationListener);
 								stopSelf();
 							}
-							c.close();
 							ci.close();
-							db.close();
 						}
 					} while (c.moveToNext());
 				} else {
 					
 				}
 				c.close();
-				db.close();
 			}
 		}
 		
