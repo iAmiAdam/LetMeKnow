@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 public class SelectContact extends ListActivity {
 	String selectedNumber;
+	String name;
 	Intent data = new Intent();
 	@SuppressWarnings("deprecation")
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class SelectContact extends ListActivity {
 		
 		TextView tv = (TextView)view.findViewById(R.id.contactName);
 		data.setData(Uri.parse(tv.getText().toString()));
+		name = tv.getText().toString();
 		
 		tv = (TextView)view.findViewById(R.id.id);
 		String contactId = tv.getText().toString();
@@ -67,8 +69,6 @@ public class SelectContact extends ListActivity {
 		while (phoneCursor.moveToNext()) {
 			String phone = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA));
 			phonesList.add(phone);
-			
-			//number = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA1));
 		}
 		phoneCursor.close();
 
@@ -84,7 +84,7 @@ public class SelectContact extends ListActivity {
 			}
 			
 			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-			dialog.setTitle("@string/choosePhone");
+			dialog.setTitle("Choose a number for " + name);
 			dialog.setItems(phonesArr, new DialogInterface.OnClickListener() {
 				
 				@Override
