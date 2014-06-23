@@ -1,8 +1,12 @@
 package info.adamjsmith.letmeknow;
 
+import java.util.ArrayList;
+
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -17,6 +21,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class SelectContact extends ListActivity {
+	String selectedNumber;
+	Intent data = new Intent();
 	@SuppressWarnings("deprecation")
 	public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -51,23 +57,49 @@ public class SelectContact extends ListActivity {
 		super.onListItemClick(list, view, position, id);
 		
 		TextView tv = (TextView)view.findViewById(R.id.contactName);
-		Intent data = new Intent();
 		data.setData(Uri.parse(tv.getText().toString()));
 		
 		tv = (TextView)view.findViewById(R.id.id);
 		String contactId = tv.getText().toString();
 		
 		Cursor phoneCursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId, null, null);
-		String number = "test";
+		final ArrayList<String> phonesList = new ArrayList<String>();
 		while (phoneCursor.moveToNext()) {
-			number = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA1));
+			String phone = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA));
+			phonesList.add(phone);
+			
+			//number = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA1));
 		}
 		phoneCursor.close();
-		
-		data.putExtra("number", number);
-		setResult(RESULT_OK, data);
-		finish();
+
+		if (phonesList.size() == 1) {
+			selectedNumber = phonesList.get(0);
+			data.putExtra("number", selectedNumber);
+			setResult(RESULT_OK, data);
+			finish();
+		} else {
+			final String[] phonesArr = new String[phonesList.size()];
+			for (int i = 0; i < phonesList.size(); i++) {
+				phonesArr[i] = phonesList.get(i);
+			}
+			
+			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+			dialog.setTitle("@string/choosePhone");
+			dialog.setItems(phonesArr, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					selectedNumber = phonesArr[which];
+					data.putExtra("number", selectedNumber);
+					setResult(RESULT_OK, data);
+					finish();
+				}
+			}).create();
+			dialog.show();
+		}
+
 	}
+	
 	
 	public class MySimpleCursorAdapter extends SimpleCursorAdapter {
 
