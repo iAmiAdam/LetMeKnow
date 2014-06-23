@@ -36,9 +36,16 @@
 	        android:text="@string/mapButton"
 	        style="@style/Button" />
 	    
+	    <EditText
+	        android:id="@+id/postCode"
+	        android:layout_below="@+id/mapButton"
+	        android:layout_centerHorizontal="true"
+	        android:hint="@string/postCode"
+	        style="@style/EditText" />
+	    
 	    <TextView
 	        android:id="@+id/location"
-	        android:layout_below="@+id/mapButton"
+	        android:layout_below="@+id/postCode"
 	        android:text=""
 	        style="@style/TextView"
 	        android:textStyle="bold" />

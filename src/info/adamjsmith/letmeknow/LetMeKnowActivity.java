@@ -1,7 +1,11 @@
 package info.adamjsmith.letmeknow;
 
+import java.io.IOException;
+import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -16,8 +20,9 @@ import android.widget.Toast;
 public class LetMeKnowActivity extends Activity {
 	String phoneNumber;
 	String name;
-	double latitude;
-	double longitude;
+	String message;
+	Double latitude;
+	Double longitude;
 	ImageView contactTick;
 	ImageView markerTick;
 	DBAdapter db;
@@ -71,14 +76,20 @@ public class LetMeKnowActivity extends Activity {
     
     public void confirmClick(View view) {
     	TextView textView = (TextView) findViewById(R.id.msgText);
-    	String message = textView.getText().toString(); 
-    	db.open();
-    	db.insertInstance(name, phoneNumber, message, String.valueOf(latitude), String.valueOf(longitude));
-    	db.close();
-    	Toast.makeText(this, "Message saved", Toast.LENGTH_LONG).show();
-    	Intent i =  new Intent(this, LocationTools.class);
-    	startService(i);
-    	resetClick(null);
+    	message = textView.getText().toString(); 
+    	if (longitude == null || latitude == null) {
+    		TextView postCode = (TextView) findViewById(R.id.postCode);
+    		getLongLat(postCode.getText().toString());
+    	}
+    	if (validate() == true) {
+	    	db.open();
+	    	db.insertInstance(name, phoneNumber, message, String.valueOf(latitude), String.valueOf(longitude));
+	    	db.close();
+	    	Toast.makeText(this, "Message saved", Toast.LENGTH_LONG).show();
+	    	Intent i =  new Intent(this, LocationTools.class);
+	    	startService(i);
+	    	resetClick(null);
+    	}
     }
     
     public void resetClick(View view) {
@@ -118,4 +129,35 @@ public class LetMeKnowActivity extends Activity {
     		break;
     	}
     }
+	
+	public boolean getLongLat(String postCode) {
+		final Geocoder geocoder = new Geocoder(this);
+		try {
+			List<Address> addresses = geocoder.getFromLocationName(postCode,1);
+			if (addresses != null && !addresses.isEmpty()) {
+				Address address = addresses.get(0);
+				latitude = address.getLatitude();
+				longitude = address.getLongitude();
+				return true;
+			} else {
+				return false;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+	
+	public boolean validate() {
+		if (name == null || phoneNumber == null || message == null) {
+			Toast.makeText(this, "Contact information missing", Toast.LENGTH_LONG).show();
+			return false;
+		} else if(longitude == null || latitude == null)  {
+			Toast.makeText(this, "Location information missing", Toast.LENGTH_LONG).show();
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
