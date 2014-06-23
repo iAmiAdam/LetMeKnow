@@ -25,6 +25,10 @@ public class LetMeKnowActivity extends Activity {
 	Double longitude;
 	ImageView contactTick;
 	ImageView markerTick;
+	TextView postCode;
+	TextView contact;
+	TextView location;
+	TextView messageView;
 	DBAdapter db;
 	
     @Override
@@ -34,6 +38,10 @@ public class LetMeKnowActivity extends Activity {
         setContentView(R.layout.main);
         contactTick = (ImageView) findViewById(R.id.contactTick);
     	markerTick = (ImageView) findViewById(R.id.markerTick);
+    	postCode = (TextView) findViewById(R.id.postCode);
+    	contact = (TextView) findViewById(R.id.chosenContact);
+    	location = (TextView) findViewById(R.id.location);
+    	messageView = (TextView) findViewById(R.id.msgText);
     	PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     	db = new DBAdapter(this);
     }
@@ -75,10 +83,8 @@ public class LetMeKnowActivity extends Activity {
     }
     
     public void confirmClick(View view) {
-    	TextView textView = (TextView) findViewById(R.id.msgText);
-    	message = textView.getText().toString(); 
+    	message = messageView.getText().toString(); 
     	if (longitude == null || latitude == null) {
-    		TextView postCode = (TextView) findViewById(R.id.postCode);
     		getLongLat(postCode.getText().toString());
     	}
     	if (validate() == true) {
@@ -93,12 +99,11 @@ public class LetMeKnowActivity extends Activity {
     }
     
     public void resetClick(View view) {
-    	TextView contact = (TextView) findViewById(R.id.chosenContact);
     	contact.setText("");
-    	TextView location = (TextView) findViewById(R.id.location);
     	location.setText("");
     	TextView message = (TextView) findViewById(R.id.msgText);
     	message.setText("");
+    	postCode.setHint("Enter a post code");
     	contactTick.setImageResource(R.drawable.tickgrey);
     	markerTick.setImageResource(R.drawable.tickgrey);
     }
@@ -109,7 +114,6 @@ public class LetMeKnowActivity extends Activity {
     	switch (requestCode) {
     	case 1:
     		if (resultCode == RESULT_OK) {
-    			TextView contact = (TextView)findViewById(R.id.chosenContact);
     			contact.setText(data.getData().toString());
     			name = data.getData().toString();
     			phoneNumber = (data.getStringExtra("number"));
@@ -118,7 +122,6 @@ public class LetMeKnowActivity extends Activity {
     		break;
     	case 2:
     		if (resultCode == RESULT_OK) {
-    			TextView location = (TextView)findViewById(R.id.location);
     			location.setText("Location Selected");
     			latitude = data.getDoubleExtra("lat", 0);
     			longitude = data.getDoubleExtra("long", 0);
@@ -138,6 +141,8 @@ public class LetMeKnowActivity extends Activity {
 				Address address = addresses.get(0);
 				latitude = address.getLatitude();
 				longitude = address.getLongitude();
+				markerTick.setImageResource(R.drawable.tickgreen);
+				location.setText("Location Selected");
 				return true;
 			} else {
 				return false;
