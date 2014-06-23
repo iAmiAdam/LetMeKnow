@@ -107,9 +107,23 @@ public class LocationTools extends Service {
 		}
 		
 		public void onProviderDisabled(String provider) {
+			if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+				lm.removeUpdates(locationListener);
+				lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, updateInterval, 0, locationListener);				
+			} else {
+				lm.removeUpdates(locationListener);
+				lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, updateInterval, 0, locationListener);	
+			}
 		}
 		
 		public void onProviderEnabled(String provider) {
+			if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+				lm.removeUpdates(locationListener);
+				lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, updateInterval, 0, locationListener);				
+			} else {
+				lm.removeUpdates(locationListener);
+				lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, updateInterval, 0, locationListener);
+			}
 		}
 		
 		public void onStatusChanged(String provider, int status, Bundle extras) {
