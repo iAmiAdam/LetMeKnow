@@ -73,9 +73,9 @@ public class LetMeKnowActivity extends Activity {
     	TextView textView = (TextView) findViewById(R.id.msgText);
     	String message = textView.getText().toString(); 
     	db.open();
-    	long test = db.insertInstance(name, phoneNumber, message, String.valueOf(latitude), String.valueOf(longitude));
-    	Toast.makeText(this, String.valueOf(test), Toast.LENGTH_LONG).show();
+    	db.insertInstance(name, phoneNumber, message, String.valueOf(latitude), String.valueOf(longitude));
     	db.close();
+    	Toast.makeText(this, "Message saved", Toast.LENGTH_LONG).show();
     	Intent i =  new Intent(this, LocationTools.class);
     	startService(i);
     	resetClick(null);
