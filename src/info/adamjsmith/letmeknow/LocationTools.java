@@ -75,9 +75,10 @@ public class LocationTools extends Service {
 						longRemainder = longitude - loc.getLongitude();
 						
 						if(latRemainder < distance && latRemainder > -distance && longRemainder < distance && longRemainder > -distance){
-							c = db.getInstance(id);
-							phoneNumber = c.getString(c.getColumnIndex("number"));
-							message = c.getString(c.getColumnIndex("message"));
+							
+							Cursor ci = db.getInstance(id);
+							phoneNumber = ci.getString(ci.getColumnIndex("number"));
+							message = ci.getString(ci.getColumnIndex("message"));
 							
 							SmsManager sms = SmsManager.getDefault();
 							sms.sendTextMessage(phoneNumber, null, message, null, null);
@@ -87,17 +88,19 @@ public class LocationTools extends Service {
 							
 							if (db.getAllInstances() == null) {
 								c.close();
+								ci.close();
 								lm.removeUpdates(locationListener);
 								stopSelf();
 							}
-							
 							c.close();
+							ci.close();
 							db.close();
 						}
 					} while (c.moveToNext());
 				} else {
 					
 				}
+				c.close();
 				db.close();
 			}
 		}
