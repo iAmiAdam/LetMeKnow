@@ -105,8 +105,8 @@ public class LetMeKnowActivity extends Activity {
     	message.setText("");
     	postCode.setText("");
     	postCode.setHint("Enter a post code");
-    	contactTick.setImageResource(R.drawable.tickgrey);
-    	markerTick.setImageResource(R.drawable.tickgrey);
+    	contactTick.setImageResource(R.drawable.tick);
+    	markerTick.setImageResource(R.drawable.tick);
     }
     
     
@@ -118,7 +118,7 @@ public class LetMeKnowActivity extends Activity {
     			contact.setText(data.getData().toString());
     			name = data.getData().toString();
     			phoneNumber = (data.getStringExtra("number"));
-    			contactTick.setImageResource(R.drawable.tickgreen);
+    			contactTick.setImageResource(R.drawable.tickfill);
     		}
     		break;
     	case 2:
@@ -126,7 +126,7 @@ public class LetMeKnowActivity extends Activity {
     			location.setText("Location Selected");
     			latitude = data.getDoubleExtra("lat", 0);
     			longitude = data.getDoubleExtra("long", 0);
-    			markerTick.setImageResource(R.drawable.tickgreen);
+    			markerTick.setImageResource(R.drawable.tickfill);
     		}
     		break;
     	default:
@@ -142,7 +142,7 @@ public class LetMeKnowActivity extends Activity {
 				Address address = addresses.get(0);
 				latitude = address.getLatitude();
 				longitude = address.getLongitude();
-				markerTick.setImageResource(R.drawable.tickgreen);
+				markerTick.setImageResource(R.drawable.tickfill);
 				location.setText("Location Selected");
 				return true;
 			} else {

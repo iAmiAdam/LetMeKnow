@@ -13,20 +13,18 @@
 	    android:focusableInTouchMode="true" >
 	    
 	    <ImageView
+	        android:id="@+id/logo"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="5dp"
 	        android:contentDescription="@string/logo"
-	        android:id="@+id/logo"
 	        android:src="@drawable/logo" />
 	    
-	    <View
-	        android:id="@+id/logoDivider"
-	    	android:layout_below="@+id/logo"
-	    	style="@style/divider" />
+	    
 	    
 	    <TextView
 	        android:id="@+id/whereText"
-	        android:layout_below="@+id/logoDivider"
+	        android:layout_below="@+id/logo"
 	        android:text="@string/where"
 	        style="@style/TextView" />
 	    
@@ -131,7 +129,7 @@
 	        android:contentDescription="@string/tick"
 	        android:layout_alignLeft="@+id/markerTick"
 	        android:layout_alignTop="@+id/contactsButton"
-	        android:src="@drawable/tickgrey"
+	        android:src="@drawable/tick"
 	        style="@style/ImageView" />
 	
 	    <ImageView
@@ -139,7 +137,7 @@
 	        android:contentDescription="@string/tick"
 	        android:layout_alignTop="@+id/mapButton"
 	        android:layout_toRightOf="@+id/contactsButton"
-	        android:src="@drawable/tickgrey"
+	        android:src="@drawable/tick"
 	        style="@style/ImageView" />
 	
 	    <ImageView
@@ -154,7 +152,7 @@
 	        android:id="@+id/contact"
 	        style="@style/ImageView"
 	        android:layout_alignLeft="@+id/marker"
-	        android:layout_alignTop="@+id/contactsButton"
+	        android:layout_alignBottom="@+id/contactsButton"
 	        android:contentDescription="@string/contactIcon"
 	        android:src="@drawable/person" />
 	
