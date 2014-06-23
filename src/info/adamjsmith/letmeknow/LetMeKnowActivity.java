@@ -103,6 +103,7 @@ public class LetMeKnowActivity extends Activity {
     	location.setText("");
     	TextView message = (TextView) findViewById(R.id.msgText);
     	message.setText("");
+    	postCode.setText("");
     	postCode.setHint("Enter a post code");
     	contactTick.setImageResource(R.drawable.tickgrey);
     	markerTick.setImageResource(R.drawable.tickgrey);

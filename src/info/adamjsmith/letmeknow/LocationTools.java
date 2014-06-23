@@ -56,7 +56,9 @@ public class LocationTools extends Service {
 		return START_STICKY;
 	}
 	
+	@Override
 	public void onDestroy() {
+		super.onDestroy();
 		db.close();
 	}
 	
@@ -89,13 +91,12 @@ public class LocationTools extends Service {
 							
 							pushNotification();
 							db.deleteInstance(id);
+							ci.close();
 							
 							if (db.getAllInstances() == null) {
-								ci.close();
 								lm.removeUpdates(locationListener);
 								stopSelf();
 							}
-							ci.close();
 						}
 					} while (c.moveToNext());
 				} else {

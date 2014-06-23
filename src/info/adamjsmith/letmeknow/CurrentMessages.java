@@ -23,20 +23,21 @@ public class CurrentMessages extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getMessages();
 		db = new DBAdapter(this);
 		db.open();
+		getMessages();
 		LV = getListView();
 		LV.setBackgroundColor(color.blue);
 	}
 	
+	@Override
 	public void onDestroy() {
+		super.onDestroy();
 		db.close();
 	}
 	
-	@SuppressLint("InlinedApi") @SuppressWarnings("deprecation")
+	@SuppressLint("InlinedApi") 
 	public void getMessages() {
-		DBAdapter db = new DBAdapter(this);
 		Cursor c = db.getAllInstances();
 		if (c.moveToFirst()) {
 			do {
@@ -44,7 +45,7 @@ public class CurrentMessages extends ListActivity {
 		        int[] views = new int[] {R.id.id, R.id.name, R.id.message};   
 		        
 		        if(android.os.Build.VERSION.SDK_INT < 11) {
-		        	adapter = new SimpleCursorAdapter(this, R.layout.messageitem, c, columns, views);
+		        	adapter = new MySimpleCursorAdapter(this, R.layout.messageitem, c, columns, views, 0);
 		        } else {
 		        	adapter = new  MySimpleCursorAdapter(this, R.layout.messageitem, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 		        }	
@@ -81,9 +82,7 @@ public class CurrentMessages extends ListActivity {
 				
 				@Override
 				public void onClick(View v) {
-					db.open();
 					db.deleteInstance(Integer.parseInt(id));
-					db.close();	
 					getMessages();
 				}
 			});
