@@ -72,6 +72,9 @@ public class LetMeKnowActivity extends Activity {
 						markerTick.setImageResource(R.drawable.tick);
 						location.setText("");
 					}
+				} else {
+					markerTick.setImageResource(R.drawable.tick);
+					location.setText("");
 				}
 			}
     		
