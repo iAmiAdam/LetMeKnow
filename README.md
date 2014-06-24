@@ -1,5 +1,4 @@
 #LetMeKnow
-=========
 
 A Location based app to let your loved ones know you're safe when travelling.
 
@@ -10,7 +9,7 @@ my poor mother would worry until she text me and I replied. This app solves all 
 of mind to your loved ones.
 
 ##Implemented Features##
-=========
+
 * Location input via map or post code.
 * User preferences for location update intervals and destination distance.
 * Choose contact from contacts existing in the phone.
@@ -18,6 +17,6 @@ of mind to your loved ones.
 * Support for multiple phone numbers on a contact
 
 ##Planned Features##
-=========
+
 * Persistent locations
 * Parent Mode
