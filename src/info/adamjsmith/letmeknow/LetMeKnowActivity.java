@@ -2,17 +2,21 @@ package info.adamjsmith.letmeknow;
 
 import java.io.IOException;
 import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +29,7 @@ public class LetMeKnowActivity extends Activity {
 	Double longitude;
 	ImageView contactTick;
 	ImageView markerTick;
-	TextView postCode;
+	EditText postCode;
 	TextView contact;
 	TextView location;
 	TextView messageView;
@@ -38,12 +42,40 @@ public class LetMeKnowActivity extends Activity {
         setContentView(R.layout.main);
         contactTick = (ImageView) findViewById(R.id.contactTick);
     	markerTick = (ImageView) findViewById(R.id.markerTick);
-    	postCode = (TextView) findViewById(R.id.postCode);
+    	postCode = (EditText) findViewById(R.id.postCode);
     	contact = (TextView) findViewById(R.id.chosenContact);
     	location = (TextView) findViewById(R.id.location);
     	messageView = (TextView) findViewById(R.id.msgText);
     	PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     	db = new DBAdapter(this);
+    	
+    	postCode.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (s.length() > 5) {
+					if (getLongLat(s.toString())) {
+						markerTick.setImageResource(R.drawable.tickfill);
+						location.setText("Location Selected");
+					} else {
+						displayToast("Post Code not found");
+						markerTick.setImageResource(R.drawable.tick);
+						location.setText("");
+					}
+				}
+			}
+    		
+    	});
     }
     
     @Override
@@ -134,17 +166,20 @@ public class LetMeKnowActivity extends Activity {
     	}
     }
 	
-	public boolean getLongLat(String postCode) {
+	public boolean getLongLat(String input) {
 		final Geocoder geocoder = new Geocoder(this);
 		try {
-			List<Address> addresses = geocoder.getFromLocationName(postCode,1);
+			List<Address> addresses = geocoder.getFromLocationName(input,1);
 			if (addresses != null && !addresses.isEmpty()) {
 				Address address = addresses.get(0);
 				latitude = address.getLatitude();
 				longitude = address.getLongitude();
-				markerTick.setImageResource(R.drawable.tickfill);
-				location.setText("Location Selected");
-				return true;
+				if (latitude != null && longitude != null) {
+					return true;
+				} else {
+					return false;
+				}
+				
 			} else {
 				return false;
 			}
@@ -157,13 +192,17 @@ public class LetMeKnowActivity extends Activity {
 	
 	public boolean validate() {
 		if (name == null || phoneNumber == null || message == null) {
-			Toast.makeText(this, "Contact information missing", Toast.LENGTH_LONG).show();
+			displayToast("Contact information missing");
 			return false;
 		} else if(longitude == null || latitude == null)  {
-			Toast.makeText(this, "Location information missing", Toast.LENGTH_LONG).show();
+			displayToast("Location information missing");
 			return false;
 		} else {
 			return true;
 		}
+	}
+	
+	public void displayToast(String text) {
+		Toast.makeText(this, text, Toast.LENGTH_LONG).show();
 	}
 }

@@ -134,7 +134,7 @@ public class LocationTools extends Service {
 		final Intent i = new Intent();
 		PendingIntent pendingIntent = PendingIntent.getActivity(this,  0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 		NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(this)
-		.setSmallIcon(R.drawable.app_icon)
+		.setSmallIcon(R.drawable.notification)
 		.setContentTitle("Text Message Sent")
 		.setContentText("We've let them know you're safe")
 		.setAutoCancel(true)
