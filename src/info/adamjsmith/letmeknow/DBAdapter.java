@@ -19,7 +19,9 @@ public class DBAdapter {
 	
 	static final String DATABASE_NAME = "LetMeKnow";
 	static final String DATABASE_TABLE = "instances";
-	static final int DATABASE_VERSION = 6;
+	static final String LOCATION_TABLE = "locations";
+	static final String MESSAGE_TABLE = "messages";
+	static final int DATABASE_VERSION = 7;
 	
 	static final String DATABASE_CREATE = 
 			"create table instances (_id integer primary key autoincrement,"
@@ -97,5 +99,36 @@ public class DBAdapter {
 			mCursor.moveToFirst();
 		}
 		return mCursor;
+	}
+	
+	public long insertLocation(String name, String latitude, String longitude) {
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(KEY_NAME, name);
+		initialValues.put(KEY_LAT, latitude);
+		initialValues.put(KEY_LONG, longitude);
+		return db.insert(LOCATION_TABLE, null, initialValues);
+	}
+	
+	public boolean deleteLocation(long rowId) {
+		return db.delete(LOCATION_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
+	}
+	
+	public Cursor getAllLocations() {
+		return db.query(LOCATION_TABLE, new String[] {KEY_ROWID, KEY_NAME, KEY_LAT, KEY_LONG}, null, null, null, null, null);
+	}
+	
+	public long insertMessage(String name, String message) {
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(KEY_NAME, name);
+		initialValues.put(KEY_MESSAGE, message);
+		return db.insert(MESSAGE_TABLE, null, initialValues);
+	}
+	
+	public boolean deleteMessage(long rowId) {
+		return db.delete(MESSAGE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
+	}
+	
+	public Cursor getAllMessages() {
+		return db.query(MESSAGE_TABLE, new String[] {KEY_ROWID, KEY_MESSAGE}, null, null, null, null, null);
 	}
 }
