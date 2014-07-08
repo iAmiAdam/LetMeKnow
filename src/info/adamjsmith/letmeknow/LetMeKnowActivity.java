@@ -192,6 +192,19 @@ public class LetMeKnowActivity extends Activity {
     			markerTick.setImageResource(R.drawable.tickfill);
     		}
     		break;
+    	case 3:
+    		if (resultCode == RESULT_OK) {
+    			messageView.setText(data.getStringExtra("message"));
+    		}
+    		break;
+    	case 4:
+    		if (resultCode == RESULT_OK) {
+    			location.setText("Location Selected");
+    			latitude = data.getDoubleExtra("lat", 0);
+    			longitude = data.getDoubleExtra("long", 0);
+    			markerTick.setImageResource(R.drawable.tickfill);
+    		}
+    		break;
     	default:
     		break;
     	}
