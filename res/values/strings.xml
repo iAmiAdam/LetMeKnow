@@ -26,6 +26,8 @@
     <string name="delete">Delete</string>
     <string name="postCode">Or enter a post code</string>
     <string name="choosePhone">Choose a number for this contact</string>
+    <string name="chooseMessage">Choose message</string>
+    <string name="saveMessage">Save message</string>
     
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>

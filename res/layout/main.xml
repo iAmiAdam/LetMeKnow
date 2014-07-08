@@ -20,8 +20,6 @@
 	        android:contentDescription="@string/logo"
 	        android:src="@drawable/logo" />
 	    
-	    
-	    
 	    <TextView
 	        android:id="@+id/whereText"
 	        android:layout_below="@+id/logo"
@@ -91,6 +89,22 @@
 	        android:id="@+id/msgText"
 	        android:layout_below="@+id/whatText" 
 	        style="@style/EditText" />
+	    
+	    <Button
+	        android:id="@+id/chooseMessage"
+	        android:layout_below="@+id/msgText"
+	        android:layout_alignParentLeft="true"
+	        android:text="@string/chooseMessage"
+	        android:onClick="chooseMessage"
+	        style="@style/Button" />
+	    
+	    <Button 
+	        android:id="@+id/saveMessage"
+	        android:layout_below="@+id/msgText"
+	        android:layout_alignParentRight="true" 
+	        android:text="@string/saveMessage"
+	        android:onClick="saveMessage"
+	        style="@style/Button"/>
 	
 	    <View
 	        android:id="@+id/msgDivider"
