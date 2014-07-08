@@ -117,9 +117,8 @@ public class DBAdapter {
 		return db.query(LOCATION_TABLE, new String[] {KEY_ROWID, KEY_NAME, KEY_LAT, KEY_LONG}, null, null, null, null, null);
 	}
 	
-	public long insertMessage(String name, String message) {
+	public long insertMessage(String message) {
 		ContentValues initialValues = new ContentValues();
-		initialValues.put(KEY_NAME, name);
 		initialValues.put(KEY_MESSAGE, message);
 		return db.insert(MESSAGE_TABLE, null, initialValues);
 	}

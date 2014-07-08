@@ -144,6 +144,14 @@ public class LetMeKnowActivity extends Activity {
     	markerTick.setImageResource(R.drawable.tick);
     }
     
+    public void messageSave(View view) {
+    	message = messageView.getText().toString();
+    	if (message != null) {
+    		db.open();
+    		db.insertMessage(message);
+    		db.close();
+    	}
+    }    
     
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
     	
