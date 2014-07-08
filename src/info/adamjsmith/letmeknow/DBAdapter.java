@@ -21,7 +21,7 @@ public class DBAdapter {
 	static final String DATABASE_TABLE = "instances";
 	static final String LOCATION_TABLE = "locations";
 	static final String MESSAGE_TABLE = "messages";
-	static final int DATABASE_VERSION = 10;
+	static final int DATABASE_VERSION = 11;
 	
 	static final String DATABASE_CREATE = 
 			"create table instances (_id integer primary key autoincrement,"
@@ -32,8 +32,8 @@ public class DBAdapter {
 											+ "message text not null)";
 	
 	static final String LOCATION_CREATE = "create table locations (_id integer primary key autoincrement,"
-											+ " name text not null, "
-											+ "	latitude text not null, longitude text not null)";
+											+ "name text not null, "
+											+ "latitude text not null, longitude text not null)";
 	
 	final Context context;
 	
@@ -121,6 +121,15 @@ public class DBAdapter {
 	
 	public Cursor getAllLocations() {
 		return db.query(LOCATION_TABLE, new String[] {KEY_ROWID, KEY_NAME, KEY_LAT, KEY_LONG}, null, null, null, null, null);
+	}
+	
+	public Cursor getLocation(long rowId) {
+		Cursor mCursor = 
+				db.query(true, LOCATION_TABLE, new String[] {KEY_ROWID, KEY_NAME, KEY_LAT, KEY_LONG}, KEY_ROWID + "=" + rowId, null, null, null, null, null);
+		if(mCursor != null) {
+			mCursor.moveToFirst();
+		}
+		return mCursor;
 	}
 	
 	public long insertMessage(String message) {

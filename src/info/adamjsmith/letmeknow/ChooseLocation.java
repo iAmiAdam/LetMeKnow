@@ -15,7 +15,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-public class ChooseMessage extends ListActivity{
+public class ChooseLocation extends ListActivity{
 	SimpleCursorAdapter adapter;
 	DBAdapter db;
 	ListView LV = null;
@@ -39,10 +39,10 @@ public class ChooseMessage extends ListActivity{
 	
 	@SuppressLint("InlinedApi") 
 	public void getMessages() {
-		Cursor c = db.getAllMessages();
+		Cursor c = db.getAllLocations();
 		if (c.moveToFirst()) {
 			do {
-				String[] columns = new String[] {"_id", "message"};
+				String[] columns = new String[] {"_id", "name"};
 		        int[] views = new int[] {R.id.id, R.id.message};   
 		        
 		        if(android.os.Build.VERSION.SDK_INT < 11) {
@@ -80,7 +80,11 @@ public class ChooseMessage extends ListActivity{
 				
 				@Override
 				public void onClick(View v) {
-					
+					Cursor d = db.getLocation(Long.parseLong(id));
+					data.putExtra("latitude", d.getString(2));
+					data.putExtra("longitude", d.getString(3));
+					setResult(RESULT_OK, data);
+					finish();
 				}
 			});
 			
@@ -135,5 +139,4 @@ public class ChooseMessage extends ListActivity{
 			});
 		}
 	}
-	
 }
