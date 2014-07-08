@@ -43,12 +43,12 @@ public class ChooseMessage extends ListActivity{
 		if (c.moveToFirst()) {
 			do {
 				String[] columns = new String[] {"_id", "message"};
-		        int[] views = new int[] {R.id.id, R.id.message};   
+		        int[] views = new int[] {R.id.id, R.id.contactName};   
 		        
 		        if(android.os.Build.VERSION.SDK_INT < 11) {
-		        	adapter = new oldCursorAdapter(this, R.layout.messageitem, c, columns, views);
+		        	adapter = new oldCursorAdapter(this, R.layout.listitem, c, columns, views);
 		        } else {
-		        	adapter = new  MySimpleCursorAdapter(this, R.layout.messageitem, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+		        	adapter = new  MySimpleCursorAdapter(this, R.layout.listitem, c, columns, views, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 		        }	
 		        this.setListAdapter(adapter);
 			} while (c.moveToNext());
@@ -75,6 +75,15 @@ public class ChooseMessage extends ListActivity{
 			TextView messageView = (TextView) view.findViewById(R.id.message);
 			messageView.setText(message);
 			
+			Button select = (Button) view.findViewById(R.id.select);
+			select.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+				}
+			});
+			
 			Button delete = (Button) view.findViewById(R.id.delete);
 			delete.setOnClickListener(new View.OnClickListener() {
 				
@@ -96,13 +105,24 @@ public class ChooseMessage extends ListActivity{
 		@Override
 		public void bindView(View view, Context context, Cursor cursor) {
 			final String id = String.valueOf(cursor.getString(0));
-			String message = cursor.getString(1);
+			final String message = String.valueOf(cursor.getString(1));
 			
 			TextView idView = (TextView) view.findViewById(R.id.id);
 			idView.setText(id);
 			
 			TextView messageView = (TextView) view.findViewById(R.id.message);
 			messageView.setText(message);
+			
+			Button select = (Button) view.findViewById(R.id.select);
+			select.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					data.putExtra("message", message);
+					setResult(RESULT_OK, data);
+					finish();
+				}
+			});
 			
 			Button delete = (Button) view.findViewById(R.id.delete);
 			delete.setOnClickListener(new View.OnClickListener() {
@@ -116,15 +136,4 @@ public class ChooseMessage extends ListActivity{
 		}
 	}
 	
-	@Override
-	protected void onListItemClick(ListView list, View view, int position, long id) {
-		super.onListItemClick(list, view, position, id);
-		
-		TextView tv = (TextView)view.findViewById(R.id.contactName);
-		message = tv.getText().toString();
-		
-		data.putExtra("message", message);
-		setResult(RESULT_OK, data);
-		finish();
-	}
 }

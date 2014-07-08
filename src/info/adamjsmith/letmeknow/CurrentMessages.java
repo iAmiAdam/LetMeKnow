@@ -1,6 +1,5 @@
 package info.adamjsmith.letmeknow;
 
-import info.adamjsmith.letmeknow.R.color;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ListActivity;
@@ -27,8 +26,6 @@ public class CurrentMessages extends ListActivity {
 		db = new DBAdapter(this);
 		db.open();
 		getMessages();
-		//LV = getListView();
-		//LV.setBackgroundColor(color.blue);
 	}
 	
 	@Override
