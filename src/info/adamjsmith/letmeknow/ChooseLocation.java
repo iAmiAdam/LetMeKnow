@@ -42,7 +42,7 @@ public class ChooseLocation extends ListActivity{
 		Cursor c = db.getAllLocations();
 		if (c.moveToFirst()) {
 			do {
-				String[] columns = new String[] {"_id", "name"};
+				String[] columns = new String[] {"_id", "name", "latitude", "longitude"};
 		        int[] views = new int[] {R.id.id, R.id.message};   
 		        
 		        if(android.os.Build.VERSION.SDK_INT < 11) {
@@ -68,6 +68,8 @@ public class ChooseLocation extends ListActivity{
 		public void bindView(View view, Context context, Cursor cursor) {
 			final String id = String.valueOf(cursor.getString(0));
 			String message = cursor.getString(1);
+			final String latitude = cursor.getString(2);
+			final String longitude = cursor.getString(3);
 			
 			TextView idView = (TextView) view.findViewById(R.id.id);
 			idView.setText(id);
@@ -80,9 +82,8 @@ public class ChooseLocation extends ListActivity{
 				
 				@Override
 				public void onClick(View v) {
-					Cursor d = db.getLocation(Long.parseLong(id));
-					data.putExtra("latitude", d.getString(2));
-					data.putExtra("longitude", d.getString(3));
+					data.putExtra("latitude", latitude);
+					data.putExtra("longitude", longitude);
 					setResult(RESULT_OK, data);
 					finish();
 				}
@@ -93,7 +94,7 @@ public class ChooseLocation extends ListActivity{
 				
 				@Override
 				public void onClick(View v) {
-					db.deleteMessage(Integer.parseInt(id));
+					db.deleteLocation(Integer.parseInt(id));
 					getMessages();
 				}
 			});
@@ -110,6 +111,8 @@ public class ChooseLocation extends ListActivity{
 		public void bindView(View view, Context context, Cursor cursor) {
 			final String id = String.valueOf(cursor.getString(0));
 			final String message = String.valueOf(cursor.getString(1));
+			final String latitude = cursor.getString(2);
+			final String longitude = cursor.getString(3);
 			
 			TextView idView = (TextView) view.findViewById(R.id.id);
 			idView.setText(id);
@@ -122,7 +125,8 @@ public class ChooseLocation extends ListActivity{
 				
 				@Override
 				public void onClick(View v) {
-					data.putExtra("message", message);
+					data.putExtra("latitude", Double.parseDouble(latitude));
+					data.putExtra("longitude", Double.parseDouble(longitude));
 					setResult(RESULT_OK, data);
 					finish();
 				}
@@ -133,7 +137,7 @@ public class ChooseLocation extends ListActivity{
 				
 				@Override
 				public void onClick(View v) {
-					db.deleteMessage(Integer.parseInt(id));
+					db.deleteLocation(Integer.parseInt(id));
 					getMessages();
 				}
 			});

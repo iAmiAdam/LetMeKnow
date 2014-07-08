@@ -67,7 +67,7 @@ public class ChooseMessage extends ListActivity{
 		
 		public void bindView(View view, Context context, Cursor cursor) {
 			final String id = String.valueOf(cursor.getString(0));
-			String message = cursor.getString(1);
+			final String message = cursor.getString(1);
 			
 			TextView idView = (TextView) view.findViewById(R.id.id);
 			idView.setText(id);
@@ -80,7 +80,9 @@ public class ChooseMessage extends ListActivity{
 				
 				@Override
 				public void onClick(View v) {
-					
+					data.putExtra("message", message);
+					setResult(RESULT_OK, data);
+					finish();
 				}
 			});
 			

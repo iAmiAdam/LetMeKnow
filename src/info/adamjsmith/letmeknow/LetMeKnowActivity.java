@@ -223,8 +223,8 @@ public class LetMeKnowActivity extends Activity {
     	case 4:
     		if (resultCode == RESULT_OK) {
     			location.setText("Location Selected");
-    			latitude = data.getDoubleExtra("lat", 0);
-    			longitude = data.getDoubleExtra("long", 0);
+    			latitude = data.getDoubleExtra("latitude", 0);
+    			longitude = data.getDoubleExtra("longitude", 0);
     			markerTick.setImageResource(R.drawable.tickfill);
     		}
     		break;
