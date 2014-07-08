@@ -15,8 +15,9 @@ of mind to your loved ones.
 * Choose contact from contacts existing in the phone.
 * Delete message/location pairings
 * Support for multiple phone numbers on a contact
+* Saved Locations
+* Saved Messages
 
 ##Planned Features##
 
-* Persistent locations
 * Parent Mode
