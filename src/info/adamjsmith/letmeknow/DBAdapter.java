@@ -21,17 +21,19 @@ public class DBAdapter {
 	static final String DATABASE_TABLE = "instances";
 	static final String LOCATION_TABLE = "locations";
 	static final String MESSAGE_TABLE = "messages";
-	static final int DATABASE_VERSION = 7;
+	static final int DATABASE_VERSION = 10;
 	
 	static final String DATABASE_CREATE = 
 			"create table instances (_id integer primary key autoincrement,"
 			+ " name text not null, number text not null, message text not null,"
-			+ " latitude text not null, longitude text not null)"
-			+ "create table locations (_id integer primary key autoincrement,"
-			+ " name text not null, "
-			+ "	latitude text not null, longitude text not null)"
-			+ "create table messages (_id integer primary key autoincrement,"
-			+ "message text not null) ";
+			+ " latitude text not null, longitude text not null)";
+	
+	static final String MESSAGES_CREATE = "create table messages (_id integer primary key autoincrement,"
+											+ "message text not null)";
+	
+	static final String LOCATION_CREATE = "create table locations (_id integer primary key autoincrement,"
+											+ " name text not null, "
+											+ "	latitude text not null, longitude text not null)";
 	
 	final Context context;
 	
@@ -52,6 +54,8 @@ public class DBAdapter {
 		public void onCreate(SQLiteDatabase db) {
 			try {
 				db.execSQL(DATABASE_CREATE);
+				db.execSQL(MESSAGES_CREATE);
+				db.execSQL(LOCATION_CREATE);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -61,6 +65,8 @@ public class DBAdapter {
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			Log.w(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
 			db.execSQL("DROP TABLE IF EXISTS instances");
+			db.execSQL("DROP TABLE IF EXISTS messages");
+			db.execSQL("DROP TABLE IF EXISTS locations");
 			onCreate(db);
 		}
 	}
