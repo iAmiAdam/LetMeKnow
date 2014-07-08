@@ -47,9 +47,25 @@
 	        style="@style/TextView"
 	        android:textStyle="bold" />
 	    
+	    <Button
+	        android:id="@+id/chooseLocation"
+	        android:layout_below="@+id/location"
+	        android:layout_alignParentLeft="true"
+	        android:text="@string/chooseLocation"
+	        android:onClick="chooseLocation"
+	        style="@style/Button" />
+	    
+	    <Button 
+	        android:id="@+id/saveLocation"
+	        android:layout_below="@+id/location"
+	        android:layout_alignParentRight="true" 
+	        android:text="@string/saveLocation"
+	        android:onClick="saveLocation"
+	        style="@style/Button"/>
+	    
 	    <View
 	        android:id="@+id/mapDivider"
-	    	android:layout_below="@+id/location"
+	    	android:layout_below="@+id/saveLocation"
 	    	style="@style/divider"/>
 	    
 	
@@ -108,7 +124,7 @@
 	
 	    <View
 	        android:id="@+id/msgDivider"
-	    	android:layout_below="@+id/msgText"
+	    	android:layout_below="@+id/saveMessage"
 	    	style="@style/divider" />
 	    
 	    <Button

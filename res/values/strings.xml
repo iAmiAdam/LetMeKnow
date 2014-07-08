@@ -28,6 +28,8 @@
     <string name="choosePhone">Choose a number for this contact</string>
     <string name="chooseMessage">Choose message</string>
     <string name="saveMessage">Save message</string>
+    <string name="chooseLocation">Choose location</string>
+    <string name="saveLocation">Save location</string>
     
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
