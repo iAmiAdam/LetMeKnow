@@ -1,6 +1,5 @@
 package info.adamjsmith.letmeknow;
 
-import info.adamjsmith.letmeknow.R.color;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ListActivity;
@@ -26,11 +25,10 @@ public class ChooseMessage extends ListActivity{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.contactlist);
 		db = new DBAdapter(this);
 		db.open();
 		getMessages();
-		LV = getListView();
-		LV.setBackgroundColor(color.blue);
 	}
 	
 	@Override

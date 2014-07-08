@@ -23,11 +23,12 @@ public class CurrentMessages extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.contactlist);
 		db = new DBAdapter(this);
 		db.open();
 		getMessages();
-		LV = getListView();
-		LV.setBackgroundColor(color.blue);
+		//LV = getListView();
+		//LV.setBackgroundColor(color.blue);
 	}
 	
 	@Override

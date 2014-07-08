@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -157,9 +159,30 @@ public class LetMeKnowActivity extends Activity {
     		getLongLat(postCode.getText().toString());
     	}
     	if(latitude != null  || longitude != null) {
-    		db.open();
-    		db.insertLocation(name, String.valueOf(latitude), String.valueOf(longitude));
-    		db.close();
+    		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+    		alert.setTitle("Set Name");
+    		alert.setMessage("Choose a name for this location");
+    		final EditText input = new EditText(this);
+    		alert.setView(input);
+    		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+    			public void onClick(DialogInterface dialog, int whichButton) {
+    				name = String.valueOf(input.getText());
+    				db.open();
+    	    		db.insertLocation(name, String.valueOf(latitude), String.valueOf(longitude));
+    	    		db.close();
+    	    		displayToast("Location Saved");
+    			}
+    		});
+    		
+    		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+										
+				}
+			});
+    		
+    		alert.show();
     	}
     }
     
