@@ -117,6 +117,14 @@ public class LetMeKnowActivity extends Activity {
     	startActivity(new Intent("info.adamjsmith.letmeknow.CurrentMessages"));
     }
     
+    public void chooseMessage(View view) {
+    	startActivityForResult(new Intent("info.adamjsmith.letmeknow.ChooseMessage"), 3);
+    }
+    
+    public void chooseLocation(View view) {
+    	startActivityForResult(new Intent("info.adamjsmith.letmeknow.ChooseLocation"), 4);
+    }
+    
     public void confirmClick(View view) {
     	message = messageView.getText().toString(); 
     	if (longitude == null || latitude == null) {
@@ -144,12 +152,24 @@ public class LetMeKnowActivity extends Activity {
     	markerTick.setImageResource(R.drawable.tick);
     }
     
-    public void messageSave(View view) {
+    public void saveLocation(View view) {
+    	if(latitude == null || longitude == null) {
+    		getLongLat(postCode.getText().toString());
+    	}
+    	if(latitude != null  || longitude != null) {
+    		db.open();
+    		db.insertLocation(name, String.valueOf(latitude), String.valueOf(longitude));
+    		db.close();
+    	}
+    }
+    
+    public void saveMessage(View view) {
     	message = messageView.getText().toString();
     	if (message != null) {
     		db.open();
     		db.insertMessage(message);
     		db.close();
+    		displayToast("Message Saved");
     	}
     }    
     
