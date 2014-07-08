@@ -24,7 +24,12 @@ public class DBAdapter {
 	static final String DATABASE_CREATE = 
 			"create table instances (_id integer primary key autoincrement,"
 			+ " name text not null, number text not null, message text not null,"
-			+ " latitude text not null, longitude text not null)";
+			+ " latitude text not null, longitude text not null)"
+			+ "create table locations (_id integer primary key autoincrement,"
+			+ " name text not null, "
+			+ "	latitude text not null, longitude text not null)"
+			+ "create table messages (_id integer primary key autoincrement,"
+			+ "message text not null) ";
 	
 	final Context context;
 	
