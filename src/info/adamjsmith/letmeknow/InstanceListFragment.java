@@ -21,7 +21,6 @@ public class InstanceListFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 		
-		getActivity().setTitle("Let Me Know");
 		mInstances = InstanceHolder.get(getActivity()).getInstances();
 		
 		InstanceAdapter adapter = new InstanceAdapter(mInstances);

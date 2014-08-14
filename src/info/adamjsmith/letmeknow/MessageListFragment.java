@@ -21,7 +21,6 @@ public class MessageListFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 		
-		getActivity().setTitle(R.string.messages);
 		mMessages = InstanceHolder.get(getActivity()).getMessages();
 		
 		MessageAdapter adapter = new MessageAdapter(mMessages);
