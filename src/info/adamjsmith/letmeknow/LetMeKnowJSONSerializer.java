@@ -53,7 +53,7 @@ public class LetMeKnowJSONSerializer {
 		return messages;
 	}
 	
-	public void saveMessage(ArrayList<Message> messages) throws IOException, JSONException {
+	public void saveMessages(ArrayList<Message> messages) throws IOException, JSONException {
 		JSONArray array = new JSONArray();
 		for (Message m : messages) 
 			array.put(m.toJSON());
