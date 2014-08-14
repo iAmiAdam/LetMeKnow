@@ -26,6 +26,12 @@ public class InstanceFragment extends Fragment {
 	}
 	
 	@Override
+	public void onPause() {
+		super.onPause();
+		InstanceHolder.get(getActivity()).saveInstances();
+	}
+	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_instance, parent, false);
 		if(NavUtils.getParentActivityName(getActivity()) != null) {
