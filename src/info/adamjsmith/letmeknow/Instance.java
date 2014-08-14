@@ -12,9 +12,8 @@ public class Instance {
 	private UUID mId;
 	private Message mMessage;
 	
-	public Instance(Message m) {
+	public Instance() {
 		this.mId = UUID.randomUUID();
-		this.mMessage = m;
 	}
 	
 	public Instance(JSONObject json) throws JSONException {
@@ -31,6 +30,10 @@ public class Instance {
 	
 	public UUID getId() {
 		return mId;
+	}
+	
+	public void setMessage(Message m) {
+		this.mMessage = m;
 	}
 
 	public Message getMessage() {

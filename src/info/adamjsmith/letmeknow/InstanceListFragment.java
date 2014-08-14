@@ -1,11 +1,19 @@
 package info.adamjsmith.letmeknow;
 
+import info.adamjsmith.criminalintent.Crime;
+import info.adamjsmith.criminalintent.CrimeFragment;
+import info.adamjsmith.criminalintent.CrimeLab;
+import info.adamjsmith.criminalintent.CrimePagerActivity;
+import info.adamjsmith.criminalintent.R;
+
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -29,7 +37,22 @@ public class InstanceListFragment extends ListFragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.fragment_message_list, menu);
+		inflater.inflate(R.menu.fragment_instance_list, menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_item_new_instance:
+			Instance instance = new Instance();
+			InstanceHolder.get(getActivity()).addInstance(instance);
+			Intent i = new Intent(getActivity(), InstancePagerActivity.class);
+			i.putExtra(InstanceFragment.EXTRA_INSTANCE_ID, instance.getId());
+			startActivityForResult(i, 0);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 	
 	@Override
