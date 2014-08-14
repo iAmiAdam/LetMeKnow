@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -22,6 +24,12 @@ public class InstanceListFragment extends ListFragment {
 		
 		InstanceAdapter adapter = new InstanceAdapter(mInstances);
 		setListAdapter(adapter);
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.fragment_message_list, menu);
 	}
 	
 	@Override

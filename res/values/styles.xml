@@ -40,13 +40,13 @@
         <item name="android:layout_height">wrap_content</item>
 	</style>
 	
-	<style name="CustomActionBar"
+	<style name="CustomActionBarTheme"
 	    parent="@android:style/Theme.Holo.Light.DarkActionBar">
 	    <item name="android:actionBarStyle">@style/ActionBar</item>
 	</style>
 	
 	<style name="ActionBar"
-	    parents="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+	    parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
 	    <item name="android:background">@color/barblue</item>
 	</style>
 </resources>
