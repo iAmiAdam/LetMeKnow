@@ -30,7 +30,10 @@
     <string name="saveMessage">Save message</string>
     <string name="chooseLocation">Choose location</string>
     <string name="saveLocation">Save location</string>
+    
     <string name="select">Select</string>
+    <string name="messages">Messages</string>
+    <string name="new_message">New Message</string>
     
     <string name="contact">Contact</string>
     <string name="message">Message</string>
