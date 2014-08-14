@@ -29,7 +29,7 @@
         android:label="@string/app_name"
         android:theme="@style/CustomActionBarTheme">
         <activity
-            android:name=".InstanceListActivity"
+            android:name=".ActivityPager"
             android:label="@string/app_name"  >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +41,13 @@
             android:name=".InstancePagerActivity"
             android:label="@string/app_name" >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".InstanceListActivity" />
+                android:value=".ActivityPager" />
+        </activity>
+        <activity
+            android:name=".MessageActivity"
+            android:label="@string/app_name" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ActivityPager" />
         </activity>
         
         <activity

@@ -2,8 +2,12 @@ package info.adamjsmith.letmeknow;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -28,6 +32,27 @@ public class MessageListFragment extends ListFragment {
 	public void onResume() {
 		super.onResume();
 		((MessageAdapter)getListAdapter()).notifyDataSetChanged();
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.fragment_message_list, menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_item_new_message:
+			Message message = new Message();
+			InstanceHolder.get(getActivity()).addMessage(message);
+			Intent i = new Intent(getActivity(), MessageActivity.class);
+			i.putExtra(MessageFragment.EXTRA_MESSAGE_ID, message.getId());
+			startActivityForResult(i, 0);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 	
 	private class MessageAdapter extends ArrayAdapter<Message> {

@@ -13,9 +13,8 @@ public class Message {
 	private UUID mId;
 	private String mText;
 	
-	public Message(String message) {
+	public Message() {
 		this.mId = UUID.randomUUID();
-		this.mText = message;
 	}
 	
 	public Message(JSONObject json) throws JSONException {
