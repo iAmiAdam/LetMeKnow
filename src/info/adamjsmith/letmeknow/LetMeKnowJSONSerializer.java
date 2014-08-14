@@ -20,8 +20,11 @@ public class LetMeKnowJSONSerializer {
 	private Context mContext;
 	private String mFilename;
 	
-	public LetMeKnowJSONSerializer(Context c, String f) {
+	public LetMeKnowJSONSerializer(Context c) {
 		this.mContext = c;
+	}
+	
+	public void setFile(String f) {
 		this.mFilename = f;
 	}
 	
