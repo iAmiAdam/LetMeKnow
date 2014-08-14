@@ -19,8 +19,8 @@ public class Message {
 	}
 	
 	public Message(JSONObject json) throws JSONException {
-		mId = UUID.fromString(json.getString(JSON_ID));
-		mText = json.getString(JSON_TEXT);		
+		this.mId = UUID.fromString(json.getString(JSON_ID));
+		this.mText = json.getString(JSON_TEXT);		
 	}
 	
 	public JSONObject toJSON() throws JSONException {
