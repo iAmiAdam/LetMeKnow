@@ -17,6 +17,13 @@ public class InstanceHolder {
 	private InstanceHolder(Context appContext) {
 		this.mContext = appContext;
 		this.mSerializer = new LetMeKnowJSONSerializer(mContext);
+		
+		try {
+			mSerializer.setFile(MESSAGESFILE);
+			mMessages = mSerializer.loadMessages();
+		} catch (Exception e) {
+			mMessages = new ArrayList<Message>();
+		}
 	}
 	
 	public static InstanceHolder get(Context c) {
@@ -45,6 +52,7 @@ public class InstanceHolder {
 	
 	public boolean saveMessages() {
 		try {
+			mSerializer.setFile(MESSAGESFILE);
 			mSerializer.saveMessages(mMessages);
 			return true;
 		} catch (Exception e) {

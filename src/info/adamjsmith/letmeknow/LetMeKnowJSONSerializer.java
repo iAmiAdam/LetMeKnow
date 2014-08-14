@@ -68,4 +68,45 @@ public class LetMeKnowJSONSerializer {
 				writer.close();
 		}
 	}
+	
+	public ArrayList<Instance> loadInstances() throws IOException, JSONException {
+		ArrayList<Instance> instances = new ArrayList<Instance>();
+		BufferedReader reader = null;
+		try {
+			InputStream in = mContext.openFileInput(mFilename);
+			reader = new BufferedReader(new InputStreamReader(in));
+			StringBuilder jsonString = new StringBuilder();
+			String line  = null;
+			while ((line = reader.readLine()) != null) {
+				jsonString.append(line);
+			}
+			
+			JSONArray array = (JSONArray) new JSONTokener(jsonString.toString()).nextValue();
+			for (int i = 0; i < array.length(); i++) {
+				instances.add(new Instance(array.getJSONObject(i)));
+			}
+		} catch (FileNotFoundException e) {
+			
+		} finally {
+			if (reader != null)
+				reader.close();
+		}
+		return instances;
+	}
+	
+	public void saveInstances(ArrayList<Instance> instances) throws IOException, JSONException {
+		JSONArray array = new JSONArray();
+		for (Instance i : instances) 
+			array.put(i.toJSON());
+		
+		Writer writer = null;
+		try {
+			OutputStream out = mContext.openFileOutput(mFilename, Context.MODE_PRIVATE); 
+			writer = new OutputStreamWriter(out);
+			writer.write(array.toString());
+		} finally {
+			if(writer != null)
+				writer.close();
+		}
+	}
 }
