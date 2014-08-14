@@ -42,6 +42,33 @@ public class InstanceHolder {
 		return sInstanceHolder;
 	}
 	
+	public ArrayList<Instance> getInstances() {
+		return mInstances;
+	}
+	
+	public Instance getInstance(UUID id) {
+		for(Instance i: mInstances) {
+			if (i.getId().equals(id)) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
+	public void addInstance(Instance i) {
+		mInstances.add(i);
+	}
+	
+	public boolean saveInstances() {
+		try {
+			mSerializer.setFile(INSTANCESFILE);
+			mSerializer.saveInstances(mInstances);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 	public ArrayList<Message> getMessages() {
 		return mMessages;
 	}
