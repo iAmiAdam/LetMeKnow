@@ -1,11 +1,5 @@
 package info.adamjsmith.letmeknow;
 
-import info.adamjsmith.criminalintent.Crime;
-import info.adamjsmith.criminalintent.CrimeFragment;
-import info.adamjsmith.criminalintent.CrimeLab;
-import info.adamjsmith.criminalintent.CrimePagerActivity;
-import info.adamjsmith.criminalintent.R;
-
 import java.util.ArrayList;
 
 import android.content.Intent;
