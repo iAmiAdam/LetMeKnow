@@ -6,8 +6,10 @@ import java.util.UUID;
 import android.content.Context;
 
 public class InstanceHolder {
+	private static final String INSTANCESFILE = "instances.json";
 	private static final String MESSAGESFILE = "messages.json";
 	
+	private ArrayList<Instance> mInstances;
 	private ArrayList<Message> mMessages;
 	private LetMeKnowJSONSerializer mSerializer;
 	
@@ -23,6 +25,13 @@ public class InstanceHolder {
 			mMessages = mSerializer.loadMessages();
 		} catch (Exception e) {
 			mMessages = new ArrayList<Message>();
+		}
+		
+		try {
+			mSerializer.setFile(INSTANCESFILE);
+			mInstances = mSerializer.loadInstances();
+		} catch (Exception e) {
+			mInstances = new ArrayList<Instance>();
 		}
 	}
 	
