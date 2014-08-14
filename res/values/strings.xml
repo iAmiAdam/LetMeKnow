@@ -32,6 +32,9 @@
     <string name="saveLocation">Save location</string>
     <string name="select">Select</string>
     
+    <string name="contact">Contact</string>
+    <string name="message">Message</string>
+    
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="grey">#818181</color>
@@ -39,6 +42,7 @@
     <color name="aqua">#5e7974</color>
     <color name="blue">#73c5ff</color>
     <color name="black">#000000</color>
+    <color name="barblue">#3399cc</color>
     
     <string-array name="intervalOptions">
         <item>1</item>
