@@ -2,47 +2,51 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    
-    <ImageView android:id="@+id/instance_list_contact_picture"
-        android:layout_width="80dp"
-        android:layout_height="80dp" 
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@android:color/darker_gray"
-        android:layout_margin="10dp" />
+    android:orientation="vertical"
+    android:background="@color/background" >
     
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@color/frame"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp">
-        
-        <TextView android:id="@+id/instance_list_contact_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Contact Name" />
-        
-        <TextView android:id="@+id/instance_list_message_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Message Content"
-            android:layout_below="@id/instance_list_contact_name" />
-        
-    </RelativeLayout>
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" >
+
+	    <ImageView android:id="@+id/instance_list_contact_picture"
+			android:layout_width="80dp"
+			android:layout_height="80dp"
+			android:background="@android:color/darker_gray"
+			android:layout_margin="10dp" />
+	    
+	    <RelativeLayout android:id="@+id/instance_text"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_marginTop="10dp"
+	        android:layout_toRightOf="@id/instance_list_contact_picture"
+	        android:layout_toEndOf="@id/instance_list_contact_picture" >
+	        
+	        <TextView android:id="@+id/instance_list_contact_name"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Contact Name" />
+	        
+	        <TextView android:id="@+id/instance_list_message_content"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Message Content"
+	            android:layout_below="@id/instance_list_contact_name" />
+	        
+	    </RelativeLayout>
+	    
+	    <ImageView android:id="@+id/instance_list_map"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp" 
+	        android:layout_margin="10dp" 
+	        android:layout_alignParentRight="true"
+	        android:layout_alignParentEnd="true" />
     
-    <ImageView
-            android:id="@+id/instance_list_map"
-		    android:layout_width="80dp"
-		    android:layout_height="80dp" 
-        	android:layout_alignParentRight="true"
-        	android:layout_alignParentEnd="true"
-        	android:layout_margin="10dp"  />
-    
-	
+	</RelativeLayout>
 </RelativeLayout>
