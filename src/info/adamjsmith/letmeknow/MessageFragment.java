@@ -5,6 +5,8 @@ import java.util.UUID;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +50,29 @@ public class MessageFragment extends Fragment {
 		
 		EditText content = (EditText)v.findViewById(R.id.content);
 		content.setText(mMessage.getText());
+		
+		content.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence c, int start, int before,
+					int count) {
+				mMessage.setText(c.toString());
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		return v;
 	}

@@ -33,7 +33,7 @@ public class MessagePagerActivity extends FragmentActivity {
 			@Override
 			public Fragment getItem(int pos) {
 				Message message = mMessages.get(pos);
-				return InstanceFragment.newInstance(message.getId());
+				return MessageFragment.newInstance(message.getId());
 			}
 		});
 		
