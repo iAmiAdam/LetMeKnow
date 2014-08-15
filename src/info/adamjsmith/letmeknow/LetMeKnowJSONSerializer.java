@@ -132,6 +132,7 @@ public class LetMeKnowJSONSerializer {
 			if (reader != null) 
 				reader.close();
 		}
+		return locations;
 	}
 	
 	public void saveLocations(ArrayList<Location> locations) throws IOException, JSONException {
