@@ -103,8 +103,8 @@ public class MessageFragment extends Fragment {
 	private void setTitle() {
 		if(mMessage.getText() != null) {
 			String text = mMessage.getText();
-			if (text.length() > 10) {
-				String slice = text.substring(0, 9);
+			if (text.length() > 20) {
+				String slice = text.substring(0, 20);
 				slice += "...";
 				getActivity().setTitle(slice);
 			} else {
