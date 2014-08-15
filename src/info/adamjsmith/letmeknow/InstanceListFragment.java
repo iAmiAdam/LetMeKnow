@@ -95,7 +95,7 @@ public class InstanceListFragment extends ListFragment {
 				message.setText("Message Text"); 
 			}
 			
-			String getMapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=14&size=80x80&markers=size:mid|color:red|52.941128,-1.260106"; 
+			String getMapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=14&size=150x150&markers=size:mid|color:red|52.941128,-1.260106"; 
 			
 			new DownloadImageTask((ImageView) convertView.findViewById(R.id.instance_list_map))
             .execute(getMapURL);
