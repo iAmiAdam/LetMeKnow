@@ -118,7 +118,7 @@ public class InstanceHolder {
 	public boolean saveLocations() {
 		try {
 			mSerializer.setFile(LOCATIONSFILE);
-			//mSerializer.saveLocations(mLocations);
+			mSerializer.saveLocations(mLocations);
 			return true;
 		} catch (Exception e) {
 			return false;
