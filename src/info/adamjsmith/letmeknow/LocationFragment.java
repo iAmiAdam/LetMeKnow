@@ -24,12 +24,20 @@ public class LocationFragment extends Fragment {
 	private MapView mMapView;
 	private GoogleMap mMap;
 	
+	public LocationFragment(UUID locationId) {
+		mLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		UUID locationId = (UUID)getArguments().getSerializable(EXTRA_LOCATION_ID);
-		mLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
+		getActivity().setTitle("New Location");
+		
+		if(mLocation == null) {
+			UUID locationId = (UUID)getArguments().getSerializable(EXTRA_LOCATION_ID);
+			mLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
+		}
 		
 		setHasOptionsMenu(true);
 	}
@@ -65,7 +73,7 @@ public class LocationFragment extends Fragment {
 			getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 		
-		mMapView = (MapView) v.findViewById(R.id.instance_map);
+		mMapView = (MapView) v.findViewById(R.id.location_map);
 		mMapView.onCreate(savedInstanceState);
 		
 		mMap = mMapView.getMap();

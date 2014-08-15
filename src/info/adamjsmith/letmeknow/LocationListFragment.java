@@ -3,6 +3,7 @@ package info.adamjsmith.letmeknow;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -51,11 +52,11 @@ public class LocationListFragment extends ListFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_item_new_message:
-			//New Location
-			//InstanceHolder.get(getActivity()).addLocation(location);
-			//Intent i = new Intent(getActivity(), LocationPagerActivity.class);
-			//i.putExtra(LocationFragment.EXTRA_LOCATION_ID, location.getId());
-			//startActivityForResult(i, 0);
+			Location location = new Location();
+			InstanceHolder.get(getActivity()).addLocation(location);
+			Intent i = new Intent(getActivity(), LocationActivity.class);
+			i.putExtra(LocationFragment.EXTRA_LOCATION_ID, location.getId());
+			startActivityForResult(i, 0);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
