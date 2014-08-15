@@ -44,6 +44,14 @@ public class LocationListFragment extends ListFragment {
 	}
 	
 	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		ListView listView = getListView();
+		listView.setBackgroundColor(getResources().getColor(R.color.background));
+		listView.setDividerHeight(0);
+	}
+	
+	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		Location loc = ((LocationAdapter)getListAdapter()).getItem(position);
 
