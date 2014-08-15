@@ -35,6 +35,14 @@ public class MessageListFragment extends ListFragment {
 	}
 	
 	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		ListView listView = getListView();
+		listView.setBackgroundColor(getResources().getColor(R.color.background));
+		listView.setDividerHeight(0);
+	}
+	
+	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.fragment_message_list, menu);

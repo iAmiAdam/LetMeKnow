@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class InstanceListFragment extends ListFragment {
@@ -38,6 +39,20 @@ public class InstanceListFragment extends ListFragment {
 	}
 	
 	@Override
+	public void onResume() {
+		super.onResume();
+		((InstanceAdapter)getListAdapter()).notifyDataSetChanged();
+	}
+	
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		ListView listView = getListView();
+		listView.setBackgroundColor(getResources().getColor(R.color.background));
+		listView.setDividerHeight(0);
+	}
+	
+	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.fragment_instance_list, menu);
@@ -56,12 +71,6 @@ public class InstanceListFragment extends ListFragment {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-	}
-	
-	@Override
-	public void onResume() {
-		super.onResume();
-		((InstanceAdapter)getListAdapter()).notifyDataSetChanged();
 	}
 	
 	private class InstanceAdapter extends ArrayAdapter<Instance> {
