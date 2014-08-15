@@ -4,9 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <fragment
+    <ImageView
             android:id="@+id/instance_list_map"
-		    class="com.google.android.gms.maps.SupportMapFragment"
 		    android:layout_width="80dp"
 		    android:layout_height="80dp"
 		    android:layout_margin="10dp" />

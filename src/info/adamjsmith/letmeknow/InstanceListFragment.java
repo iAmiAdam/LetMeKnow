@@ -1,24 +1,23 @@
 package info.adamjsmith.letmeknow;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
 
 public class InstanceListFragment extends ListFragment {
 	private ArrayList<Instance> mInstances;
@@ -76,9 +75,11 @@ public class InstanceListFragment extends ListFragment {
 				if(mCounter % 2 == 0) {
 					convertView = getActivity().getLayoutInflater()
 							.inflate(R.layout.list_item_instance, null);
+					mCounter++;
 				} else {
 					convertView = getActivity().getLayoutInflater()
 							.inflate(R.layout.list_item_instance_right, null);
+					mCounter++;
 				}
 			}
 			
@@ -94,18 +95,37 @@ public class InstanceListFragment extends ListFragment {
 				message.setText("Message Text"); 
 			}
 			
-			MapFragment mapView;
-			GoogleMap mMap;
+			String getMapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=14&size=80x80&markers=size:mid|color:red|52.941128,-1.260106"; 
 			
-			mMap = ((SupportMapFragment) getFragmentManager().findFragmentById(R.id.instance_list_map)).getMap();
-			
-			mMap.getUiSettings().setAllGesturesEnabled(false);
-			mMap.getUiSettings().setZoomControlsEnabled(false);
-			
-			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(52.941128 , -1.260106), 10);
-			mMap.animateCamera(cameraUpdate);
+			new DownloadImageTask((ImageView) convertView.findViewById(R.id.instance_list_map))
+            .execute(getMapURL);
 			
 			return convertView;
 		}
 	}
+	
+	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+	    ImageView bmImage;
+
+	    public DownloadImageTask(ImageView bmImage) {
+	        this.bmImage = bmImage;
+	    }
+
+	    protected Bitmap doInBackground(String... urls) {
+	        String urldisplay = urls[0];
+	        Bitmap mIcon11 = null;
+	        try {
+	            InputStream in = new java.net.URL(urldisplay).openStream();
+	            mIcon11 = BitmapFactory.decodeStream(in);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return mIcon11;
+	    }
+
+	    protected void onPostExecute(Bitmap result) {
+	        bmImage.setImageBitmap(result);
+	    }
+	}
+	
 }
