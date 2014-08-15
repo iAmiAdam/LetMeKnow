@@ -13,8 +13,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+
 public class InstanceListFragment extends ListFragment {
 	private ArrayList<Instance> mInstances;
+	
+	private int mCounter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -22,6 +31,8 @@ public class InstanceListFragment extends ListFragment {
 		setHasOptionsMenu(true);
 		
 		mInstances = InstanceHolder.get(getActivity()).getInstances();
+		
+		mCounter = 0;
 		
 		InstanceAdapter adapter = new InstanceAdapter(mInstances);
 		setListAdapter(adapter);
@@ -62,8 +73,13 @@ public class InstanceListFragment extends ListFragment {
 		
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if(convertView == null) {
-				convertView = getActivity().getLayoutInflater()
-						.inflate(R.layout.list_item_instance, null);
+				if(mCounter % 2 == 0) {
+					convertView = getActivity().getLayoutInflater()
+							.inflate(R.layout.list_item_instance, null);
+				} else {
+					convertView = getActivity().getLayoutInflater()
+							.inflate(R.layout.list_item_instance_right, null);
+				}
 			}
 			
 			Instance i = getItem(position);
@@ -77,6 +93,17 @@ public class InstanceListFragment extends ListFragment {
 			} else { 
 				message.setText("Message Text"); 
 			}
+			
+			MapFragment mapView;
+			GoogleMap mMap;
+			
+			mMap = ((SupportMapFragment) getFragmentManager().findFragmentById(R.id.instance_list_map)).getMap();
+			
+			mMap.getUiSettings().setAllGesturesEnabled(false);
+			mMap.getUiSettings().setZoomControlsEnabled(false);
+			
+			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(52.941128 , -1.260106), 10);
+			mMap.animateCamera(cameraUpdate);
 			
 			return convertView;
 		}
