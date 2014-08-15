@@ -46,6 +46,8 @@
     <color name="blue">#73c5ff</color>
     <color name="black">#000000</color>
     <color name="barblue">#3399cc</color>
+    <color name="background">#E8F8FF</color>
+    <color name="frame">#B4DCED</color>
     
     <string-array name="intervalOptions">
         <item>1</item>

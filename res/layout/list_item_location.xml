@@ -3,14 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp" >
+    android:background="@color/background" >
     
-    <TextView android:id="@+id/location_list_name"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="wrap_content"
+        android:background="@color/frame"
+        android:layout_margin="10dp" > 
+        
+	    <TextView android:id="@+id/location_list_name"
+	        android:layout_width="match_parent"
+	        android:layout_height="50dp" 
+	        android:layout_marginTop="10dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="10dp"
+	        android:background="@color/background"/>
+	    
+	    <ImageView android:id="@+id/location_list_map"
+	        android:layout_width="match_parent"
+	        android:layout_height="200dp" 
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="10dp" />
     
-    <ImageView android:id="@+id/location_list_map"
-        android:layout_width="match_parent"
-        android:layout_height="250dp" />
+    </LinearLayout>
 
 </LinearLayout>
