@@ -28,8 +28,9 @@ public class InstanceFragment extends Fragment {
 	@Override
 	public void onPause() {
 		super.onPause();
-		if (mInstance.getMessage().getText() != null)
+		if (mInstance.getMessage() != null) {
 			InstanceHolder.get(getActivity()).saveInstances();
+		}
 	}
 	
 	@Override

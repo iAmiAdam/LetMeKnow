@@ -72,7 +72,7 @@ public class InstanceListFragment extends ListFragment {
 			contactName.setText("Test");
 			
 			TextView message = (TextView) convertView.findViewById(R.id.instance_list_message_content);
-			message.setText(i.getMessage().getText());
+			if (i.getMessage() != null) message.setText(i.getMessage().getText());
 			
 			return convertView;
 		}
