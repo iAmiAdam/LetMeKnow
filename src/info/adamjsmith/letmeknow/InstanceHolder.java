@@ -12,6 +12,7 @@ public class InstanceHolder {
 	
 	private ArrayList<Instance> mInstances;
 	private ArrayList<Message> mMessages;
+	private ArrayList<Location> mLocations;
 	private LetMeKnowJSONSerializer mSerializer;
 	
 	private static InstanceHolder sInstanceHolder;
@@ -91,6 +92,33 @@ public class InstanceHolder {
 		try {
 			mSerializer.setFile(MESSAGESFILE);
 			mSerializer.saveMessages(mMessages);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public ArrayList<Location> getLocations() {
+		return mLocations;
+	}
+	
+	public Location getLocation(UUID id) {
+		for(Location l: mLocations) {
+			if (l.getId().equals(id)) {
+				return l;
+			}
+		}
+		return null;
+	}
+	
+	public void addLocation(Location l) {
+		mLocations.add(l);
+	}
+	
+	public boolean saveLocations() {
+		try {
+			mSerializer.setFile(LOCATIONSFILE);
+			//mSerializer.saveLocations(mLocations);
 			return true;
 		} catch (Exception e) {
 			return false;
