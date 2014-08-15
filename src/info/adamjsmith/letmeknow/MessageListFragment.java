@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MessageListFragment extends ListFragment {
@@ -52,6 +53,15 @@ public class MessageListFragment extends ListFragment {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		Message m = ((MessageAdapter)getListAdapter()).getItem(position);
+
+		Intent i = new Intent(getActivity(), MessagePagerActivity.class);
+		i.putExtra(MessageFragment.EXTRA_MESSAGE_ID, m.getId());
+		startActivity(i);
 	}
 	
 	private class MessageAdapter extends ArrayAdapter<Message> {
