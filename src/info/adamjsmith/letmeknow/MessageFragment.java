@@ -24,12 +24,19 @@ public class MessageFragment extends Fragment {
 		mMessage = InstanceHolder.get(getActivity()).getMessage(messageId);
 		
 		setHasOptionsMenu(true);
+		setTitle();
 	}
 	
 	@Override
 	public void onPause() {
 		super.onPause();
-		InstanceHolder.get(getActivity()).saveInstances();
+		InstanceHolder.get(getActivity()).saveMessages();
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		setTitle();
 	}
 	
 	@Override
@@ -68,5 +75,19 @@ public class MessageFragment extends Fragment {
 		return fragment;
 	}
 	
+	private void setTitle() {
+		if(mMessage.getText() != null) {
+			String text = mMessage.getText();
+			if (text.length() > 10) {
+				String slice = text.substring(0, 9);
+				slice += "...";
+				getActivity().setTitle(slice);
+			} else {
+				getActivity().setTitle(text);
+			}
+		} else {
+			getActivity().setTitle("New Message");
+		}
+	}
 	
 }
