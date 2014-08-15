@@ -45,7 +45,7 @@ public class MessageListFragment extends ListFragment {
 		case R.id.menu_item_new_message:
 			Message message = new Message();
 			InstanceHolder.get(getActivity()).addMessage(message);
-			Intent i = new Intent(getActivity(), MessageActivity.class);
+			Intent i = new Intent(getActivity(), MessagePagerActivity.class);
 			i.putExtra(MessageFragment.EXTRA_MESSAGE_ID, message.getId());
 			startActivityForResult(i, 0);
 			return true;

@@ -68,4 +68,5 @@ public class MessageFragment extends Fragment {
 		return fragment;
 	}
 	
+	
 }
