@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class LocationListFragment extends ListFragment {
@@ -40,6 +41,15 @@ public class LocationListFragment extends ListFragment {
 		if(getListAdapter() != null) {
 			((LocationAdapter)getListAdapter()).notifyDataSetChanged();
 		}
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		Location loc = ((LocationAdapter)getListAdapter()).getItem(position);
+
+		Intent i = new Intent(getActivity(), LocationActivity.class);
+		i.putExtra(LocationFragment.EXTRA_LOCATION_ID, loc.getId());
+		startActivity(i);
 	}
 	
 	@Override
@@ -80,7 +90,8 @@ public class LocationListFragment extends ListFragment {
 			TextView name = (TextView) convertView.findViewById(R.id.location_list_name);
 			name.setText(l.getName());
 			
-			String getMapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=14&size=500x250&markers=size:mid|color:red|52.941128,-1.260106"; 
+			String getMapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=14&size=500x250&markers=size:mid|color:red|"; 
+			getMapURL += l.getLatitude() + "," + l.getLongitude();
 			
 			new DownloadImageTask((ImageView) convertView.findViewById(R.id.location_list_map))
             .execute(getMapURL);

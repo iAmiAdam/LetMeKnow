@@ -5,17 +5,22 @@ import java.util.UUID;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class LocationFragment extends Fragment {
 	public static final String EXTRA_LOCATION_ID = "info.adamjsmith.letmeknow.location_id";
@@ -32,20 +37,21 @@ public class LocationFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		getActivity().setTitle("New Location");
-		
-		if(mLocation == null) {
-			UUID locationId = (UUID)getArguments().getSerializable(EXTRA_LOCATION_ID);
-			mLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
+		if(mLocation.getName() == null) {
+			getActivity().setTitle("New Location");
+		} else {
+			getActivity().setTitle(mLocation.getName());
 		}
 		
 		setHasOptionsMenu(true);
+
 	}
 	
 	@Override
 	public void onPause() {
 		super.onPause();
 		mMapView.onPause();
+		InstanceHolder.get(getActivity()).saveLocations();
 	}
 	
 	@Override
@@ -79,10 +85,57 @@ public class LocationFragment extends Fragment {
 		mMap = mMapView.getMap();
 		mMap.getUiSettings().setMyLocationButtonEnabled(false);
 		
+		mMap.setOnMapClickListener(new OnMapClickListener() {
+
+			@Override
+			public void onMapClick(LatLng point) {
+				mMap.clear();
+				mLocation.setLatitude(point.latitude);
+				mLocation.setLongitude(point.longitude);
+				mMap.addMarker(new MarkerOptions()
+						.position(point));
+				
+			}
+			
+		});
+		
 		MapsInitializer.initialize(getActivity());
 		
-		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(52.941128, -1.260106), 10);
+		Double lLatitude;
+		Double lLongitude;
+		
+		if (mLocation.getLatitude() != null) {
+			lLatitude = mLocation.getLatitude();
+			lLongitude = mLocation.getLongitude();
+			mMap.addMarker(new MarkerOptions() 
+				.position(new LatLng(mLocation.getLatitude(), mLocation.getLongitude())));
+		} else {			
+			
+			lLatitude = 52.941128;
+			lLongitude = -1.260106;
+		}
+
+		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lLatitude, lLongitude), 10);
 		mMap.animateCamera(cameraUpdate);
+		
+		EditText name = (EditText) v.findViewById(R.id.location_name);
+		name.setText(mLocation.getName());
+		name.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				mLocation.setName(String.valueOf(s));
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {}
+			
+		});
 		
 		return v;
 	}
