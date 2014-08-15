@@ -8,6 +8,7 @@ import android.content.Context;
 public class InstanceHolder {
 	private static final String INSTANCESFILE = "instances.json";
 	private static final String MESSAGESFILE = "messages.json";
+	private static final String LOCATIONSFILE = "locations.json";
 	
 	private ArrayList<Instance> mInstances;
 	private ArrayList<Message> mMessages;
