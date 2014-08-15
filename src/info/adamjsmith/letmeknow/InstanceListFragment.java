@@ -69,10 +69,14 @@ public class InstanceListFragment extends ListFragment {
 			Instance i = getItem(position);
 			
 			TextView contactName = (TextView) convertView.findViewById(R.id.instance_list_contact_name);
-			contactName.setText("Test");
+			contactName.setText("Contact Name");
 			
 			TextView message = (TextView) convertView.findViewById(R.id.instance_list_message_content);
-			if (i.getMessage() != null) message.setText(i.getMessage().getText());
+			if (i.getMessage() != null) { 
+				message.setText(i.getMessage().getText()); 
+			} else { 
+				message.setText("Message Text"); 
+			}
 			
 			return convertView;
 		}
