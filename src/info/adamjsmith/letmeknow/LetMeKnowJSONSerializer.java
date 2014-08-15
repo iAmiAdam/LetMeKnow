@@ -28,6 +28,47 @@ public class LetMeKnowJSONSerializer {
 		this.mFilename = f;
 	}
 	
+	public ArrayList<Instance> loadInstances() throws IOException, JSONException {
+		ArrayList<Instance> instances = new ArrayList<Instance>();
+		BufferedReader reader = null;
+		try {
+			InputStream in = mContext.openFileInput(mFilename);
+			reader = new BufferedReader(new InputStreamReader(in));
+			StringBuilder jsonString = new StringBuilder();
+			String line  = null;
+			while ((line = reader.readLine()) != null) {
+				jsonString.append(line);
+			}
+			
+			JSONArray array = (JSONArray) new JSONTokener(jsonString.toString()).nextValue();
+			for (int i = 0; i < array.length(); i++) {
+				instances.add(new Instance(array.getJSONObject(i)));
+			}
+		} catch (FileNotFoundException e) {
+			
+		} finally {
+			if (reader != null)
+				reader.close();
+		}
+		return instances;
+	}
+	
+	public void saveInstances(ArrayList<Instance> instances) throws IOException, JSONException {
+		JSONArray array = new JSONArray();
+		for (Instance i : instances) 
+			array.put(i.toJSON());
+		
+		Writer writer = null;
+		try {
+			OutputStream out = mContext.openFileOutput(mFilename, Context.MODE_PRIVATE); 
+			writer = new OutputStreamWriter(out);
+			writer.write(array.toString());
+		} finally {
+			if(writer != null)
+				writer.close();
+		}
+	}
+	
 	public ArrayList<Message> loadMessages() throws IOException, JSONException {
 		ArrayList<Message> messages = new ArrayList<Message>();
 		BufferedReader reader = null;
@@ -69,35 +110,34 @@ public class LetMeKnowJSONSerializer {
 		}
 	}
 	
-	public ArrayList<Instance> loadInstances() throws IOException, JSONException {
-		ArrayList<Instance> instances = new ArrayList<Instance>();
+	public ArrayList<Location> loadLocations() throws IOException, JSONException {
+		ArrayList<Location> locations = new ArrayList<Location>();
 		BufferedReader reader = null;
 		try {
 			InputStream in = mContext.openFileInput(mFilename);
 			reader = new BufferedReader(new InputStreamReader(in));
 			StringBuilder jsonString = new StringBuilder();
-			String line  = null;
+			String line = null;
 			while ((line = reader.readLine()) != null) {
 				jsonString.append(line);
 			}
 			
 			JSONArray array = (JSONArray) new JSONTokener(jsonString.toString()).nextValue();
 			for (int i = 0; i < array.length(); i++) {
-				instances.add(new Instance(array.getJSONObject(i)));
+				locations.add(new Location(array.getJSONObject(i)));
 			}
 		} catch (FileNotFoundException e) {
 			
 		} finally {
-			if (reader != null)
+			if (reader != null) 
 				reader.close();
 		}
-		return instances;
 	}
 	
-	public void saveInstances(ArrayList<Instance> instances) throws IOException, JSONException {
+	public void saveLocations(ArrayList<Location> locations) throws IOException, JSONException {
 		JSONArray array = new JSONArray();
-		for (Instance i : instances) 
-			array.put(i.toJSON());
+		for (Location l : locations) 
+			array.put(l.toJSON());
 		
 		Writer writer = null;
 		try {
