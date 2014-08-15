@@ -35,6 +35,13 @@ public class InstanceHolder {
 		} catch (Exception e) {
 			mInstances = new ArrayList<Instance>();
 		}
+		
+		try {
+			mSerializer.setFile(LOCATIONSFILE);
+			mLocations = mSerializer.loadLocations();
+		} catch (Exception e) {
+			mLocations = new ArrayList<Location>();
+		}
 	}
 	
 	public static InstanceHolder get(Context c) {

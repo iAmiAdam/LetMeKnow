@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 public class ActivityPager extends FragmentActivity {
 	private final List<Fragment> mFragments = new ArrayList<Fragment>();
@@ -23,10 +22,12 @@ public class ActivityPager extends FragmentActivity {
 	private void initPaging() {
 		Fragment instanceList = new InstanceListFragment();
 		Fragment messageList = new MessageListFragment();
+		Fragment locationList = new LocationListFragment();
 		
 		PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
 		pagerAdapter.addFragment(instanceList);
 		pagerAdapter.addFragment(messageList);
+		pagerAdapter.addFragment(locationList);
 		
 		ViewPager viewPager = new ViewPager(this);
 		viewPager.setId(R.id.viewPager);
@@ -38,13 +39,15 @@ public class ActivityPager extends FragmentActivity {
 			
 			@Override
 			public void onPageSelected(int pos) {
-				Log.d("POS", String.valueOf(pos));
 				switch(pos) {
 				case 0:
 					setTitle("Let Me Know");
 					break;
 				case 1:
 					setTitle("Messages");
+					break;
+				case 2:
+					setTitle("Locations");
 					break;
 				}
 			}

@@ -8,6 +8,9 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -24,8 +27,39 @@ public class LocationListFragment extends ListFragment {
 		
 		mLocations = InstanceHolder.get(getActivity()).getLocations();		
 		
+
 		LocationAdapter adapter = new LocationAdapter(mLocations);
 		setListAdapter(adapter);
+		
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(getListAdapter() != null) {
+			((LocationAdapter)getListAdapter()).notifyDataSetChanged();
+		}
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.fragment_message_list, menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_item_new_message:
+			//New Location
+			//InstanceHolder.get(getActivity()).addLocation(location);
+			//Intent i = new Intent(getActivity(), LocationPagerActivity.class);
+			//i.putExtra(LocationFragment.EXTRA_LOCATION_ID, location.getId());
+			//startActivityForResult(i, 0);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 	
 	private class LocationAdapter extends ArrayAdapter<Location> {
