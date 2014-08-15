@@ -22,16 +22,12 @@ import android.widget.TextView;
 public class InstanceListFragment extends ListFragment {
 	private ArrayList<Instance> mInstances;
 	
-	private int mCounter;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 		
 		mInstances = InstanceHolder.get(getActivity()).getInstances();
-		
-		mCounter = 0;
 		
 		InstanceAdapter adapter = new InstanceAdapter(mInstances);
 		setListAdapter(adapter);
@@ -80,14 +76,12 @@ public class InstanceListFragment extends ListFragment {
 		
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if(convertView == null) {
-				if(mCounter % 2 == 0) {
+				if(position % 2 == 0) {
 					convertView = getActivity().getLayoutInflater()
 							.inflate(R.layout.list_item_instance, null);
-					mCounter++;
 				} else {
 					convertView = getActivity().getLayoutInflater()
 							.inflate(R.layout.list_item_instance_right, null);
-					mCounter++;
 				}
 			}
 			
