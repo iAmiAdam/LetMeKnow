@@ -101,21 +101,17 @@ public class LocationFragment extends Fragment {
 		
 		MapsInitializer.initialize(getActivity());
 		
-		Double lLatitude;
-		Double lLongitude;
+		LatLng location;
 		
 		if (mLocation.getLatitude() != null) {
-			lLatitude = mLocation.getLatitude();
-			lLongitude = mLocation.getLongitude();
+			location = new LatLng(mLocation.getLatitude(), mLocation.getLongitude());
 			mMap.addMarker(new MarkerOptions() 
 				.position(new LatLng(mLocation.getLatitude(), mLocation.getLongitude())));
 		} else {			
-			
-			lLatitude = 52.941128;
-			lLongitude = -1.260106;
+			location = LocationTools.getCurrentLocation(getActivity());
 		}
 
-		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lLatitude, lLongitude), 10);
+		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(location, 10);
 		mMap.animateCamera(cameraUpdate);
 		
 		EditText name = (EditText) v.findViewById(R.id.location_name);

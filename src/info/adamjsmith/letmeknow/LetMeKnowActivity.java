@@ -137,7 +137,7 @@ public class LetMeKnowActivity extends Activity {
 	    	db.insertInstance(name, phoneNumber, message, String.valueOf(latitude), String.valueOf(longitude));
 	    	db.close();
 	    	Toast.makeText(this, "Message saved", Toast.LENGTH_LONG).show();
-	    	Intent i =  new Intent(this, LocationTools.class);
+	    	Intent i =  new Intent(this, LocationToolsO.class);
 	    	startService(i);
 	    	resetClick(null);
     	}
