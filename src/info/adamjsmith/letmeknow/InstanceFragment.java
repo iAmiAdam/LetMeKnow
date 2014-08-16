@@ -28,6 +28,7 @@ public class InstanceFragment extends Fragment {
 	private MapView mapView;
 	private GoogleMap map;
 	private EditText message;
+	private Button selectMessage;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -87,7 +88,7 @@ public class InstanceFragment extends Fragment {
 		
 		message = (EditText) v.findViewById(R.id.instance_message_input);
 		
-		Button selectMessage = (Button) v.findViewById(R.id.instance_message_button);
+		selectMessage = (Button) v.findViewById(R.id.instance_message_button);
 		selectMessage.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -119,6 +120,8 @@ public class InstanceFragment extends Fragment {
 			Message lMessage = InstanceHolder.get(getActivity()).getMessage(messageId);
 			message.setText(lMessage.getText());
 			mInstance.setMessage(lMessage);
+			message.setEnabled(false);
+			selectMessage.setVisibility(View.GONE);
 		} else {
 			super.onActivityResult(requestCode, resultCode, data);
 		}
