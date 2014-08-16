@@ -41,10 +41,11 @@
 			    android:text="@string/contact"
 			    style="?android:listSeparatorTextViewStyle" />
 	        
-	        <Button
+	        <Button android:id="@+id/instance_contact_select"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:text="@string/select"
+	            android:onClick="selectContact"
 	            style="@style/Button" />
 	        
 	    </LinearLayout>

@@ -72,7 +72,7 @@ public class MessageListFragment extends ListFragment {
 		startActivity(i);
 	}
 	
-	private class MessageAdapter extends ArrayAdapter<Message> {
+	class MessageAdapter extends ArrayAdapter<Message> {
 		
 		public MessageAdapter(ArrayList<Message> messages) {
 			super(getActivity(), 0, messages);

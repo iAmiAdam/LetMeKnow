@@ -106,4 +106,8 @@ public class InstanceFragment extends Fragment {
 		return fragment;
 	}
 	
+	public void selectContact() {
+		
+	}
+	
 }
