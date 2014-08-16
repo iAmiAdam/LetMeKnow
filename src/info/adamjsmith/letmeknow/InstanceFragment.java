@@ -2,13 +2,17 @@ package info.adamjsmith.letmeknow;
 
 import java.util.UUID;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +27,7 @@ public class InstanceFragment extends Fragment {
 	private Instance mInstance;
 	private MapView mapView;
 	private GoogleMap map;
+	private EditText message;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +85,17 @@ public class InstanceFragment extends Fragment {
 		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(52.941128, -1.260106), 10);
 		map.animateCamera(cameraUpdate);
 		
+		message = (EditText) v.findViewById(R.id.instance_message_input);
+		
+		Button selectMessage = (Button) v.findViewById(R.id.instance_message_button);
+		selectMessage.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				startActivityForResult(new Intent("info.adamjsmith.letmeknow.MessageActivity"), 1);
+			}
+		});
+		
 		return v;
 	}
 	
@@ -96,6 +112,18 @@ public class InstanceFragment extends Fragment {
 		}
 	}
 	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1) {
+			UUID messageId = (UUID) data.getExtras().get(MessageFragment.EXTRA_MESSAGE_ID);
+			Message lMessage = InstanceHolder.get(getActivity()).getMessage(messageId);
+			message.setText(lMessage.getText());
+			mInstance.setMessage(lMessage);
+		} else {
+			super.onActivityResult(requestCode, resultCode, data);
+		}
+	}
+	
 	public static Fragment newInstance(UUID instanceId) {
 		Bundle args = new Bundle();
 		args.putSerializable(EXTRA_INSTANCE_ID, instanceId);
@@ -107,7 +135,7 @@ public class InstanceFragment extends Fragment {
 	}
 	
 	public void selectContact() {
-		
+		startActivityForResult(new Intent(), 0);
 	}
 	
 }
