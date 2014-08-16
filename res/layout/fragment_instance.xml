@@ -41,6 +41,12 @@
 			    android:text="@string/contact"
 			    style="?android:listSeparatorTextViewStyle" />
 	        
+	        <Button
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/select"
+	            style="@style/Button" />
+	        
 	    </LinearLayout>
 	    
 	    <LinearLayout
@@ -57,6 +63,20 @@
 				    android:layout_height="wrap_content"
 				    android:text="@string/message"
 				    style="?android:listSeparatorTextViewStyle" />
+		    
+		    <EditText android:id="@+id/instance_message_input"
+			        android:gravity="center"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/newMessage"
+			        android:layout_margin="10dp"
+			        android:background="@color/frame" />
+		    
+		    <Button
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/select"
+	            style="@style/Button" />
 	    
 	    </LinearLayout>
 	    
