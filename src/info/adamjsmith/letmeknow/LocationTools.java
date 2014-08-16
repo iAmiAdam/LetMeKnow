@@ -26,7 +26,7 @@ public class LocationTools {
 		Double latitude;
 		Double longitude;
 		try {
-			List<Address> addresses = geocoder.getFromLocationName(input,1);
+			List<Address> addresses = geocoder.getFromLocationName(input, 1);
 			if (addresses != null && !addresses.isEmpty()) {
 				Address address = addresses.get(0);
 				latitude = address.getLatitude();

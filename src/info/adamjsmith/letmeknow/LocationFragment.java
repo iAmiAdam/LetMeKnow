@@ -10,7 +10,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -28,6 +30,9 @@ public class LocationFragment extends Fragment {
 	private Location mLocation;
 	private MapView mMapView;
 	private GoogleMap mMap;
+	
+	private EditText searchBox;
+	private Button searchButton;
 	
 	public LocationFragment(UUID locationId) {
 		mLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
@@ -135,6 +140,29 @@ public class LocationFragment extends Fragment {
 			
 			
 		});
+		
+		searchBox = (EditText) v.findViewById(R.id.location_search_input);
+		
+		searchButton = (Button) v.findViewById(R.id.location_search_button);
+		searchButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				LatLng loc = LocationTools.getLatLong(getActivity(), searchBox.getText().toString());
+				if(loc.latitude != 0 && loc.longitude != 0) {
+					mLocation.setLatitude(loc.latitude);
+					mLocation.setLongitude(loc.longitude);
+					
+					mMap.clear();
+					mMap.addMarker(new MarkerOptions()
+							.position(loc));
+					
+					CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(loc, 10);
+					mMap.animateCamera(cameraUpdate);
+				}
+			}
+		});
+		
 		
 		return v;
 	}
