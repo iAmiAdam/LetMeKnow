@@ -115,14 +115,20 @@ public class InstanceFragment extends Fragment {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == 1) {
+		switch (requestCode) {
+		case 0:
+			break;
+		case 1:
 			UUID messageId = (UUID) data.getExtras().get(MessageFragment.EXTRA_MESSAGE_ID);
 			Message lMessage = InstanceHolder.get(getActivity()).getMessage(messageId);
 			message.setText(lMessage.getText());
 			mInstance.setMessage(lMessage);
 			message.setEnabled(false);
 			selectMessage.setVisibility(View.GONE);
-		} else {
+			break;
+		case 2:
+			break;
+		default:
 			super.onActivityResult(requestCode, resultCode, data);
 		}
 	}
