@@ -109,6 +109,8 @@ public class LocationFragment extends Fragment {
 				.position(new LatLng(mLocation.getLatitude(), mLocation.getLongitude())));
 		} else {			
 			location = LocationTools.getCurrentLocation(getActivity());
+			mLocation.setLatitude(LocationTools.getCurrentLocation(getActivity()).latitude);
+			mLocation.setLongitude(LocationTools.getCurrentLocation(getActivity()).longitude);
 		}
 
 		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(location, 10);
@@ -130,6 +132,7 @@ public class LocationFragment extends Fragment {
 
 			@Override
 			public void afterTextChanged(Editable s) {}
+			
 			
 		});
 		
