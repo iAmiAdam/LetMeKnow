@@ -8,9 +8,11 @@ import org.json.JSONObject;
 public class Instance {
 	private static final String JSON_ID ="id";
 	private static final String JSON_MESSAGE = "message";
+	private static final String JSON_LOCATION = "location";
 	
 	private UUID mId;
 	private Message mMessage;
+	private Location mLocation;
 	
 	public Instance() {
 		this.mId = UUID.randomUUID();
@@ -19,12 +21,14 @@ public class Instance {
 	public Instance(JSONObject json) throws JSONException {
 		this.mId = UUID.fromString(json.getString(JSON_ID));
 		this.mMessage = (Message)json.get(JSON_MESSAGE);
+		this.mLocation = (Location)json.get(JSON_LOCATION);
 	}
 	
 	public JSONObject toJSON() throws JSONException {
 		JSONObject json = new JSONObject();
 		json.put(JSON_ID, mId);
 		json.put(JSON_MESSAGE, mMessage);
+		json.put(JSON_LOCATION, mLocation);
 		return json;
 	}
 	
@@ -38,5 +42,13 @@ public class Instance {
 
 	public Message getMessage() {
 		return mMessage;
+	}
+	
+	public void setLocation(Location l) {
+		this.mLocation = l;
+	}
+	
+	public Location getLocation() {
+		return mLocation;
 	}
 }
