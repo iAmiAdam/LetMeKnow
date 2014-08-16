@@ -20,6 +20,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class InstanceFragment extends Fragment {
 	public static final String EXTRA_INSTANCE_ID = "info.adamjsmith.letmeknow.instance_id";
@@ -29,6 +30,7 @@ public class InstanceFragment extends Fragment {
 	private GoogleMap map;
 	private EditText message;
 	private Button selectMessage;
+	private Button selectLocation;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -97,6 +99,15 @@ public class InstanceFragment extends Fragment {
 			}
 		});
 		
+		selectLocation = (Button) v.findViewById(R.id.instance_location_button);
+		selectLocation.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				startActivityForResult(new Intent("info.adamjsmith.letmeknow.LocationChoiceActivity"), 2);
+			}
+		});
+		
 		return v;
 	}
 	
@@ -127,6 +138,14 @@ public class InstanceFragment extends Fragment {
 			selectMessage.setVisibility(View.GONE);
 			break;
 		case 2:
+			UUID locationId = (UUID) data.getExtras().get(LocationFragment.EXTRA_LOCATION_ID);
+			Location lLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
+			mInstance.setLocation(lLocation);
+			selectLocation.setVisibility(View.GONE);
+			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLongitude()), 10);
+			map.animateCamera(cameraUpdate);
+			map.addMarker(new MarkerOptions()
+			.position(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLatitude())));
 			break;
 		default:
 			super.onActivityResult(requestCode, resultCode, data);
