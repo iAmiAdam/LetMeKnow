@@ -65,6 +65,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LocationChoiceActivity"
+            android:label="@string/app_name" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ActivityPager" />
+            <intent-filter>
+                <action android:name="info.adamjsmith.letmeknow.LocationChoiceActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         
         <activity
             android:name=".SelectContact"

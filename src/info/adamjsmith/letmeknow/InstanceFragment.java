@@ -45,9 +45,7 @@ public class InstanceFragment extends Fragment {
 	@Override
 	public void onPause() {
 		super.onPause();
-		if (mInstance.getMessage() != null) {
-			InstanceHolder.get(getActivity()).saveInstances();
-		}
+		InstanceHolder.get(getActivity()).saveInstances();
 		mapView.onPause();
 	}
 	
@@ -142,7 +140,7 @@ public class InstanceFragment extends Fragment {
 			Location lLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
 			mInstance.setLocation(lLocation);
 			selectLocation.setVisibility(View.GONE);
-			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLongitude()), 10);
+			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLongitude()), 14);
 			map.animateCamera(cameraUpdate);
 			map.addMarker(new MarkerOptions()
 			.position(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLatitude())));

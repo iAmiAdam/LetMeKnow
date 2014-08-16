@@ -19,6 +19,18 @@ public class ActivityPager extends FragmentActivity {
 		initPaging();
 	}
 	
+	@Override
+	public void onPause() {
+		super.onPause();
+		InstanceHolder.get(this).saveInstances();
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		InstanceHolder.get(this).saveInstances();
+	}
+	
 	private void initPaging() {
 		Fragment instanceList = new InstanceListFragment();
 		Fragment messageList = new MessageListFragment();

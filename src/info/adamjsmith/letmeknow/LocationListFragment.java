@@ -81,7 +81,7 @@ public class LocationListFragment extends ListFragment {
 		}
 	}
 	
-	private class LocationAdapter extends ArrayAdapter<Location> {
+	class LocationAdapter extends ArrayAdapter<Location> {
 		
 		public LocationAdapter(ArrayList<Location> locations) {
 			super(getActivity(), 0, locations);

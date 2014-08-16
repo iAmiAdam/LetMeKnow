@@ -6,7 +6,7 @@ public class LocationChoiceActivity extends SingleFragmentActivity {
 
 	@Override
 	protected Fragment createFragment() {
-		//return
+		return new LocationChoiceListFragment();
 	}
 
 }
