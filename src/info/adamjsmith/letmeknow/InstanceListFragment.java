@@ -102,7 +102,7 @@ public class InstanceListFragment extends ListFragment {
 			if (i.getLocation() != null) {
 				getMapURL += i.getLocation().getLatitude() + "," + i.getLocation().getLongitude(); 
 			} else {
-				getMapURL += "52.941128, -1.260106";
+				getMapURL += LocationTools.getCurrentLocation(getActivity()).latitude + "," + LocationTools.getCurrentLocation(getActivity()).longitude;
 			}
 			
 			new DownloadImageTask((ImageView) convertView.findViewById(R.id.instance_list_map))
