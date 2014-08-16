@@ -34,6 +34,8 @@
     <string name="select">Select</string>
     <string name="messages">Messages</string>
     <string name="new_message">New Message</string>
+    <string name="name">Name</string>
+    <string name="search">Search</string>
     
     <string name="contact">Contact</string>
     <string name="message">Message</string>
@@ -48,6 +50,8 @@
     <color name="barblue">#3399cc</color>
     <color name="background">#E8F8FF</color>
     <color name="frame">#B4DCED</color>
+    <color name="green">#92c200</color>
+    <color name="lightGreen">#a9dd0d</color>
     
     <string-array name="intervalOptions">
         <item>1</item>

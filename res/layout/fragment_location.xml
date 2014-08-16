@@ -1,28 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp" >
+    android:background="@color/background" >
     
-    <EditText android:id="@+id/location_name"
-        android:gravity="center"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-    
-    <com.google.android.gms.maps.MapView android:id="@+id/location_map"
-        android:layout_width="fill_parent" 
-        android:layout_height="350dp" />
-    
-    <EditText android:id="@+id/location_search_input"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-   
-    <Button android:id="@+id/location_search_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Search" />
+	<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_margin="10dp" >
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:background="@color/frame" >
+		    
+			    <EditText android:id="@+id/location_name"
+			        android:gravity="center"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@color/frame"
+			        android:layout_margin="10dp"
+			        android:hint="@string/name" />
+		    
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:layout_marginTop="10dp"
+		        android:background="@color/frame" >
+		    
+			    <EditText android:id="@+id/location_search_input"
+			        android:gravity="center"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/postCode"
+			        android:layout_margin="10dp"
+			        android:background="@color/frame" />
+			    
+			    <Button android:id="@+id/location_search_button"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/search"
+		        style="@style/Button"
+		        android:layout_margin="10dp" />
+		    
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:layout_marginTop="10dp"
+		        android:background="@color/frame" >
+		    
+			    <com.google.android.gms.maps.MapView android:id="@+id/location_map"
+			        android:layout_width="fill_parent" 
+			        android:layout_height="350dp"
+			        android:background="@color/frame"
+			        android:layout_margin="10dp" />
+		    
+		    </LinearLayout>
+	
+	</LinearLayout>
 
-</LinearLayout>
+</ScrollView>
