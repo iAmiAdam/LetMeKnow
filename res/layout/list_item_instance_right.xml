@@ -17,7 +17,7 @@
 	    <ImageView android:id="@+id/instance_list_contact_picture"
 			android:layout_width="80dp"
 			android:layout_height="80dp"
-			android:background="@android:color/darker_gray"
+			android:src="@drawable/app_icon"
 			android:layout_margin="10dp" />
 	    
 	    <RelativeLayout android:id="@+id/instance_text"
