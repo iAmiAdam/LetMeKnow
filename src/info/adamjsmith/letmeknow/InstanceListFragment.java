@@ -92,7 +92,7 @@ public class InstanceListFragment extends ListFragment {
 			if (i.getMessage() != null) { 
 				message.setText(i.getMessage().getText()); 
 			} else { 
-				message.setText("Message Text"); 
+				message.setText("Assign a message..."); 
 			}
 			
 			String getMapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=12&size=150x150&markers=size:mid|color:red|"; 
@@ -128,14 +128,14 @@ public class InstanceListFragment extends ListFragment {
 
 	    protected Bitmap doInBackground(String... urls) {
 	        String urldisplay = urls[0];
-	        Bitmap mIcon11 = null;
+	        Bitmap map = null;
 	        try {
 	            InputStream in = new java.net.URL(urldisplay).openStream();
-	            mIcon11 = BitmapFactory.decodeStream(in);
+	            map = BitmapFactory.decodeStream(in);
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-	        return mIcon11;
+	        return map;
 	    }
 
 	    protected void onPostExecute(Bitmap result) {

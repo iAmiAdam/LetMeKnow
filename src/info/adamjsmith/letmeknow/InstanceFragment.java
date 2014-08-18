@@ -151,7 +151,7 @@ public class InstanceFragment extends Fragment {
 			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLongitude()), 14);
 			map.animateCamera(cameraUpdate);
 			map.addMarker(new MarkerOptions()
-			.position(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLatitude())));
+			.position(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLongitude())));
 			break;
 		case 3:
 			UUID contactId = (UUID) data.getExtras().get("ID");
