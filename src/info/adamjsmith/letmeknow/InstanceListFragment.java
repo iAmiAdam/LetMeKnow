@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -87,9 +88,6 @@ public class InstanceListFragment extends ListFragment {
 			
 			Instance i = getItem(position);
 			
-			TextView contactName = (TextView) convertView.findViewById(R.id.instance_list_name);
-			contactName.setText("Contact Name");
-			
 			TextView message = (TextView) convertView.findViewById(R.id.instance_list_message_content);
 			if (i.getMessage() != null) { 
 				message.setText(i.getMessage().getText()); 
@@ -107,6 +105,15 @@ public class InstanceListFragment extends ListFragment {
 			
 			new DownloadImageTask((ImageView) convertView.findViewById(R.id.instance_list_map))
             .execute(getMapURL);
+			
+			if(i.getContact() != null) {
+				TextView contactName = (TextView) convertView.findViewById(R.id.instance_list_name);
+				contactName.setText(i.getContact().getName());
+				if (i.getContact().getPicture() != null) {
+					ImageView contactPicture = (ImageView) convertView.findViewById(R.id.instance_list_contact_picture);
+					contactPicture.setImageURI(Uri.parse(i.getContact().getPicture()));
+				}
+			}
 			
 			return convertView;
 		}
