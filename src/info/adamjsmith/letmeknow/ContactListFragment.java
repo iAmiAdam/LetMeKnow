@@ -2,11 +2,13 @@ package info.adamjsmith.letmeknow;
 
 import java.util.ArrayList;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ContactListFragment extends ListFragment {
@@ -53,6 +55,13 @@ public class ContactListFragment extends ListFragment {
 			
 			TextView numbers = (TextView) convertView.findViewById(R.id.contact_list_numbers);
 			numbers.setText(phonesText);
+			
+			ImageView picture = (ImageView) convertView.findViewById(R.id.contact_list_picture);
+			if(c.getPicture() != null) {
+				picture.setImageURI(Uri.parse(c.getPicture()));
+			} else {
+				picture.setImageResource(R.drawable.app_icon);
+			}
 			
 			
 			return convertView;

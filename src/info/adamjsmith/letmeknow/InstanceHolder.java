@@ -162,7 +162,7 @@ public class InstanceHolder {
     		
     		contact.setNumbers(numbers);
     		
-    		contact.setPicture(p.getString(p.getColumnIndex(ContactsContract.CommonDataKinds.Photo.PHOTO_URI)));
+    		contact.setPicture(c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Photo.PHOTO_URI)));
     		
     		contacts.add(contact);
     	}
