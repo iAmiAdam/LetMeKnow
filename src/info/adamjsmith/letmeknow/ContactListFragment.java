@@ -2,6 +2,11 @@ package info.adamjsmith.letmeknow;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -37,6 +42,32 @@ public class ContactListFragment extends ListFragment {
 		ListView listView = getListView();
 		listView.setBackgroundColor(getResources().getColor(R.color.background));
 		listView.setDividerHeight(0);
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		final Contact c = ((ContactAdapter)getListAdapter()).getItem(position);
+
+		if(c.getNumbers().length == 1) {
+			Intent data = new Intent();
+			data.putExtra("number", c.getNumbers()[0]);
+			getActivity().setResult(Activity.RESULT_OK, data);
+			getActivity().finish();
+		} else {
+			Builder dialog = new AlertDialog.Builder(getActivity());
+			dialog.setTitle("Choose a number for " + c.getName());
+			dialog.setItems(c.getNumbers(), new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int pos) {
+					Intent data = new Intent();
+					data.putExtra("number", c.getNumbers()[pos]);
+					getActivity().setResult(Activity.RESULT_OK, data);
+					getActivity().finish();
+				}
+			}).create();
+			dialog.show();
+		}
 	}
 	
 	class ContactAdapter extends ArrayAdapter<Contact> {
