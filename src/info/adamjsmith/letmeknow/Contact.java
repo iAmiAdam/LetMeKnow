@@ -22,7 +22,7 @@ public class Contact {
 		return mNumbers;
 	}
 	
-	public void addNumber(Integer[] numbers) {
+	public void setNumbers(Integer[] numbers) {
 		mNumbers = numbers;
 	}
 

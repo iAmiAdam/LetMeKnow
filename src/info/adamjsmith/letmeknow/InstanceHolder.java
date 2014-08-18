@@ -136,18 +136,33 @@ public class InstanceHolder {
 		}
 	}
 	
-	public ArrayList<Contact> getContacts(Context context) {
+	public ArrayList<Contact> getContacts() {
 		ArrayList<Contact> contacts = new ArrayList<Contact>();
+		
 		Uri allContacts = ContactsContract.Contacts.CONTENT_URI;
-		
 		Cursor c;
-		
-		CursorLoader cursorLoader = new CursorLoader(context, allContacts, null, ContactsContract.Contacts.HAS_PHONE_NUMBER + " = 1", null, ContactsContract.Contacts.DISPLAY_NAME + " ASC");
-    	c = cursorLoader.loadInBackground();
+		CursorLoader contactLoader = new CursorLoader(mContext, allContacts, null, ContactsContract.Contacts.HAS_PHONE_NUMBER + " = 1", null, ContactsContract.Contacts.DISPLAY_NAME + " ASC");
+    	c = contactLoader.loadInBackground();
     	
     	while(c.moveToNext()) {
     		
+    		Contact contact = new Contact(c.getLong(c.getColumnIndex("_ID")));
+    		contact.setName(c.getString(c.getColumnIndex("DISPLAY_NAME")));
+    		
+    		Cursor p = mContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, 
+    				ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + c.getLong(c.getColumnIndex("_ID")), null, null);
+    		Integer[] numbers = new Integer[p.getCount()];
+    		Integer i = 0;
+    		while(p.moveToNext()) {
+    			numbers[i] = Integer.parseInt(p.getString(p.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA)));
+    		}
+    		p.close();
+    		
+    		contact.setNumbers(numbers);
+    		
+    		contacts.add(contact);
     	}
+    	c.close();
     	
     	return contacts;
 	}
