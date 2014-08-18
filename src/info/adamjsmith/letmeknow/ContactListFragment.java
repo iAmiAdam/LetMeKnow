@@ -37,9 +37,14 @@ public class ContactListFragment extends ListFragment {
 			Contact c = getItem(position);
 			String[] phones = c.getNumbers();
 			String phonesText = "";
+			Integer i = 1;
 			
 			for (String s : phones) {
-				phonesText += s + "\n";
+				phonesText += s;
+				if(i != phones.length) {
+					phonesText += "\n";
+				}
+				i++;
 			}
 			
 			
