@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class ContactListFragment extends ListFragment {
@@ -22,6 +23,20 @@ public class ContactListFragment extends ListFragment {
 		
 		ContactAdapter adapter = new ContactAdapter(mContacts);
 		setListAdapter(adapter);
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		((ContactAdapter)getListAdapter()).notifyDataSetChanged();
+	}
+	
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		ListView listView = getListView();
+		listView.setBackgroundColor(getResources().getColor(R.color.background));
+		listView.setDividerHeight(0);
 	}
 	
 	class ContactAdapter extends ArrayAdapter<Contact> {
@@ -48,7 +63,6 @@ public class ContactListFragment extends ListFragment {
 				}
 				i++;
 			}
-			
 			
 			TextView name = (TextView) convertView.findViewById(R.id.contact_list_name);
 			name.setText(c.getName());
