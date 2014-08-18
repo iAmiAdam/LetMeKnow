@@ -31,6 +31,7 @@ public class InstanceFragment extends Fragment {
 	private EditText message;
 	private Button selectMessage;
 	private Button selectLocation;
+	private Button selectContact;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -103,6 +104,15 @@ public class InstanceFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				startActivityForResult(new Intent("info.adamjsmith.letmeknow.LocationChoiceActivity"), 2);
+			}
+		});
+		
+		selectContact = (Button) v.findViewById(R.id.instance_contact_button);
+		selectContact.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				startActivityForResult(new Intent("info.adamjsmith.letmeknow.ContactListActivity"), 3);
 			}
 		});
 		
