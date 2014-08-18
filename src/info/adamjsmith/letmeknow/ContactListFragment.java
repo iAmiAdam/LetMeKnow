@@ -35,11 +35,11 @@ public class ContactListFragment extends ListFragment {
 			}
 			
 			Contact c = getItem(position);
-			Integer[] phones = c.getNumbers();
+			String[] phones = c.getNumbers();
 			String phonesText = "";
 			
-			for (Integer i : phones) {
-				phonesText += i + "/n";
+			for (String s : phones) {
+				phonesText += s + "\n";
 			}
 			
 			

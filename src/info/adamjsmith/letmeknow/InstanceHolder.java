@@ -151,11 +151,12 @@ public class InstanceHolder {
     		
     		Cursor p = mContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, 
     				ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + c.getLong(c.getColumnIndex("_ID")), null, null);
-    		Integer[] numbers = new Integer[p.getCount()];
+    		String[] numbers = new String[p.getCount()];
     		Integer i = 0;
     		
     		while(p.moveToNext()) {
-    			numbers[i] = Integer.parseInt(p.getString(p.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA)));
+    			numbers[i] = p.getString(p.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA));
+    			i++;
     		}
     		p.close();
     		

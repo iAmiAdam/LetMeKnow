@@ -3,7 +3,7 @@ package info.adamjsmith.letmeknow;
 public class Contact {
 	
 	private long mId;
-	private Integer[] mNumbers;
+	private String[] mNumbers;
 	private String mName;
 	
 	public Contact(long id) {
@@ -18,11 +18,11 @@ public class Contact {
 		this.mName = name;
 	}
 	
-	public Integer[] getNumbers() {
+	public String[] getNumbers() {
 		return mNumbers;
 	}
 	
-	public void setNumbers(Integer[] numbers) {
+	public void setNumbers(String[] numbers) {
 		mNumbers = numbers;
 	}
 

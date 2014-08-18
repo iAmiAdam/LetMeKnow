@@ -6,7 +6,7 @@ public class ContactListActivity extends SingleFragmentActivity {
 
 	@Override
 	protected Fragment createFragment() {
-		return new MessageListFragment();
+		return new ContactListFragment();
 	}
 
 }
