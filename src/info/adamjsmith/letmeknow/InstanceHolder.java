@@ -48,7 +48,7 @@ public class InstanceHolder {
 			mLocations = new ArrayList<Location>();
 		}
 		
-		mContacts = getContacts();
+		mContacts = loadContacts();
 		
 	}
 	
@@ -141,6 +141,19 @@ public class InstanceHolder {
 	}
 	
 	public ArrayList<Contact> getContacts() {
+		return mContacts;
+	}
+	
+	public Contact getContact(UUID id) {
+		for(Contact c: mContacts) {
+			if (c.getId().equals(id)) {
+				return c;
+			}
+		}
+		return null;
+	}
+	
+	public ArrayList<Contact> loadContacts() {
 		ArrayList<Contact> contacts = new ArrayList<Contact>();
 		
 		Uri allContacts = ContactsContract.Contacts.CONTENT_URI;
