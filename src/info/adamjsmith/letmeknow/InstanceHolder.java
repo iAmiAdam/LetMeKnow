@@ -17,6 +17,7 @@ public class InstanceHolder {
 	private ArrayList<Instance> mInstances;
 	private ArrayList<Message> mMessages;
 	private ArrayList<Location> mLocations;
+	private ArrayList<Contact> mContacts;
 	private LetMeKnowJSONSerializer mSerializer;
 	
 	private static InstanceHolder sInstanceHolder;
@@ -46,6 +47,9 @@ public class InstanceHolder {
 		} catch (Exception e) {
 			mLocations = new ArrayList<Location>();
 		}
+		
+		mContacts = getContacts();
+		
 	}
 	
 	public static InstanceHolder get(Context c) {
@@ -146,7 +150,7 @@ public class InstanceHolder {
     	
     	while(c.moveToNext()) {
     		
-    		Contact contact = new Contact(c.getLong(c.getColumnIndex("_ID")));
+    		Contact contact = new Contact();
     		contact.setName(c.getString(c.getColumnIndex("DISPLAY_NAME")));
     		
     		Cursor p = mContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, 

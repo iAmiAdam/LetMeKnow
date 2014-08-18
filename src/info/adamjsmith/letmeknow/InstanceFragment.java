@@ -135,8 +135,6 @@ public class InstanceFragment extends Fragment {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
-		case 0:
-			break;
 		case 1:
 			UUID messageId = (UUID) data.getExtras().get(MessageFragment.EXTRA_MESSAGE_ID);
 			Message lMessage = InstanceHolder.get(getActivity()).getMessage(messageId);
@@ -155,6 +153,8 @@ public class InstanceFragment extends Fragment {
 			map.addMarker(new MarkerOptions()
 			.position(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLatitude())));
 			break;
+		case 3:
+			
 		default:
 			super.onActivityResult(requestCode, resultCode, data);
 		}

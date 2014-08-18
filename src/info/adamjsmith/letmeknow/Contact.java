@@ -1,8 +1,10 @@
 package info.adamjsmith.letmeknow;
 
+import java.util.UUID;
+
 public class Contact {
 	
-	private long mId;
+	private UUID mId;
 	private String[] mNumbers;
 	private String mName;
 	private String mPicture;
@@ -15,8 +17,8 @@ public class Contact {
 		this.mPicture = mPicture;
 	}
 
-	public Contact(long id) {
-		this.mId = id;
+	public Contact() {
+		this.mId = UUID.randomUUID();
 	}
 	
 	public String getName() {
@@ -35,7 +37,7 @@ public class Contact {
 		mNumbers = numbers;
 	}
 
-	public long getId() {
+	public UUID getId() {
 		return mId;
 	}
 	
