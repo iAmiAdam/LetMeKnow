@@ -5,7 +5,16 @@ public class Contact {
 	private long mId;
 	private String[] mNumbers;
 	private String mName;
+	private String mPicture;
 	
+	public String getPicture() {
+		return mPicture;
+	}
+
+	public void setPicture(String mPicture) {
+		this.mPicture = mPicture;
+	}
+
 	public Contact(long id) {
 		this.mId = id;
 	}
