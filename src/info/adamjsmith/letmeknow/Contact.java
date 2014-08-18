@@ -2,12 +2,12 @@ package info.adamjsmith.letmeknow;
 
 public class Contact {
 	
-	private Integer mId;
+	private long mId;
 	private Integer[] mNumbers;
 	private String mName;
 	
-	public void Contact(Integer numbers) {
-		mNumbers = new Integer[numbers];
+	public Contact(long id) {
+		this.mId = id;
 	}
 	
 	public String getName() {
@@ -22,16 +22,12 @@ public class Contact {
 		return mNumbers;
 	}
 	
-	public void addNumber(Integer number) {
-		mNumbers[mNumbers.length + 1] = number;
+	public void addNumber(Integer[] numbers) {
+		mNumbers = numbers;
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return mId;
-	}
-
-	public void setId(Integer id) {
-		this.mId = id;
 	}
 	
 }

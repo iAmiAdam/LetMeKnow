@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import android.content.Context;
+import android.content.CursorLoader;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
 
 public class InstanceHolder {
 	private static final String INSTANCESFILE = "instances.json";
@@ -130,5 +134,21 @@ public class InstanceHolder {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public ArrayList<Contact> getContacts(Context context) {
+		ArrayList<Contact> contacts = new ArrayList<Contact>();
+		Uri allContacts = ContactsContract.Contacts.CONTENT_URI;
+		
+		Cursor c;
+		
+		CursorLoader cursorLoader = new CursorLoader(context, allContacts, null, ContactsContract.Contacts.HAS_PHONE_NUMBER + " = 1", null, ContactsContract.Contacts.DISPLAY_NAME + " ASC");
+    	c = cursorLoader.loadInBackground();
+    	
+    	while(c.moveToNext()) {
+    		
+    	}
+    	
+    	return contacts;
 	}
 }
