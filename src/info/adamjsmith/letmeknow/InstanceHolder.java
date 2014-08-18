@@ -153,6 +153,7 @@ public class InstanceHolder {
     				ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + c.getLong(c.getColumnIndex("_ID")), null, null);
     		Integer[] numbers = new Integer[p.getCount()];
     		Integer i = 0;
+    		
     		while(p.moveToNext()) {
     			numbers[i] = Integer.parseInt(p.getString(p.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA)));
     		}
@@ -162,6 +163,7 @@ public class InstanceHolder {
     		
     		contacts.add(contact);
     	}
+    	
     	c.close();
     	
     	return contacts;
