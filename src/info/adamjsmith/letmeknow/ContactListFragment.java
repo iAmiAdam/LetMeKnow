@@ -51,6 +51,7 @@ public class ContactListFragment extends ListFragment {
 		if(c.getNumbers().length == 1) {
 			Intent data = new Intent();
 			data.putExtra("number", c.getNumbers()[0]);
+			data.putExtra("ID", c.getId());
 			getActivity().setResult(Activity.RESULT_OK, data);
 			getActivity().finish();
 		} else {
@@ -62,6 +63,7 @@ public class ContactListFragment extends ListFragment {
 				public void onClick(DialogInterface dialog, int pos) {
 					Intent data = new Intent();
 					data.putExtra("number", c.getNumbers()[pos]);
+					data.putExtra("ID", c.getId());
 					getActivity().setResult(Activity.RESULT_OK, data);
 					getActivity().finish();
 				}

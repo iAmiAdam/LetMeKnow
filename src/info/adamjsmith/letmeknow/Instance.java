@@ -15,6 +15,7 @@ public class Instance {
 	private Message mMessage;
 	private Location mLocation;
 	private Contact mContact;
+	private String mNumber;
 	
 	public Instance() {
 		this.mId = UUID.randomUUID();
@@ -56,11 +57,19 @@ public class Instance {
 		return mLocation;
 	}
 	
-	public void setLocation(Contact c) {
+	public void setContact(Contact c) {
 		this.mContact = c;
 	}
 	
 	public Contact getContact() {
 		return mContact;
+	}
+	
+	public void setNumber(String number) {
+		this.mNumber = number;
+	}
+	
+	public String getNumber() {
+		return mNumber;
 	}
 }

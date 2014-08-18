@@ -154,7 +154,11 @@ public class InstanceFragment extends Fragment {
 			.position(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLatitude())));
 			break;
 		case 3:
-			
+			UUID contactId = (UUID) data.getExtras().get("ID");
+			Contact lContact = InstanceHolder.get(getActivity()).getContact(contactId);
+			mInstance.setContact(lContact);
+			selectContact.setVisibility(View.GONE);
+			break;
 		default:
 			super.onActivityResult(requestCode, resultCode, data);
 		}
