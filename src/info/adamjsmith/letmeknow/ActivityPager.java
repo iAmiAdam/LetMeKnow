@@ -23,12 +23,13 @@ public class ActivityPager extends FragmentActivity {
 	public void onPause() {
 		super.onPause();
 		InstanceHolder.get(this).saveInstances();
+		InstanceHolder.get(this).saveLocations();
+		InstanceHolder.get(this).saveMessages();
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		InstanceHolder.get(this).saveInstances();
 	}
 	
 	private void initPaging() {

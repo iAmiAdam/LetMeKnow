@@ -12,9 +12,9 @@ public class Instance {
 	private static final String JSON_CONTACT = "contact";
 	
 	private UUID mId;
-	private Message mMessage;
-	private Location mLocation;
-	private Contact mContact;
+	private UUID mMessage;
+	private UUID mLocation;
+	private UUID mContact;
 	private String mNumber;
 	
 	public Instance() {
@@ -23,9 +23,9 @@ public class Instance {
 	
 	public Instance(JSONObject json) throws JSONException {
 		this.mId = UUID.fromString(json.getString(JSON_ID));
-		this.mMessage = (Message)json.get(JSON_MESSAGE);
-		this.mLocation = (Location)json.get(JSON_LOCATION);
-		this.mContact = (Contact)json.get(JSON_CONTACT);
+		this.mMessage = UUID.fromString(json.getString(JSON_MESSAGE));
+		this.mLocation = UUID.fromString(json.getString(JSON_LOCATION));
+		this.mContact = UUID.fromString(json.getString(JSON_CONTACT));
 	}
 	
 	public JSONObject toJSON() throws JSONException {
@@ -41,27 +41,27 @@ public class Instance {
 		return mId;
 	}
 	
-	public void setMessage(Message m) {
+	public void setMessage(UUID m) {
 		this.mMessage = m;
 	}
 
-	public Message getMessage() {
+	public UUID getMessage() {
 		return mMessage;
 	}
 	
-	public void setLocation(Location l) {
+	public void setLocation(UUID l) {
 		this.mLocation = l;
 	}
 	
-	public Location getLocation() {
+	public UUID getLocation() {
 		return mLocation;
 	}
 	
-	public void setContact(Contact c) {
+	public void setContact(UUID c) {
 		this.mContact = c;
 	}
 	
-	public Contact getContact() {
+	public UUID getContact() {
 		return mContact;
 	}
 	

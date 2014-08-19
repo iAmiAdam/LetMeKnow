@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONTokener;
 
 import android.content.Context;
+import android.util.Log;
 
 public class LetMeKnowJSONSerializer {
 	private Context mContext;
@@ -58,6 +59,7 @@ public class LetMeKnowJSONSerializer {
 		for (Instance i : instances) 
 			array.put(i.toJSON());
 		
+		Log.d("array size saving", String.valueOf(instances.size()));
 		Writer writer = null;
 		try {
 			OutputStream out = mContext.openFileOutput(mFilename, Context.MODE_PRIVATE); 
