@@ -108,7 +108,8 @@ public class InstanceListFragment extends ListFragment {
 			
 			if(i.getContact() != null) {
 				TextView contactName = (TextView) convertView.findViewById(R.id.instance_list_name);
-				contactName.setText(InstanceHolder.get(getActivity()).getContact(i.getContact()).getName());
+				String name = InstanceHolder.get(getActivity()).getContact(i.getContact()).getName();
+				contactName.setText(name);
 				if (InstanceHolder.get(getActivity()).getContact(i.getContact()).getPicture() != null) {
 					ImageView contactPicture = (ImageView) convertView.findViewById(R.id.instance_list_contact_picture);
 					contactPicture.setImageURI(Uri.parse(InstanceHolder.get(getActivity()).getContact(i.getContact()).getPicture()));
