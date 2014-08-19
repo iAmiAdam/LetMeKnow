@@ -165,7 +165,6 @@ public class LocationFragment extends Fragment {
 			}
 		});
 		
-		
 		return v;
 	}
 	
