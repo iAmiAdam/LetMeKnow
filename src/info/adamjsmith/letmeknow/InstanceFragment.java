@@ -139,24 +139,24 @@ public class InstanceFragment extends Fragment {
 			UUID messageId = (UUID) data.getExtras().get(MessageFragment.EXTRA_MESSAGE_ID);
 			Message lMessage = InstanceHolder.get(getActivity()).getMessage(messageId);
 			message.setText(lMessage.getText());
-			mInstance.setMessage(lMessage);
+			mInstance.setMessage(lMessage.getId());
 			message.setEnabled(false);
 			selectMessage.setVisibility(View.GONE);
 			break;
 		case 2:
 			UUID locationId = (UUID) data.getExtras().get(LocationFragment.EXTRA_LOCATION_ID);
 			Location lLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
-			mInstance.setLocation(lLocation);
+			mInstance.setLocation(lLocation.getId());
 			selectLocation.setVisibility(View.GONE);
-			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLongitude()), 14);
+			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lLocation.getLatitude(), lLocation.getLongitude()), 14);
 			map.animateCamera(cameraUpdate);
 			map.addMarker(new MarkerOptions()
-			.position(new LatLng(mInstance.getLocation().getLatitude(), mInstance.getLocation().getLongitude())));
+			.position(new LatLng(lLocation.getLatitude(), lLocation.getLongitude())));
 			break;
 		case 3:
 			UUID contactId = (UUID) data.getExtras().get("ID");
 			Contact lContact = InstanceHolder.get(getActivity()).getContact(contactId);
-			mInstance.setContact(lContact);
+			mInstance.setContact(lContact.getId());
 			selectContact.setVisibility(View.GONE);
 			break;
 		default:
