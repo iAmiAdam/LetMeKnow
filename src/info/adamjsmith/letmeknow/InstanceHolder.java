@@ -107,6 +107,10 @@ public class InstanceHolder {
 		mMessages.add(m);
 	}
 	
+	public void deleteMessage(Message m) {
+		mMessages.remove(m);
+	}
+	
 	public boolean saveMessages() {
 		try {
 			mSerializer.setFile(MESSAGESFILE);
@@ -132,6 +136,10 @@ public class InstanceHolder {
 	
 	public void addLocation(Location l) {
 		mLocations.add(l);
+	}
+	
+	public void deleteLocation(Location l) {
+		mLocations.remove(l);
 	}
 	
 	public boolean saveLocations() {
