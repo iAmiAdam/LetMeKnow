@@ -49,6 +49,7 @@ public class InstanceListFragment extends ListFragment {
 		ListView listView = getListView();
 		listView.setBackgroundColor(getResources().getColor(R.color.background));
 		listView.setDividerHeight(0);
+		registerForContextMenu(listView);
 	}
 	
 	@Override

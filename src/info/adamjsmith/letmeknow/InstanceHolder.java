@@ -76,6 +76,10 @@ public class InstanceHolder {
 		mInstances.add(i);
 	}
 	
+	public void deleteInstance(Instance i) {
+		mInstances.remove(i);
+	}
+	
 	public boolean saveInstances() {
 		try {
 			mSerializer.setFile(INSTANCESFILE);
