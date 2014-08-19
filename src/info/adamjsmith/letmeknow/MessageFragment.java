@@ -8,6 +8,8 @@ import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +57,7 @@ public class MessageFragment extends Fragment {
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				// TODO Auto-generated method stub
-				
-			}
+					int after) { }
 
 			@Override
 			public void onTextChanged(CharSequence c, int start, int before,
@@ -67,10 +66,7 @@ public class MessageFragment extends Fragment {
 			}
 
 			@Override
-			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void afterTextChanged(Editable s) { }
 			
 		});
 		
@@ -78,9 +74,21 @@ public class MessageFragment extends Fragment {
 	}
 	
 	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.fragment_instance, menu);
+	}
+	
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			if(NavUtils.getParentActivityName(getActivity()) != null) {
+				NavUtils.navigateUpFromSameTask(getActivity());
+			}
+			return true;
+		case R.id.menu_item_save: 
+			InstanceHolder.get(getActivity()).saveInstances();
 			if(NavUtils.getParentActivityName(getActivity()) != null) {
 				NavUtils.navigateUpFromSameTask(getActivity());
 			}
