@@ -1,10 +1,13 @@
 package info.adamjsmith.letmeknow;
 
+import info.adamjsmith.letmeknow.InstanceListFragment.InstanceAdapter;
+
 import java.util.ArrayList;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AbsListView.MultiChoiceModeListener;
 
 public class MessageListFragment extends ListFragment {
 	private ArrayList<Message> mMessages;
@@ -40,6 +44,46 @@ public class MessageListFragment extends ListFragment {
 		ListView listView = getListView();
 		listView.setBackgroundColor(getResources().getColor(R.color.background));
 		listView.setDividerHeight(0);
+		listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+		listView.setMultiChoiceModeListener(new MultiChoiceModeListener() {
+
+			@Override
+			public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+				MenuInflater inflater = mode.getMenuInflater();
+				inflater.inflate(R.menu.list_item_context, menu);
+				return true;
+			}
+
+			@Override
+			public boolean onPrepareActionMode(ActionMode mode, Menu menu) { return false; }
+
+			@Override
+			public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+				switch (item.getItemId()) {
+					case R.id.menu_item_delete:
+						MessageAdapter adapter = ((MessageAdapter)getListAdapter());
+						InstanceHolder instanceHolder = InstanceHolder.get(getActivity());
+						for (int i = adapter.getCount() - 1; i >= 0; i--) {
+							if (getListView().isItemChecked(i)) {
+								instanceHolder.deleteMessage(adapter.getItem(i));
+							}
+						}
+						mode.finish();
+						adapter.notifyDataSetChanged();
+						return true;
+					default:
+						return false;
+				}
+			}
+
+			@Override
+			public void onDestroyActionMode(ActionMode mode) { }
+
+			@Override
+			public void onItemCheckedStateChanged(ActionMode mode,
+					int position, long id, boolean checked) {}
+			
+		});
 	}
 	
 	@Override
