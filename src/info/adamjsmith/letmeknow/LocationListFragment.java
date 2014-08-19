@@ -1,7 +1,5 @@
 package info.adamjsmith.letmeknow;
 
-import info.adamjsmith.letmeknow.InstanceListFragment.InstanceAdapter;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -17,11 +15,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AbsListView.MultiChoiceModeListener;
 
 public class LocationListFragment extends ListFragment {
 	private ArrayList<Location> mLocations;

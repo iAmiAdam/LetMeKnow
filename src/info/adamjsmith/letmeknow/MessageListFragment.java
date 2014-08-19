@@ -1,7 +1,5 @@
 package info.adamjsmith.letmeknow;
 
-import info.adamjsmith.letmeknow.InstanceListFragment.InstanceAdapter;
-
 import java.util.ArrayList;
 
 import android.content.Intent;
@@ -13,10 +11,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AbsListView.MultiChoiceModeListener;
 
 public class MessageListFragment extends ListFragment {
 	private ArrayList<Message> mMessages;
