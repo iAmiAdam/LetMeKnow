@@ -90,7 +90,7 @@ public class InstanceListFragment extends ListFragment {
 			
 			TextView message = (TextView) convertView.findViewById(R.id.instance_list_message_content);
 			if (i.getMessage() != null) { 
-				message.setText(i.getMessage().getText()); 
+				message.setText(InstanceHolder.get(getActivity()).getMessage(i.getMessage()).getText()); 
 			} else { 
 				message.setText("Assign a message..."); 
 			}
@@ -98,7 +98,7 @@ public class InstanceListFragment extends ListFragment {
 			String getMapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=12&size=150x150&markers=size:mid|color:red|"; 
 			
 			if (i.getLocation() != null) {
-				getMapURL += i.getLocation().getLatitude() + "," + i.getLocation().getLongitude(); 
+				getMapURL += InstanceHolder.get(getActivity()).getLocation(i.getLocation()).getLatitude() + "," + InstanceHolder.get(getActivity()).getLocation(i.getLocation()).getLongitude(); 
 			} else {
 				getMapURL += LocationTools.getCurrentLocation(getActivity()).latitude + "," + LocationTools.getCurrentLocation(getActivity()).longitude;
 			}
@@ -108,10 +108,10 @@ public class InstanceListFragment extends ListFragment {
 			
 			if(i.getContact() != null) {
 				TextView contactName = (TextView) convertView.findViewById(R.id.instance_list_name);
-				contactName.setText(i.getContact().getName());
-				if (i.getContact().getPicture() != null) {
+				contactName.setText(InstanceHolder.get(getActivity()).getContact(i.getContact()).getName());
+				if (InstanceHolder.get(getActivity()).getContact(i.getContact()).getPicture() != null) {
 					ImageView contactPicture = (ImageView) convertView.findViewById(R.id.instance_list_contact_picture);
-					contactPicture.setImageURI(Uri.parse(i.getContact().getPicture()));
+					contactPicture.setImageURI(Uri.parse(InstanceHolder.get(getActivity()).getContact(i.getContact()).getPicture()));
 				}
 			}
 			
