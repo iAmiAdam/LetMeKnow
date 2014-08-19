@@ -144,9 +144,9 @@ public class InstanceHolder {
 		return mContacts;
 	}
 	
-	public Contact getContact(UUID id) {
+	public Contact getContact(long id) {
 		for(Contact c: mContacts) {
-			if (c.getId().equals(id)) {
+			if (c.getId() == id) {
 				return c;
 			}
 		}
@@ -163,7 +163,7 @@ public class InstanceHolder {
     	
     	while(c.moveToNext()) {
     		
-    		Contact contact = new Contact();
+    		Contact contact = new Contact(c.getLong(c.getColumnIndex("_ID")));
     		contact.setName(c.getString(c.getColumnIndex("DISPLAY_NAME")));
     		
     		Cursor p = mContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, 

@@ -14,7 +14,7 @@ public class Instance {
 	private UUID mId;
 	private UUID mMessage;
 	private UUID mLocation;
-	private String mContact;
+	private long mContact;
 	private String mNumber;
 	
 	public Instance() {
@@ -25,7 +25,7 @@ public class Instance {
 		this.mId = UUID.fromString(json.getString(JSON_ID));
 		this.mMessage = UUID.fromString(json.getString(JSON_MESSAGE));
 		this.mLocation = UUID.fromString(json.getString(JSON_LOCATION));
-		this.mContact = json.getString(JSON_CONTACT);
+		this.mContact = json.getLong(JSON_CONTACT);
 	}
 	
 	public JSONObject toJSON() throws JSONException {
@@ -57,11 +57,11 @@ public class Instance {
 		return mLocation;
 	}
 	
-	public void setContact(String c) {
+	public void setContact(long c) {
 		this.mContact = c;
 	}
 	
-	public String getContact() {
+	public Long getContact() {
 		return mContact;
 	}
 	

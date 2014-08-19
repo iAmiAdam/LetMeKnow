@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -106,8 +107,9 @@ public class InstanceListFragment extends ListFragment {
 			new DownloadImageTask((ImageView) convertView.findViewById(R.id.instance_list_map))
             .execute(getMapURL);
 			
-			if(i.getContact() != null) {
+			if(i.getContact() != 0) {
 				TextView contactName = (TextView) convertView.findViewById(R.id.instance_list_name);
+				Log.d("Contact", String.valueOf(i.getContact()));
 				String name = InstanceHolder.get(getActivity()).getContact(i.getContact()).getName();
 				contactName.setText(name);
 				if (InstanceHolder.get(getActivity()).getContact(i.getContact()).getPicture() != null) {

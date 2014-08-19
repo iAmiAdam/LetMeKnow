@@ -3,7 +3,7 @@ package info.adamjsmith.letmeknow;
 
 public class Contact {
 	
-	private String mId;
+	private long mId;
 	private String[] mNumbers;
 	private String mName;
 	private String mPicture;
@@ -16,7 +16,7 @@ public class Contact {
 		this.mPicture = mPicture;
 	}
 
-	public Contact(String id) {
+	public Contact(long id) {
 		this.mId = id;
 	}
 	
@@ -36,7 +36,7 @@ public class Contact {
 		mNumbers = numbers;
 	}
 
-	public String getId() {
+	public long getId() {
 		return mId;
 	}
 	
