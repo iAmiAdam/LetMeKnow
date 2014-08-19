@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -18,6 +19,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView.MultiChoiceModeListener;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -49,7 +52,46 @@ public class InstanceListFragment extends ListFragment {
 		ListView listView = getListView();
 		listView.setBackgroundColor(getResources().getColor(R.color.background));
 		listView.setDividerHeight(0);
-		registerForContextMenu(listView);
+		listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+		listView.setMultiChoiceModeListener(new MultiChoiceModeListener() {
+
+			@Override
+			public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+				MenuInflater inflater = mode.getMenuInflater();
+				inflater.inflate(R.menu.list_item_context, menu);
+				return true;
+			}
+
+			@Override
+			public boolean onPrepareActionMode(ActionMode mode, Menu menu) { return false; }
+
+			@Override
+			public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+				switch (item.getItemId()) {
+					case R.id.menu_item_delete:
+						InstanceAdapter adapter = ((InstanceAdapter)getListAdapter());
+						InstanceHolder instanceHolder = InstanceHolder.get(getActivity());
+						for (int i = adapter.getCount() - 1; i >= 0; i--) {
+							if (getListView().isItemChecked(i)) {
+								instanceHolder.deleteInstance(adapter.getItem(i));
+							}
+						}
+						mode.finish();
+						adapter.notifyDataSetChanged();
+						return true;
+					default:
+						return false;
+				}
+			}
+
+			@Override
+			public void onDestroyActionMode(ActionMode mode) { }
+
+			@Override
+			public void onItemCheckedStateChanged(ActionMode mode,
+					int position, long id, boolean checked) {}
+			
+		});
 	}
 	
 	@Override
@@ -76,6 +118,22 @@ public class InstanceListFragment extends ListFragment {
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		getActivity().getMenuInflater().inflate(R.menu.list_item_context, menu);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
+		int position = info.position;
+		InstanceAdapter adapter = (InstanceAdapter)getListAdapter();
+		Instance instance = adapter.getItem(position);
+		
+		switch (item.getItemId()) {
+		case R.id.menu_item_delete:
+			InstanceHolder.get(getActivity()).deleteInstance(instance);
+			adapter.notifyDataSetChanged();
+			return true;
+		}
+		return super.onContextItemSelected(item);
 	}
 	
 	private class InstanceAdapter extends ArrayAdapter<Instance> {
