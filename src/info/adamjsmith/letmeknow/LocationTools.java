@@ -2,6 +2,7 @@ package info.adamjsmith.letmeknow;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -47,12 +48,13 @@ public class LocationTools {
 		return new LatLng(0, 0);		
 	}
 	
-	public static void addAlert(Context context, double latitude, double longitude, String number) {
+	public static void addAlert(Context context, double latitude, double longitude, String number, UUID id) {
 		LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		float radius = Float.parseFloat(sharedPref.getString("distance", "1609")); 
-		Intent notification = new Intent(NotificationTools.this, NotificationTools.class);
-		PendingIntent wrapper = PendingIntent.getActivity(context, 0, notification, PendingIntent.FLAG_UPDATE_CURRENT);
+		Intent notification = new Intent(context, NotificationTools.class);
+		notification.putExtra(InstanceFragment.EXTRA_INSTANCE_ID, id);
+		PendingIntent wrapper = PendingIntent.getActivity(context, 0, notification, PendingIntent.FLAG_ONE_SHOT);
 		locationManager.addProximityAlert(latitude, longitude, radius, -1, wrapper);
 	}
 }

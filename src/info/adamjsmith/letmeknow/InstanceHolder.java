@@ -8,6 +8,7 @@ import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 public class InstanceHolder {
 	private static final String INSTANCESFILE = "instances.json";
@@ -84,6 +85,12 @@ public class InstanceHolder {
 		try {
 			mSerializer.setFile(INSTANCESFILE);
 			mSerializer.saveInstances(mInstances);
+			for (Instance i: mInstances) {
+				if (i.getContact() != null && i.getLocation() != null && i.getMessage() != null) {
+					LocationTools.addAlert(mContext, getLocation(i.getLocation()).getLatitude(), getLocation(i.getLocation()).getLongitude(), i.getNumber(), i.getId());
+					Log.d("Alert", "set");
+				}
+			}
 			return true;
 		} catch (Exception e) {
 			return false;
