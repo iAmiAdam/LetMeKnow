@@ -171,6 +171,7 @@ public class InstanceFragment extends Fragment {
 			long contactId = data.getLongExtra("ID", 1);
 			Contact lContact = InstanceHolder.get(getActivity()).getContact(contactId);
 			mInstance.setContact(lContact.getId());
+			mInstance.setNumber(data.getExtras().getString("number"));
 			selectContact.setVisibility(View.GONE);
 			break;
 		default:

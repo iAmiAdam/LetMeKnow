@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+import android.telephony.SmsManager;
 import android.util.Log;
 
 public class NotificationTools extends BroadcastReceiver {
@@ -20,15 +21,23 @@ public class NotificationTools extends BroadcastReceiver {
 			
 			UUID instanceId = (UUID) intent.getExtras().get(InstanceFragment.EXTRA_INSTANCE_ID);
 			Instance i = InstanceHolder.get(mContext).getInstance(instanceId);
-			Log.d("Instance id", String.valueOf(instanceId));
 			sentNotification(i);
+			sendMessage(i);
 			InstanceHolder.get(mContext).deleteInstance(i);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void sentNotification(Instance i) {
+	private void sendMessage(Instance i) {
+		String phoneNumber = i.getNumber();
+		String message = InstanceHolder.get(mContext).getMessage(i.getMessage()).getText();
+		Log.d("Number", String.valueOf(phoneNumber));
+		SmsManager sms = SmsManager.getDefault();
+		sms.sendTextMessage(phoneNumber, null, message, null, null);
+	}
+	
+	private void sentNotification(Instance i) {
 		NotificationManager nm = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 		String name = InstanceHolder.get(mContext).getContact(i.getContact()).getName();
 		final Intent intent = new Intent();
