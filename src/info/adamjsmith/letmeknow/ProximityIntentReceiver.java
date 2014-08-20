@@ -18,7 +18,7 @@ public class ProximityIntentReceiver extends BroadcastReceiver {
 		UUID instanceId = (UUID) intent.getSerializableExtra(InstanceFragment.EXTRA_INSTANCE_ID);
 		Instance i = InstanceHolder.get(mContext).getInstance(instanceId);
 		pushNotification(i);
-		InstanceHolder.get(context).deleteInstance(i);
+		InstanceHolder.get(mContext).deleteInstance(i);
 	}
 	
 	public void pushNotification(Instance i) {
@@ -34,5 +34,4 @@ public class ProximityIntentReceiver extends BroadcastReceiver {
 		.setContentIntent(pendingIntent);
 		nm.notify(1, notifBuilder.build());
 	}
-
 }

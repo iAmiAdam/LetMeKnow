@@ -13,6 +13,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -56,11 +57,11 @@ public class LocationTools {
 		
 		Intent notification = new Intent("info.adamjsmith.letmeknow.NotificationTools");
 		notification.putExtra(InstanceFragment.EXTRA_INSTANCE_ID, id);
-		notification.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		PendingIntent wrapper = PendingIntent.getBroadcast(context, 0, notification, 0);
+		Instance i = InstanceHolder.get(context).getInstance(id);
+		PendingIntent wrapper = PendingIntent.getBroadcast(context, 0, notification, PendingIntent.FLAG_ONE_SHOT);
 		locationManager.addProximityAlert(latitude, longitude, radius, -1, wrapper);
 		
 		IntentFilter filter = new IntentFilter("info.adamjsmith.letmeknow.NotificationTools");
-		context.registerReceiver(new ProximityIntentReceiver(), filter);
+		context.getApplicationContext().registerReceiver(new NotificationTools(), filter);
 	}
 }

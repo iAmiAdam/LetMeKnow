@@ -86,24 +86,7 @@
             </intent-filter>
         </activity>
         
-        <activity
-            android:name=".SelectContact"
-            android:label="Select Contact" 
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="info.adamjsmith.letmeknow.SelectContact" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".MapActivity"
-            android:label="Choose a location" 
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="info.adamjsmith.letmeknow.MapActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+       
         <activity
             android:name=".Preferences"
             android:label="Preferences" 
@@ -113,34 +96,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CurrentMessages"
-            android:label="Current Messages" 
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="info.adamjsmith.letmeknow.CurrentMessages" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ChooseMessage"
-            android:label="Choose Message" 
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="info.adamjsmith.letmeknow.ChooseMessage" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ChooseLocation"
-            android:label="Choose Location" 
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="info.adamjsmith.letmeknow.ChooseLocation" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <service android:name=".LocationToolsO" />
+        
 		<meta-data
 			android:name="com.google.android.maps.v2.API_KEY"
 			android:value="@string/debug_key"/>
