@@ -18,9 +18,6 @@ public class ActivityPager extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initPaging();
-		
-		Intent serviceIntent = new Intent(this, NotificationTools.class);
-		startService(serviceIntent);
 	}
 	
 	@Override

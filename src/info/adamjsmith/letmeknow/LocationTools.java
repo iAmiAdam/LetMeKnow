@@ -7,6 +7,7 @@ import java.util.UUID;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
@@ -52,9 +53,14 @@ public class LocationTools {
 		LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		float radius = Float.parseFloat(sharedPref.getString("distance", "1609")); 
-		Intent notification = new Intent(context, NotificationTools.class);
+		
+		Intent notification = new Intent("info.adamjsmith.letmeknow.NotificationTools");
 		notification.putExtra(InstanceFragment.EXTRA_INSTANCE_ID, id);
-		PendingIntent wrapper = PendingIntent.getActivity(context, 0, notification, PendingIntent.FLAG_ONE_SHOT);
+		notification.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		PendingIntent wrapper = PendingIntent.getBroadcast(context, 0, notification, 0);
 		locationManager.addProximityAlert(latitude, longitude, radius, -1, wrapper);
+		
+		IntentFilter filter = new IntentFilter("info.adamjsmith.letmeknow.NotificationTools");
+		context.registerReceiver(new ProximityIntentReceiver(), filter);
 	}
 }

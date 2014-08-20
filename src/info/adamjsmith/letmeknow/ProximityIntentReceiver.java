@@ -9,7 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-public class NotificationTools extends BroadcastReceiver {
+public class ProximityIntentReceiver extends BroadcastReceiver {
 	Context mContext;
 	
 	@Override
@@ -25,7 +25,7 @@ public class NotificationTools extends BroadcastReceiver {
 		NotificationManager nm = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 		String name = InstanceHolder.get(mContext).getContact(i.getContact()).getName();
 		final Intent intent = new Intent();
-		PendingIntent pendingIntent = PendingIntent.getActivity(mContext,  0, intent, PendingIntent.FLAG_ONE_SHOT);
+		PendingIntent pendingIntent = PendingIntent.getActivity(mContext,  0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(mContext)
 		.setSmallIcon(R.drawable.notification)
 		.setContentTitle("Text Message Sent")
@@ -34,4 +34,5 @@ public class NotificationTools extends BroadcastReceiver {
 		.setContentIntent(pendingIntent);
 		nm.notify(1, notifBuilder.build());
 	}
+
 }
