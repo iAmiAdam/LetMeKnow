@@ -6,7 +6,13 @@ import android.app.IntentService;
 import android.content.Intent;
 
 public class NotificationTools extends IntentService {
+	
+	private static final String DEBUG_TAG = "NotificationTools";
 
+	public NotificationTools() {
+		super(DEBUG_TAG);
+	}
+	
 	public NotificationTools(String name) {
 		super(name);
 	}

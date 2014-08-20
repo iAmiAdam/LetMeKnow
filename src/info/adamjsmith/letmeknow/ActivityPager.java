@@ -3,6 +3,7 @@ package info.adamjsmith.letmeknow;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -17,6 +18,9 @@ public class ActivityPager extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initPaging();
+		
+		Intent serviceIntent = new Intent(this, NotificationTools.class);
+		startService(serviceIntent);
 	}
 	
 	@Override
