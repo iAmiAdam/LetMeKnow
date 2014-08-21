@@ -50,18 +50,28 @@ public class LocationTools {
 		return new LatLng(0, 0);		
 	}
 	
-	public static void addAlert(Context context, double latitude, double longitude, String number, UUID id) {
+	public static void addAlert(Context context, double latitude, double longitude, UUID id) {
 		LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		float radius = Float.parseFloat(sharedPref.getString("distance", "1609")); 
 		
 		Intent notification = new Intent("info.adamjsmith.letmeknow.NotificationTools");
 		notification.putExtra(InstanceFragment.EXTRA_INSTANCE_ID, id);
-		Instance i = InstanceHolder.get(context).getInstance(id);
+		
 		PendingIntent wrapper = PendingIntent.getBroadcast(context, 0, notification, PendingIntent.FLAG_ONE_SHOT);
 		locationManager.addProximityAlert(latitude, longitude, radius, -1, wrapper);
 		
 		IntentFilter filter = new IntentFilter("info.adamjsmith.letmeknow.NotificationTools");
 		context.getApplicationContext().registerReceiver(new NotificationTools(), filter);
+	}
+	
+	public static void removeAlert(Context context, UUID id) {
+		LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+		
+		Intent notification = new Intent("info.adamjsmith.letmeknow.NotificationTools");
+		notification.putExtra(InstanceFragment.EXTRA_INSTANCE_ID, id);
+		
+		PendingIntent wrapper = PendingIntent.getBroadcast(context, 0, notification, PendingIntent.FLAG_ONE_SHOT);
+		locationManager.removeProximityAlert(wrapper);
 	}
 }
