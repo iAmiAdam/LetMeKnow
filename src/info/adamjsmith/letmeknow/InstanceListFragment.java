@@ -1,5 +1,7 @@
 package info.adamjsmith.letmeknow;
 
+import info.adamjsmith.letmeknow.MessageListFragment.MessageAdapter;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -92,6 +94,15 @@ public class InstanceListFragment extends ListFragment {
 					int position, long id, boolean checked) {}
 			
 		});
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		Instance instance = ((InstanceAdapter)getListAdapter()).getItem(position);
+
+		Intent i = new Intent(getActivity(), InstancePagerActivity.class);
+		i.putExtra(InstanceFragment.EXTRA_INSTANCE_ID, instance.getId());
+		startActivity(i);
 	}
 	
 	@Override

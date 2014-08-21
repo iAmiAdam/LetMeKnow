@@ -51,10 +51,10 @@ public class InstancePagerActivity extends FragmentActivity {
 			public void onPageScrollStateChanged(int arg0) { }
 		});
 		
-		UUID crimeId = (UUID)getIntent()
+		UUID instanceId = (UUID)getIntent()
 				.getSerializableExtra(InstanceFragment.EXTRA_INSTANCE_ID);
 		for (int i = 0; i < mInstances.size(); i++) {
-			if(mInstances.get(i).getId().equals(crimeId)) {
+			if(mInstances.get(i).getId().equals(instanceId)) {
 				mViewPager.setCurrentItem(i);
 				break;
 			}
