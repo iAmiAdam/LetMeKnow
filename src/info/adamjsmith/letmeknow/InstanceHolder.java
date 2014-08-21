@@ -77,6 +77,7 @@ public class InstanceHolder {
 	}
 	
 	public void deleteInstance(Instance i) {
+		LocationTools.removeAlert(mContext, i.getId());
 		mInstances.remove(i);
 	}
 	
