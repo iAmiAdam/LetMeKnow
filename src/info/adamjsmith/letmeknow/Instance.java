@@ -10,12 +10,15 @@ public class Instance {
 	private static final String JSON_MESSAGE = "message";
 	private static final String JSON_LOCATION = "location";
 	private static final String JSON_CONTACT = "contact";
+	private static final String JSON_NUMBER = "number";
+	private static final String JSON_ALERT = "alert";
 	
 	private UUID mId;
 	private UUID mMessage;
 	private UUID mLocation;
 	private long mContact;
 	private String mNumber;
+	private Boolean mAlert = false;
 	
 	public Instance() {
 		this.mId = UUID.randomUUID();
@@ -26,6 +29,8 @@ public class Instance {
 		this.mMessage = UUID.fromString(json.getString(JSON_MESSAGE));
 		this.mLocation = UUID.fromString(json.getString(JSON_LOCATION));
 		this.mContact = json.getLong(JSON_CONTACT);
+		this.mNumber = json.getString(JSON_NUMBER);
+		this.mAlert = json.getBoolean(JSON_ALERT);
 	}
 	
 	public JSONObject toJSON() throws JSONException {
@@ -34,6 +39,8 @@ public class Instance {
 		json.put(JSON_MESSAGE, mMessage);
 		json.put(JSON_LOCATION, mLocation);
 		json.put(JSON_CONTACT, mContact);
+		json.put(JSON_NUMBER, mNumber);
+		json.put(JSON_ALERT, mAlert);
 		return json;
 	}
 	
@@ -71,5 +78,13 @@ public class Instance {
 	
 	public String getNumber() {
 		return mNumber;
+	}
+	
+	public void setAlert() {
+		if (mAlert == false) {
+			mAlert = true;
+		} else {
+			mAlert = false;
+		}
 	}
 }
