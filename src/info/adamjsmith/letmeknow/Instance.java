@@ -87,4 +87,8 @@ public class Instance {
 			mAlert = false;
 		}
 	}
+	
+	public Boolean isSet() {
+		return mAlert;
+	}
 }
