@@ -13,7 +13,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
