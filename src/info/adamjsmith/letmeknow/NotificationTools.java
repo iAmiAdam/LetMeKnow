@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
-import android.util.Log;
 
 public class NotificationTools extends BroadcastReceiver {
 	Context mContext;
@@ -33,7 +32,6 @@ public class NotificationTools extends BroadcastReceiver {
 	private void sendMessage(Instance i) {
 		String phoneNumber = i.getNumber();
 		String message = InstanceHolder.get(mContext).getMessage(i.getMessage()).getText();
-		Log.d("Number", String.valueOf(phoneNumber));
 		SmsManager sms = SmsManager.getDefault();
 		sms.sendTextMessage(phoneNumber, null, message, null, null);
 	}

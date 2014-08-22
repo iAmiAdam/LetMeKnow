@@ -65,9 +65,8 @@ public class InstanceHolder {
 	
 	public Instance getInstance(UUID id) {
 		for(Instance i: mInstances) {
-			if (i.getId().equals(id)) {
+			if (i.getId().equals(id)) 
 				return i;
-			}
 		}
 		return null;
 	}

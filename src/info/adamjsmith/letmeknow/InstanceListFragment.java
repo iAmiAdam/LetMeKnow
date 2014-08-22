@@ -1,7 +1,5 @@
 package info.adamjsmith.letmeknow;
 
-import info.adamjsmith.letmeknow.MessageListFragment.MessageAdapter;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 
