@@ -13,6 +13,7 @@ public class Instance {
 	private static final String JSON_NUMBER = "number";
 	private static final String JSON_ALERT = "alert";
 	private static final String JSON_PERSISTENT = "persistent";
+	private static final String JSON_STATE ="state";
 	
 	private UUID mId;
 	private UUID mMessage;
@@ -21,6 +22,7 @@ public class Instance {
 	private String mNumber;
 	private Boolean mAlert = false;
 	private Boolean mPersistent = false;
+	private Boolean mState = false;
 	
 	public Instance() {
 		this.mId = UUID.randomUUID();
@@ -34,6 +36,7 @@ public class Instance {
 		this.mNumber = json.getString(JSON_NUMBER);
 		this.mAlert = json.getBoolean(JSON_ALERT);
 		this.mPersistent = json.getBoolean(JSON_PERSISTENT);
+		this.mState = json.getBoolean(JSON_STATE);
 	}
 	
 	public JSONObject toJSON() throws JSONException {
@@ -45,6 +48,7 @@ public class Instance {
 		json.put(JSON_NUMBER, mNumber);
 		json.put(JSON_ALERT, mAlert);
 		json.put(JSON_PERSISTENT, mPersistent);
+		json.put(JSON_STATE, mState);
 		return json;
 	}
 	
@@ -106,5 +110,17 @@ public class Instance {
 	
 	public Boolean persist() {
 		return mPersistent;
+	}
+	
+	public void setState() {
+		if (mState == false) {
+			mState = true;
+		} else {
+			mState = false;
+		}
+	}
+	
+	public Boolean state() {
+		return mState;
 	}
 }
