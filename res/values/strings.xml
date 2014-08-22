@@ -43,6 +43,7 @@
     <string name="message">Message</string>
     <string name="persistence">Persistent Message</string>
     <string name="options">Options</string>
+    <string name="state">Active</string>
     
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
