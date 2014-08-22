@@ -86,7 +86,7 @@ public class InstanceHolder {
 			mSerializer.setFile(INSTANCESFILE);
 			mSerializer.saveInstances(mInstances);
 			for (Instance i: mInstances) {
-				if (i.getContact() != null && i.getLocation() != null && i.getMessage() != null && !i.isSet()) {
+				if (i.getContact() != null && i.getLocation() != null && i.getMessage() != null && !i.isSet() && i.state()) {
 					LocationTools.addAlert(mContext, getLocation(i.getLocation()).getLatitude(), getLocation(i.getLocation()).getLongitude(), i.getId());
 					i.setAlert();
 				}
