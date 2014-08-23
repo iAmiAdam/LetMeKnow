@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -34,6 +35,7 @@ public class InstanceFragment extends Fragment {
 	private Button selectMessage;
 	private Button selectLocation;
 	private Button selectContact;
+	private CheckBox persistenceBox;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -117,6 +119,9 @@ public class InstanceFragment extends Fragment {
 				startActivityForResult(new Intent("info.adamjsmith.letmeknow.ContactListActivity"), 3);
 			}
 		});
+		
+		persistenceBox = (CheckBox) v.findViewById(R.id.instance_persistence_checkbox);
+		
 		
 		return v;
 	}
