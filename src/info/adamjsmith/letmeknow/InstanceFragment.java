@@ -15,7 +15,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -120,7 +122,15 @@ public class InstanceFragment extends Fragment {
 			}
 		});
 		
-		persistenceBox = (CheckBox) v.findViewById(R.id.instance_persistence_checkbox);
+		persistenceBox = (CheckBox) v.findViewById(R.id.instance_persistence);
+		persistenceBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				mInstance.setPersist();
+			}
+		});
 		
 		
 		return v;

@@ -104,13 +104,13 @@
 				    style="?android:listSeparatorTextViewStyle" />
 
 		    <CheckBox
-		        android:id="@+id/instance_persistence_checkbox"
+		        android:id="@+id/instance_persistence"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:text="@string/persistence" />
 
 		    <Switch
-		        android:id="@+id/instance_active_switch"
+		        android:id="@+id/instance_active"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:text="@string/state" />
