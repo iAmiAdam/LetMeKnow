@@ -16,8 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.Switch;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -38,6 +39,7 @@ public class InstanceFragment extends Fragment {
 	private Button selectLocation;
 	private Button selectContact;
 	private CheckBox persistenceBox;
+	private Switch activeSwitch;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -129,6 +131,16 @@ public class InstanceFragment extends Fragment {
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				mInstance.setPersist();
+			}
+		});
+		
+		activeSwitch = (Switch) v.findViewById(R.id.instance_active);
+		activeSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				mInstance.setState();				
 			}
 		});
 		
