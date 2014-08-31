@@ -23,6 +23,7 @@ import android.widget.Switch;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
@@ -94,6 +95,20 @@ public class InstanceFragment extends Fragment {
 		
 		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(52.941128, -1.260106), 10);
 		map.animateCamera(cameraUpdate);
+		
+		map.setOnMapClickListener(new OnMapClickListener() {
+
+			@Override
+			public void onMapClick(LatLng point) {
+				map.clear();
+				Location mLocation = new Location();
+				mLocation.setLatitude(point.latitude);
+				mLocation.setLongitude(point.longitude);
+				mLocation.setName("Saved Location");
+				map.addMarker(new MarkerOptions()
+						.position(point));
+			}
+		});
 		
 		message = (EditText) v.findViewById(R.id.instance_message_input);
 		
