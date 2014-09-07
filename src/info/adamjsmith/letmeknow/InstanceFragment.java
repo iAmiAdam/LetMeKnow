@@ -56,6 +56,7 @@ public class InstanceFragment extends Fragment {
 	public void onPause() {
 		super.onPause();
 		InstanceHolder.get(getActivity()).saveInstances();
+		InstanceHolder.get(getActivity()).saveLocations();
 		mapView.onPause();
 	}
 	
