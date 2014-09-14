@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,6 +43,7 @@ public class InstanceFragment extends Fragment {
 	private Button selectContact;
 	private CheckBox persistenceBox;
 	private Switch activeSwitch;
+	private Message mMessage;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -112,6 +115,20 @@ public class InstanceFragment extends Fragment {
 		});
 		
 		message = (EditText) v.findViewById(R.id.instance_message_input);
+		
+		message.addTextChangedListener(new TextWatcher() {
+			public void afterTextChanged(Editable s) {
+				mMessage.setText(String.valueOf(s));
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {}
+		});
 		
 		selectMessage = (Button) v.findViewById(R.id.instance_message_button);
 		selectMessage.setOnClickListener(new OnClickListener() {
