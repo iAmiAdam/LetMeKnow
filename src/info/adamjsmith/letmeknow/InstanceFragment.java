@@ -44,6 +44,7 @@ public class InstanceFragment extends Fragment {
 	private CheckBox persistenceBox;
 	private Switch activeSwitch;
 	private Message mMessage;
+	private Location mLocation;	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
