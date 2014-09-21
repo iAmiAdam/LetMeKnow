@@ -98,7 +98,19 @@ public class InstanceFragment extends Fragment {
 		
 		MapsInitializer.initialize(getActivity());
 		
-		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(52.941128, -1.260106), 10);
+		Double latitude;
+		Double longitude;
+		
+		if(mInstance.getLocation() != null) {
+			mLocation = InstanceHolder.get(getActivity()).getLocation(mInstance.getLocation());
+			latitude = mLocation.getLatitude();
+			longitude = mLocation.getLongitude();
+		} else {
+			latitude = LocationTools.getCurrentLocation(getActivity()).latitude;
+			longitude = LocationTools.getCurrentLocation(getActivity()).longitude;
+		}
+		
+		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10);
 		map.animateCamera(cameraUpdate);
 		
 		map.setOnMapClickListener(new OnMapClickListener() {
