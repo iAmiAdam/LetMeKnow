@@ -129,6 +129,11 @@ public class InstanceFragment extends Fragment {
 		
 		message = (EditText) v.findViewById(R.id.instance_message_input);
 		
+		if (mInstance.getMessage() != null) {
+			mMessage = InstanceHolder.get(getActivity()).getMessage(mInstance.getMessage());
+			message.setText(mMessage.getText());
+		}
+		
 		message.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
 				mMessage.setText(String.valueOf(s));
