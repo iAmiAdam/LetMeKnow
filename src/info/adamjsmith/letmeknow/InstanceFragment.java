@@ -121,7 +121,7 @@ public class InstanceFragment extends Fragment {
 				Location mLocation = new Location();
 				mLocation.setLatitude(point.latitude);
 				mLocation.setLongitude(point.longitude);
-				mLocation.setName("Saved Location");
+				mLocation.setName("New Location");
 				map.addMarker(new MarkerOptions()
 						.position(point));
 			}
