@@ -135,6 +135,8 @@ public class InstanceFragment extends Fragment {
 		if (mInstance.getMessage() != null) {
 			mMessage = InstanceHolder.get(getActivity()).getMessage(mInstance.getMessage());
 			message.setText(mMessage.getText());
+		} else {
+			mMessage = new Message();
 		}
 		
 		message.addTextChangedListener(new TextWatcher() {
