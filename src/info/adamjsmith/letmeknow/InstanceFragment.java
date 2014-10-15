@@ -22,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,6 +44,7 @@ public class InstanceFragment extends Fragment {
 	private Button selectLocation;
 	private Button selectContact;
 	private CheckBox persistenceBox;
+	private TextView contactName;
 	private Switch activeSwitch;
 	private Message mMessage;
 	private Location mLocation;	
@@ -196,6 +198,8 @@ public class InstanceFragment extends Fragment {
 			}
 		});
 		
+		contactName = (TextView) v.findViewById(R.id.instance_contact_name);
+		contactName.setVisibility(View.GONE);
 		
 		return v;
 	}
@@ -260,7 +264,8 @@ public class InstanceFragment extends Fragment {
 				Contact lContact = InstanceHolder.get(getActivity()).getContact(contactId);
 				mInstance.setContact(lContact.getId());
 				mInstance.setNumber(data.getExtras().getString("number"));
-				selectContact.setVisibility(View.GONE);
+				contactName.setVisibility(View.VISIBLE);
+				contactName.setText("Sending a message to " + lContact.getName());
 				break;
 			} else {
 				break;
