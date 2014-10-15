@@ -2,6 +2,7 @@ package info.adamjsmith.letmeknow;
 
 import java.util.UUID;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -228,31 +229,42 @@ public class InstanceFragment extends Fragment {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
 		case 1:
-			UUID messageId = (UUID) data.getExtras().get(MessageFragment.EXTRA_MESSAGE_ID);
-			Message lMessage = InstanceHolder.get(getActivity()).getMessage(messageId);
-			message.setText(lMessage.getText());
-			mInstance.setMessage(lMessage.getId());
-			message.setEnabled(false);
-			selectMessage.setVisibility(View.GONE);
-			break;
+			if(resultCode == Activity.RESULT_OK) {
+				UUID messageId = (UUID) data.getExtras().get(MessageFragment.EXTRA_MESSAGE_ID);
+				Message lMessage = InstanceHolder.get(getActivity()).getMessage(messageId);
+				message.setText(lMessage.getText());
+				mInstance.setMessage(lMessage.getId());
+				message.setEnabled(false);
+				selectMessage.setVisibility(View.GONE);
+				break;
+			} else {
+				break;
+			}
 		case 2:
-			UUID locationId = (UUID) data.getExtras().get(LocationFragment.EXTRA_LOCATION_ID);
-			Location lLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
-			mInstance.setLocation(lLocation.getId());
-			selectLocation.setVisibility(View.GONE);
-			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lLocation.getLatitude(), lLocation.getLongitude()), 14);
-			map.animateCamera(cameraUpdate);
-			map.addMarker(new MarkerOptions()
-			.position(new LatLng(lLocation.getLatitude(), lLocation.getLongitude())));
-			break;
+			if(resultCode == Activity.RESULT_OK) {
+				UUID locationId = (UUID) data.getExtras().get(LocationFragment.EXTRA_LOCATION_ID);
+				Location lLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
+				mInstance.setLocation(lLocation.getId());
+				selectLocation.setVisibility(View.GONE);
+				CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lLocation.getLatitude(), lLocation.getLongitude()), 14);
+				map.animateCamera(cameraUpdate);
+				map.addMarker(new MarkerOptions()
+				.position(new LatLng(lLocation.getLatitude(), lLocation.getLongitude())));
+				break;
+			} else {
+				break;
+			}
 		case 3:
-			
-			long contactId = data.getLongExtra("ID", 1);
-			Contact lContact = InstanceHolder.get(getActivity()).getContact(contactId);
-			mInstance.setContact(lContact.getId());
-			mInstance.setNumber(data.getExtras().getString("number"));
-			selectContact.setVisibility(View.GONE);
-			break;
+			if(resultCode == Activity.RESULT_OK) {
+				long contactId = data.getLongExtra("ID", 1);
+				Contact lContact = InstanceHolder.get(getActivity()).getContact(contactId);
+				mInstance.setContact(lContact.getId());
+				mInstance.setNumber(data.getExtras().getString("number"));
+				selectContact.setVisibility(View.GONE);
+				break;
+			} else {
+				break;
+			}
 		default:
 			super.onActivityResult(requestCode, resultCode, data);
 		}
