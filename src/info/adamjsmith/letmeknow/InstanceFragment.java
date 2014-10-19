@@ -48,6 +48,7 @@ public class InstanceFragment extends Fragment {
 	private Switch activeSwitch;
 	private Message mMessage;
 	private Location mLocation;	
+	private Contact mContact;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -112,6 +113,15 @@ public class InstanceFragment extends Fragment {
 		} else {
 			latitude = LocationTools.getCurrentLocation(getActivity()).latitude;
 			longitude = LocationTools.getCurrentLocation(getActivity()).longitude;
+		}
+		
+		contactName = (TextView) v.findViewById(R.id.instance_contact_name);
+		
+		if(mInstance.getContact() != null) {
+			mContact = InstanceHolder.get(getActivity()).getContact(mInstance.getContact());
+			contactName.setText("Sending message to " + mContact.getName());
+		} else {
+			contactName.setVisibility(View.GONE);
 		}
 		
 		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10);
@@ -200,9 +210,6 @@ public class InstanceFragment extends Fragment {
 				mInstance.setState();				
 			}
 		});
-		
-		contactName = (TextView) v.findViewById(R.id.instance_contact_name);
-		contactName.setVisibility(View.GONE);
 		
 		return v;
 	}
