@@ -55,7 +55,12 @@ public class InstanceFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		
 		UUID instanceId = (UUID)getArguments().getSerializable(EXTRA_INSTANCE_ID);
-		mInstance = InstanceHolder.get(getActivity()).getInstance(instanceId);
+		if (instanceId != null) {
+			mInstance = InstanceHolder.get(getActivity()).getInstance(instanceId);
+		} else {
+			mInstance = new Instance();
+			InstanceHolder.get(getActivity()).addInstance(mInstance);
+		}
 		
 		setHasOptionsMenu(true);
 	}
@@ -115,15 +120,6 @@ public class InstanceFragment extends Fragment {
 			longitude = LocationTools.getCurrentLocation(getActivity()).longitude;
 		}
 		
-		contactName = (TextView) v.findViewById(R.id.instance_contact_name);
-		
-		if(mInstance.getContact() != null) {
-			mContact = InstanceHolder.get(getActivity()).getContact(mInstance.getContact());
-			contactName.setText("Sending message to " + mContact.getName());
-		} else {
-			contactName.setVisibility(View.GONE);
-		}
-		
 		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10);
 		map.animateCamera(cameraUpdate);
 		
@@ -140,6 +136,15 @@ public class InstanceFragment extends Fragment {
 						.position(point));
 			}
 		});
+		
+		contactName = (TextView) v.findViewById(R.id.instance_contact_name);
+		
+		if(mInstance.getContact() != null) {
+			mContact = InstanceHolder.get(getActivity()).getContact(mInstance.getContact());
+			contactName.setText("Sending message to " + mContact.getName());
+		} else {
+			contactName.setVisibility(View.GONE);
+		}
 		
 		message = (EditText) v.findViewById(R.id.instance_message_input);
 		
