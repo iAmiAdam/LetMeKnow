@@ -182,7 +182,7 @@ public class InstanceListFragment extends ListFragment {
 			new DownloadImageTask((ImageView) convertView.findViewById(R.id.instance_list_map))
             .execute(getMapURL);
 			
-			if(i.getContact() != 0) {
+			if(i.getContact() != null) {
 				TextView contactName = (TextView) convertView.findViewById(R.id.instance_list_name);
 				Log.d("Contact", String.valueOf(i.getContact()));
 				String name = InstanceHolder.get(getActivity()).getContact(i.getContact()).getName();
