@@ -54,13 +54,9 @@ public class InstanceFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		//Fetch the instance id from the Extra that it's sent.	
 		UUID instanceId = (UUID)getArguments().getSerializable(EXTRA_INSTANCE_ID);
-		if (instanceId != null) {
-			mInstance = InstanceHolder.get(getActivity()).getInstance(instanceId);
-		} else {
-			mInstance = new Instance();
-			InstanceHolder.get(getActivity()).addInstance(mInstance);
-		}
+		mInstance = InstanceHolder.get(getActivity()).getInstance(instanceId);	
 		
 		setHasOptionsMenu(true);
 	}

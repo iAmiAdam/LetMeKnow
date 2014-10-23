@@ -18,7 +18,7 @@ public class Instance {
 	private UUID mId;
 	private UUID mMessage;
 	private UUID mLocation;
-	private long mContact;
+	private Long mContact;
 	private String mNumber;
 	private Boolean mAlert = false;
 	private Boolean mPersistent = false;
