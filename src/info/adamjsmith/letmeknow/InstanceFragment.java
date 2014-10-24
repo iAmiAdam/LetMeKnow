@@ -154,6 +154,8 @@ public class InstanceFragment extends Fragment {
 		message.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
 				mMessage.setText(String.valueOf(s));
+				mInstance.setMessage(mMessage.getId());
+				InstanceHolder.get(getActivity()).addMessage(mMessage);
 			}
 
 			@Override
