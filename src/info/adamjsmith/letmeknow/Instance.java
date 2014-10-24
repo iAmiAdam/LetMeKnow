@@ -30,10 +30,32 @@ public class Instance {
 	
 	public Instance(JSONObject json) throws JSONException {
 		this.mId = UUID.fromString(json.getString(JSON_ID));
-		this.mMessage = UUID.fromString(json.getString(JSON_MESSAGE));
-		this.mLocation = UUID.fromString(json.getString(JSON_LOCATION));
-		this.mContact = json.getLong(JSON_CONTACT);
-		this.mNumber = json.getString(JSON_NUMBER);
+		
+		if (json.getString(JSON_MESSAGE) != JSONObject.NULL) {
+			this.mMessage = UUID.fromString(json.getString(JSON_MESSAGE));
+		} else {
+			this.mMessage = null;
+		}
+		
+		if (json.getString(JSON_LOCATION) != JSONObject.NULL) {
+			this.mLocation = UUID.fromString(json.getString(JSON_LOCATION));
+		} else {
+			this.mLocation = null;
+		}
+		
+		
+		if (json.getLong(JSON_CONTACT) != 0) {
+			this.mContact = json.getLong(JSON_CONTACT);
+		} else {
+			this.mContact = null;
+		}
+		
+		if (json.getString(JSON_NUMBER) != null) {		
+			this.mNumber = json.getString(JSON_NUMBER);
+		} else {
+			this.mNumber = null;
+		}
+		
 		this.mAlert = json.getBoolean(JSON_ALERT);
 		this.mPersistent = json.getBoolean(JSON_PERSISTENT);
 		this.mState = json.getBoolean(JSON_STATE);
@@ -42,10 +64,31 @@ public class Instance {
 	public JSONObject toJSON() throws JSONException {
 		JSONObject json = new JSONObject();
 		json.put(JSON_ID, mId);
-		json.put(JSON_MESSAGE, mMessage);
-		json.put(JSON_LOCATION, mLocation);
-		json.put(JSON_CONTACT, mContact);
-		json.put(JSON_NUMBER, mNumber);
+		if (mMessage != null) {
+			json.put(JSON_MESSAGE, mMessage);
+		} else {
+			json.put(JSON_MESSAGE, JSONObject.NULL);
+		}
+		
+		if (mLocation != null) {
+			json.put(JSON_LOCATION, mLocation);
+		} else {
+			json.put(JSON_LOCATION, JSONObject.NULL);
+		}
+		
+		if (mContact != null) {
+			json.put(JSON_CONTACT, mContact);
+		} else {
+			json.put(JSON_CONTACT, 0);
+		}
+		
+		if (mNumber != null) {
+			json.put(JSON_NUMBER, mNumber);
+		} else {
+			json.put(JSON_NUMBER, JSONObject.NULL);
+		}
+		
+		
 		json.put(JSON_ALERT, mAlert);
 		json.put(JSON_PERSISTENT, mPersistent);
 		json.put(JSON_STATE, mState);
