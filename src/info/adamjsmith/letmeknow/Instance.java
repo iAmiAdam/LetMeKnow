@@ -22,7 +22,7 @@ public class Instance {
 	private String mNumber;
 	private Boolean mAlert = false;
 	private Boolean mPersistent = false;
-	private Boolean mState = false;
+	private Boolean mState = true;
 	
 	public Instance() {
 		this.mId = UUID.randomUUID();
