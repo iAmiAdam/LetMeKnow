@@ -132,11 +132,7 @@ public class Instance {
 	}
 	
 	public void setAlert() {
-		if (mAlert == false) {
-			mAlert = true;
-		} else {
-			mAlert = false;
-		}
+		mAlert = !mAlert;
 	}
 	
 	public Boolean isSet() {
@@ -144,11 +140,7 @@ public class Instance {
 	}
 	
 	public void setPersist() {
-		if (mPersistent == false) {
-			mPersistent = true;
-		} else {
-			mPersistent = false;
-		}
+		mPersistent = !mPersistent;
 	}
 	
 	public Boolean persist() {
@@ -156,11 +148,7 @@ public class Instance {
 	}
 	
 	public void setState() {
-		if (mState == false) {
-			mState = true;
-		} else {
-			mState = false;
-		}
+		mState = !mState;
 	}
 	
 	public Boolean state() {
