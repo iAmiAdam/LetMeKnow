@@ -214,14 +214,14 @@ public class InstanceFragment extends Fragment {
 		
 		activeSwitch = (Switch) v.findViewById(R.id.instance_active);
 		
-		activeSwitch.setChecked(mInstance.state());
+		activeSwitch.setChecked(mInstance.active());
 		
 		activeSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				mInstance.setState(isChecked);				
+				mInstance.setActive(isChecked);				
 			}
 		});
 		

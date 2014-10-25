@@ -135,7 +135,7 @@ public class Instance {
 		mAlert = !mAlert;
 	}
 	
-	public Boolean isSet() {
+	public Boolean alert() {
 		return mAlert;
 	}
 	
@@ -147,11 +147,11 @@ public class Instance {
 		return mPersistent;
 	}
 	
-	public void setState(boolean state) {
+	public void setActive(boolean state) {
 		mState = state;
 	}
 	
-	public Boolean state() {
+	public Boolean active() {
 		return mState;
 	}
 }

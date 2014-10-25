@@ -76,7 +76,7 @@ public class InstanceHolder {
 	}
 	
 	public void deleteInstance(Instance i) {
-		if (i.isSet())
+		if (i.alert())
 			LocationTools.removeAlert(mContext, i.getId());
 		mInstances.remove(i);
 	}
@@ -86,7 +86,7 @@ public class InstanceHolder {
 			mSerializer.setFile(INSTANCESFILE);
 			mSerializer.saveInstances(mInstances);
 			for (Instance i: mInstances) {
-				if (i.getContact() != null && i.getLocation() != null && i.getMessage() != null && !i.isSet() && i.state()) {
+				if (i.getContact() != null && i.getLocation() != null && i.getMessage() != null && !i.alert() && i.active()) {
 					LocationTools.addAlert(mContext, getLocation(i.getLocation()).getLatitude(), getLocation(i.getLocation()).getLongitude(), i.getId());
 					i.setAlert();
 				}
