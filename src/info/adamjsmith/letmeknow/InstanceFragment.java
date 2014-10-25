@@ -197,6 +197,9 @@ public class InstanceFragment extends Fragment {
 		});
 		
 		persistenceBox = (CheckBox) v.findViewById(R.id.instance_persistence);
+		
+		persistenceBox.setChecked(mInstance.persist());
+		
 		persistenceBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
@@ -207,6 +210,9 @@ public class InstanceFragment extends Fragment {
 		});
 		
 		activeSwitch = (Switch) v.findViewById(R.id.instance_active);
+		
+		activeSwitch.setActivated(mInstance.state());
+		
 		activeSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
