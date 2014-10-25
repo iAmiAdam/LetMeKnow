@@ -22,8 +22,13 @@ public class NotificationTools extends BroadcastReceiver {
 			Instance i = InstanceHolder.get(mContext).getInstance(instanceId);
 			sentNotification(i);
 			sendMessage(i);
-			if (!i.persist())
+			if (!i.persist()) {
 				InstanceHolder.get(mContext).deleteInstance(i);
+				
+			} else {
+				i.setState(false);
+				InstanceHolder.get(mContext).saveInstances();
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

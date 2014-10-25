@@ -208,20 +208,20 @@ public class InstanceFragment extends Fragment {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				mInstance.setPersist();
+				mInstance.setPersist(isChecked);
 			}
 		});
 		
 		activeSwitch = (Switch) v.findViewById(R.id.instance_active);
 		
-		activeSwitch.setActivated(mInstance.state());
+		activeSwitch.setChecked(mInstance.state());
 		
 		activeSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				mInstance.setState();				
+				mInstance.setState(isChecked);				
 			}
 		});
 		

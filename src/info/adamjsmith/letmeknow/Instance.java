@@ -139,16 +139,16 @@ public class Instance {
 		return mAlert;
 	}
 	
-	public void setPersist() {
-		mPersistent = !mPersistent;
+	public void setPersist(boolean persist) {
+		mPersistent = persist;
 	}
 	
 	public Boolean persist() {
 		return mPersistent;
 	}
 	
-	public void setState() {
-		mState = !mState;
+	public void setState(boolean state) {
+		mState = state;
 	}
 	
 	public Boolean state() {
