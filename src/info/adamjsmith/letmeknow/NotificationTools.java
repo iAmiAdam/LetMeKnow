@@ -20,7 +20,7 @@ public class NotificationTools extends BroadcastReceiver {
 			
 			UUID instanceId = (UUID) intent.getExtras().get(InstanceFragment.EXTRA_INSTANCE_ID);
 			Instance i = InstanceHolder.get(mContext).getInstance(instanceId);
-			sentNotification(i);
+			sendNotification(i);
 			sendMessage(i);
 			if (!i.persist()) {
 				InstanceHolder.get(mContext).deleteInstance(i);
@@ -41,7 +41,7 @@ public class NotificationTools extends BroadcastReceiver {
 		sms.sendTextMessage(phoneNumber, null, message, null, null);
 	}
 	
-	private void sentNotification(Instance i) {
+	private void sendNotification(Instance i) {
 		NotificationManager nm = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 		String name = InstanceHolder.get(mContext).getContact(i.getContact()).getName();
 		final Intent intent = new Intent();

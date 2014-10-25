@@ -8,6 +8,7 @@ import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 public class InstanceHolder {
 	private static final String INSTANCESFILE = "instances.json";

@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -184,7 +183,6 @@ public class InstanceListFragment extends ListFragment {
 			
 			if(i.getContact() != null) {
 				TextView contactName = (TextView) convertView.findViewById(R.id.instance_list_name);
-				Log.d("Contact", String.valueOf(i.getContact()));
 				String name = InstanceHolder.get(getActivity()).getContact(i.getContact()).getName();
 				contactName.setText(name);
 				if (InstanceHolder.get(getActivity()).getContact(i.getContact()).getPicture() != null) {
