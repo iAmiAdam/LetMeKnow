@@ -49,6 +49,7 @@ public class InstanceFragment extends Fragment {
 	private Message mMessage;
 	private Location mLocation;	
 	private Contact mContact;
+	private boolean selected = false;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -155,9 +156,11 @@ public class InstanceFragment extends Fragment {
 		
 		message.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
-				mMessage.setText(String.valueOf(s));
-				mInstance.setMessage(mMessage.getId());
-				InstanceHolder.get(getActivity()).addMessage(mMessage);
+				if (!selected) {
+					mMessage.setText(String.valueOf(s));
+					mInstance.setMessage(mMessage.getId());
+					InstanceHolder.get(getActivity()).addMessage(mMessage);
+				}
 			}
 
 			@Override
@@ -257,6 +260,7 @@ public class InstanceFragment extends Fragment {
 			if(resultCode == Activity.RESULT_OK) {
 				UUID messageId = (UUID) data.getExtras().get(MessageFragment.EXTRA_MESSAGE_ID);
 				Message lMessage = InstanceHolder.get(getActivity()).getMessage(messageId);
+				selected = true;
 				message.setText(lMessage.getText());
 				mInstance.setMessage(lMessage.getId());
 				message.setEnabled(false);
