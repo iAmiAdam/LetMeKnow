@@ -57,7 +57,7 @@ public class InstanceFragment extends Fragment {
 		
 		//Fetch the instance id from the Extra that it's sent.	
 		UUID instanceId = (UUID)getArguments().getSerializable(EXTRA_INSTANCE_ID);
-		mInstance = InstanceHolder.get(getActivity()).getInstance(instanceId);	
+		mInstance = InstanceHolder.get(getActivity()).getInstance(instanceId);
 		
 		setHasOptionsMenu(true);
 	}
@@ -112,6 +112,9 @@ public class InstanceFragment extends Fragment {
 			mLocation = InstanceHolder.get(getActivity()).getLocation(mInstance.getLocation());
 			latitude = mLocation.getLatitude();
 			longitude = mLocation.getLongitude();
+			LatLng position = new LatLng(latitude, longitude);
+			map.addMarker(new MarkerOptions()
+			.position(position));
 		} else {
 			latitude = LocationTools.getCurrentLocation(getActivity()).latitude;
 			longitude = LocationTools.getCurrentLocation(getActivity()).longitude;
