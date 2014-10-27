@@ -41,6 +41,7 @@ public class MessagePagerActivity extends FragmentActivity {
 			
 			@Override
 			public void onPageSelected(int pos) {
+				@SuppressWarnings("unused")
 				Message message = mMessages.get(pos);
 			}
 			

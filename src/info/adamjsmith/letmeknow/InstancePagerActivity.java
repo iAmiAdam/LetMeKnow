@@ -41,6 +41,7 @@ public class InstancePagerActivity extends FragmentActivity {
 			
 			@Override
 			public void onPageSelected(int pos) {
+				@SuppressWarnings("unused")
 				Instance instance = mInstances.get(pos);
 			}
 			
