@@ -43,13 +43,13 @@ public class NotificationTools extends BroadcastReceiver {
 	
 	private void sendNotification(Instance i) {
 		NotificationManager nm = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-		String name = InstanceHolder.get(mContext).getContact(i.getContact()).getName();
+		//String name = InstanceHolder.get(mContext).getContact(i.getContact()).getName();
 		final Intent intent = new Intent();
 		PendingIntent pendingIntent = PendingIntent.getActivity(mContext,  0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(mContext)
 		.setSmallIcon(R.drawable.notification)
 		.setContentTitle("Text Message Sent")
-		.setContentText("We've let " + name + " know you're safe")
+		.setContentText("We've let them know you're safe")
 		.setAutoCancel(true)
 		.setContentIntent(pendingIntent);
 		nm.notify(1, notifBuilder.build());
