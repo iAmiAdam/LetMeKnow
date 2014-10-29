@@ -150,7 +150,8 @@ public class InstanceListFragment extends ListFragment {
 			super(getActivity(), 0, instances);
 		}
 		
-		@SuppressLint("InflateParams") public View getView(int position, View convertView, ViewGroup parent) {
+		@SuppressLint("InflateParams") 
+		public View getView(int position, View convertView, ViewGroup parent) {
 			if(convertView == null) {
 				if(position % 2 == 0) {
 					convertView = getActivity().getLayoutInflater()
