@@ -43,9 +43,9 @@ public class InstanceFragment extends Fragment {
 	private Button selectMessage;
 	private Button selectLocation;
 	private Button selectContact;
-	private CheckBox persistenceBox;
+	//private CheckBox persistenceBox;
 	private TextView contactName;
-	private Switch activeSwitch;
+	//private Switch activeSwitch;
 	private Message mMessage;
 	private Location mLocation;	
 	private Contact mContact;
@@ -202,31 +202,31 @@ public class InstanceFragment extends Fragment {
 			}
 		});
 		
-		persistenceBox = (CheckBox) v.findViewById(R.id.instance_persistence);
+		//persistenceBox = (CheckBox) v.findViewById(R.id.instance_persistence);
 		
-		persistenceBox.setChecked(mInstance.persist());
+		//persistenceBox.setChecked(mInstance.persist());
 		
-		persistenceBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		//persistenceBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				mInstance.setPersist(isChecked);
-			}
-		});
+			//@Override
+			//public void onCheckedChanged(CompoundButton buttonView,
+					//boolean isChecked) {
+				//mInstance.setPersist(isChecked);
+			//}
+		//});
 		
-		activeSwitch = (Switch) v.findViewById(R.id.instance_active);
+		//activeSwitch = (Switch) v.findViewById(R.id.instance_active);
 		
-		activeSwitch.setChecked(mInstance.active());
+		//activeSwitch.setChecked(mInstance.active());
 		
-		activeSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		//activeSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				mInstance.setActive(isChecked);				
-			}
-		});
+			//@Override
+			//public void onCheckedChanged(CompoundButton buttonView,
+					//boolean isChecked) {
+				//mInstance.setActive(isChecked);				
+			//}
+		//});
 		
 		return v;
 	}
