@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Window;
 
 public class ActivityPager extends FragmentActivity {
 	private final List<Fragment> mFragments = new ArrayList<Fragment>();
@@ -16,7 +17,12 @@ public class ActivityPager extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+		getActionBar().hide();
+		setContentView(R.layout.activity_loading);
+		
 		initPaging();
+		getActionBar().show();
 	}
 	
 	@Override
@@ -45,7 +51,7 @@ public class ActivityPager extends FragmentActivity {
 		ViewPager viewPager = new ViewPager(this);
 		viewPager.setId(R.id.viewPager);
 		viewPager.setAdapter(pagerAdapter);
-		setContentView(viewPager);
+		
 		viewPager.setCurrentItem(0);
 		
 		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -71,6 +77,8 @@ public class ActivityPager extends FragmentActivity {
 			@Override
 			public void onPageScrollStateChanged(int arg0) {}
 		});
+		
+		setContentView(viewPager);
 	}
 	
 	private class PagerAdapter extends FragmentPagerAdapter {

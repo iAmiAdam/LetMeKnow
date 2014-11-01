@@ -17,11 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -267,7 +263,6 @@ public class InstanceFragment extends Fragment {
 				message.setText(lMessage.getText());
 				mInstance.setMessage(lMessage.getId());
 				message.setEnabled(false);
-				selectMessage.setVisibility(View.GONE);
 				break;
 			} else {
 				break;
@@ -277,7 +272,6 @@ public class InstanceFragment extends Fragment {
 				UUID locationId = (UUID) data.getExtras().get(LocationFragment.EXTRA_LOCATION_ID);
 				Location lLocation = InstanceHolder.get(getActivity()).getLocation(locationId);
 				mInstance.setLocation(lLocation.getId());
-				selectLocation.setVisibility(View.GONE);
 				CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lLocation.getLatitude(), lLocation.getLongitude()), 14);
 				map.animateCamera(cameraUpdate);
 				map.addMarker(new MarkerOptions()
