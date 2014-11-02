@@ -48,5 +48,8 @@
 	<style name="ActionBar"
 	    parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
 	    <item name="android:background">@color/barblue</item>
+	    <item name="android:displayOptions">showHome|homeAsUp|showTitle</item>
+	    <item name="displayOptions">showHome|homeAsUp|showTitle</item>
+	    <item name="android:icon">@android:color/transparent</item>
 	</style>
 </resources>
