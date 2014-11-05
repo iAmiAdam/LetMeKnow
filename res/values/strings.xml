@@ -2,19 +2,7 @@
 <resources>
 
     <string name="app_name">Let Me Know</string>
-    <string name="where">Tell us where you are going&#8230;</string>
     <string name="mapButton">Select on map</string>
-    <string name="who">Who do you want us to tell?</string>
-    <string name="contactsButton">Select from contacts</string>
-    <string name="what">What shall we tell them?</string>
-    <string name="confirm">Confirm</string>
-    <string name="reset">Reset</string>
-    <string name="contactPicture">Contact</string>
-    <string name="logo">Let Me Know</string>
-    <string name="markerIcon">Marker Icon</string>
-    <string name="contactIcon">Contact Icon</string>
-    <string name="tick">Tick Icon</string>
-    <string name="confirmation">We\'ve got it from here, We\'ll let your contact know when you arrive at your destination.</string>
     <string name="locationSettingsTitle">Location Settings</string>
     <string name="locationIntervalTitle">Location Update Interval</string>
     <string name="settings">Settings</string>
