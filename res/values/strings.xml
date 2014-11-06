@@ -18,6 +18,7 @@
     <string name="saveMessage">Save message</string>
     <string name="chooseLocation">Choose location</string>
     <string name="saveLocation">Save location</string>
+    <string name="contactPicture">Contact Picture</string>
     
     <string name="select">Select</string>
     <string name="messages">Messages</string>
