@@ -18,8 +18,6 @@ public class ActivityPager extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-		getActionBar().hide();
-		setContentView(R.layout.activity_loading);
 		
 		initPaging();
 		getActionBar().show();
